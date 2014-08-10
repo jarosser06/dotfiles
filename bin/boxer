@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Author: Jim Rosser
+# This is my default command to help manage my workstation.
+# This populates all of my custom dotfiles, installs a bunch of software
+# etc ...
+
+function boxer_help {
+  echo -e "\nboxer helps me keep track of my dotfiles, applications, etc"
+  echo "boxer [command]"
+  echo "  init - initialize a brand new workstation"
+  echo "  update - update workstation"
+}
+
+function update_boxer {
+  echo "Cloning git repo..."
+  pushd /tmp &> /dev/null
+  git clone git@github.com:jarosser06/dotfiles.git
+  rm -rf dotfiles
+  popd &> /dev/null
+  echo "Finished updating..."
+}
+
+case $1 in
+  "init")
+    ;;
+  "update")
+    update_boxer
+    ;;
+  *)
+    boxer_help
+    ;;
+esac

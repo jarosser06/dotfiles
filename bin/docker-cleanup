@@ -1,0 +1,10 @@
+#!/bin/bash
+
+old_images=$(sudo docker ps -a | grep 'months ago')
+
+if ! [ -z "${old_images}" ]; then
+  echo "Found old imges, cleaning up..."
+  echo $old_images | awk '{print $1}' | xargs sudo docker rm
+else
+  echo "No images older than a few weeks found"
+fi
