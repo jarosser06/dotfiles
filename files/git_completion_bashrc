@@ -1,0 +1,6 @@
+
+# Auto added by scripts install
+source ~/.git-completion.sh
+
+PS1='[\u@\h] \w\[\033[33m\]$(__git_ps1)\[\033[00m\]\$ '
+GIT_PS1_SHOWDIRTYSTATE=true
