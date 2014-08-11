@@ -85,7 +85,7 @@ case $1 in
     ;;
   "reconfigure")
     pushd /tmp &> /dev/null
-    echo "cookbook_path \"${HOME}/.self_chef/cookbooks\"" >> solo.rb
+    echo "cookbook_path \"${HOME}/.self_chef/cookbooks\"" > solo.rb
     sudo chef-solo -j ${HOME}/.self_chef/dna.json -c ./solo.rb
     popd &> /dev/null
     ;;
