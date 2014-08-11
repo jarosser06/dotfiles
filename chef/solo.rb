@@ -1,1 +1,1 @@
-cookbook_path ENV['HOME']
+cookbook_path File.join(ENV['HOME'], '.self_chef/cookbooks')
