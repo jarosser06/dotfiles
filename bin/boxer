@@ -85,6 +85,7 @@ case $1 in
     ;;
   "reconfigure")
     chef-solo -j ${HOME}/.self_chef/dna.json -c ${HOME}/.self_chef/solo.rb
+    ;;
   *)
     boxer_help
     ;;
