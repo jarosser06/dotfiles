@@ -12,6 +12,8 @@ function boxer_help {
   echo -e "\nboxer helps me keep track of my dotfiles, applications, etc"
   echo "boxer [command]"
   echo "  update - update workstation"
+  echo "  install - same as update"
+  echo "  reconfigure - kicks off the chef run"
 }
 
 function update_boxer {
@@ -82,8 +84,7 @@ case $1 in
     install_packer
     ;;
   "reconfigure")
-
-    ;;
+    chef-solo -j ${HOME}/.self_chef/dna.json -c ${HOME}/.self_chef/solo.rb
   *)
     boxer_help
     ;;
