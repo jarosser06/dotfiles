@@ -30,14 +30,16 @@ function update_boxer {
 function install_packer {
   install_packer=true
   installed_packer_version=$(packer version | awk '{print $2}')
+
   if [ -a ${HOME}/.bin/packer ]; then
-    if [ "$installed_packer_version" == v${PACKER_VERSION} ]; then
+    if [ "$installed_packer_version" == "v${PACKER_VERSION}" ]; then
       install_packer=false
+    else
+      echo "Incorrect Packer version..."
     fi
-    echo "Incorrect Packer version..."
   fi
 
-  if [ $install_packer ]; then
+  if [ $install_packer == true ]; then
     echo "Installing Packer..."
     packer_pkg=${PACKER_VERSION}_linux_amd64.zip
 
@@ -49,22 +51,22 @@ function install_packer {
 
 function install_go {
   install_go=true
-
   installed_go_version=$(go version | awk '{print $3}')
-  echo $go_version
+
   if [ -a /usr/local/go ]; then
     if [ "$installed_go_version" == go${GO_VERSION} ]; then
       install_go=false
+    else
+      echo "Incorrect Go version..."
     fi
-    echo "Incorrect Go version..."
   fi
 
-  if [ $install_go ]; then
+  if [ $install_go == true ]; then
     echo "Installing Go..."
     go_pkg=go${GO_VERSION}.linux-amd64.tar.gz
 
-    #curl -L http://golang.org/dl/${go_pkg} > /tmp/${go_pkg}
-    #sudo tar -C /usr/local -xzf /tmp/${go_pkg}
+    wget http://golang.org/dl/${go_pkg} -o /tmp/${go_pkg}
+    sudo tar -C /usr/local -xzf /tmp/${go_pkg}
   fi
 }
 
