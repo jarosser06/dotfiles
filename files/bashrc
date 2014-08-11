@@ -8,5 +8,8 @@ fi
 # User specific aliases and functions
 
 # Get custom env vars
-source ${HOME}/.bash_custom/bash_vars
-source ${HOME}/.bash_custom/*
+PS1='[\u@\h] \w\[\033[33m\]$(__git_ps1)\[\033[00m\]\$ '
+GIT_PS1_SHOWDIRTYSTATE=true
+
+source ${HOME}/.bash_custom/git-completion.sh
+source ${HOME}/.bash_custom/env_vars

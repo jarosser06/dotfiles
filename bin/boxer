@@ -5,6 +5,9 @@
 # This populates all of my custom dotfiles, installs a bunch of software
 # etc ...
 
+GO_VERSION=1.3
+PACKER_VERSION=0.6.1
+
 function boxer_help {
   echo -e "\nboxer helps me keep track of my dotfiles, applications, etc"
   echo "boxer [command]"
@@ -16,16 +19,60 @@ function update_boxer {
   echo "Cloning git repo..."
   pushd /tmp &> /dev/null
   git clone git@github.com:jarosser06/dotfiles.git
+  cp dotfiles/files/bash_custom/* ${HOME}/.bash_custom/
+  cp dotfiles/files/bashrc ${HOME}/.bashrc
+  cp dotfiles/bin/* ${HOME}/.bin/
   rm -rf dotfiles
   popd &> /dev/null
   echo "Finished updating..."
 }
 
+function install_packer {
+  install_packer=true
+  installed_packer_version=$(packer version | awk '{print $2}')
+  if [ -a ${HOME}/.bin/packer ]; then
+    if [ "$installed_packer_version" == v${PACKER_VERSION} ]; then
+      install_packer=false
+    fi
+    echo "Incorrect Packer version..."
+  fi
+
+  if [ $install_packer ]; then
+    echo "Installing Packer..."
+    packer_pkg=${PACKER_VERSION}_linux_amd64.zip
+
+    echo $packer_pkg
+    wget https://dl.bintray.com/mitchelh/packer/${packer_pkg} -o /tmp/${packer_pkg}
+    unzip /tmp/${packer_pkg} -d $HOME/.bin
+  fi
+}
+
+function install_go {
+  install_go=true
+
+  installed_go_version=$(go version | awk '{print $3}')
+  echo $go_version
+  if [ -a /usr/local/go ]; then
+    if [ "$installed_go_version" == go${GO_VERSION} ]; then
+      install_go=false
+    fi
+    echo "Incorrect Go version..."
+  fi
+
+  if [ $install_go ]; then
+    echo "Installing Go..."
+    go_pkg=go${GO_VERSION}.linux-amd64.tar.gz
+
+    #curl -L http://golang.org/dl/${go_pkg} > /tmp/${go_pkg}
+    #sudo tar -C /usr/local -xzf /tmp/${go_pkg}
+  fi
+}
+
 case $1 in
-  "init")
-    ;;
   "update")
     update_boxer
+    install_go
+    install_packer
     ;;
   *)
     boxer_help
