@@ -1,0 +1,42 @@
+#!/bin/bash
+
+function list_configs {
+  pushd ${HOME}/.ssh &> /dev/null
+  echo "Available configs..."
+  configs=$(ls | grep -E '*-config')
+  ls | grep -E '*-config' | awk '{{split($1, a, "-")}{print " ", a[1]}}'
+  popd &> /dev/null
+}
+
+function print_help {
+  echo "ssh-config [command]"
+  echo "  list - list available configs"
+  echo "  use [name] - use config name"
+}
+
+function link_config {
+  config=${HOME}/.ssh/${1}-config
+  link=${HOME}/.ssh/config
+  echo $config
+  if [ -a $config ]; then
+    echo "Linking config ..."
+    sleep 1
+    rm -f $link
+    ln -s $config $link
+    echo "Done"
+  else
+    echo "Config ${config} does not exist..."
+  fi
+}
+
+case $1 in
+"list")
+  list_configs
+  ;;
+"use")
+  link_config $2
+  ;;
+*)
+  print_help
+  ;;
+esac
