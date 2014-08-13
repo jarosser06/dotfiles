@@ -1,10 +1,20 @@
 #!/bin/bash
 
+current_link=$(readlink ${HOME}/.ssh/config | awk '{ {split($1, a, "/")} {print a[5]}}')
+
 function list_configs {
   pushd ${HOME}/.ssh &> /dev/null
   echo "Available configs..."
   configs=$(ls | grep -E '*-config')
-  ls | grep -E '*-config' | awk '{{split($1, a, "-")}{print " ", a[1]}}'
+  for config in $configs
+  do
+    short_name=$(echo $config | awk '{{split($1, a, "-")}{print " ", a[1]}}')
+    if [ $current_link == $config ]; then
+      echo "  *${short_name}"
+    else
+      echo "   ${short_name}"
+    fi
+  done
   popd &> /dev/null
 }
 
