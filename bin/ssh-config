@@ -30,7 +30,6 @@ function link_config {
   echo $config
   if [ -a $config ]; then
     echo "Linking config ..."
-    sleep 1
     rm -f $link
     ln -s $config $link
     echo "Done"
