@@ -6,6 +6,9 @@ export CUSTOM_BIN=${HOME}/.bin
 export COOKBOOKS=${HOME}/cookbooks
 export PATH=${HOME}/.bin:/usr/local/go/bin:$PATH
 
+## Needed for Rust
+export LD_LIBRARY_PATH=/usr/local/lib
+
 ## Used for git completion
 PS1='[\u@\h] \w\[\033[33m\]$(__git_ps1)\[\033[00m\]\$ '
 GIT_PS1_SHOWDIRTYSTATE=true
