@@ -22,13 +22,13 @@ function update_project() {
 function clone_github_project() {
   project=$1
 
-  if [ -z $project_name ]; then
+  if [ -z $project ]; then
     echo "You must pass a project name"
     return 1
   fi
 
   if [ -d ${PROJECTS_DIR}/${project} ]; then
-    echo "Project already exists!!"
+    echo "Project ${project} already exists!!"
     return 0
   else
     pushd $PROJECTS_DIR &> /dev/null
