@@ -27,7 +27,8 @@ function clone_github_project() {
     return 1
   fi
 
-  if [ -d ${PROJECTS_DIR}/${project} ]; then
+  IFS='/' read -a prj_array <<< $project
+  if [ -d ${PROJECTS_DIR}/${prj_array[1]} ]; then
     echo "Project ${project} already exists!!"
     return 0
   else
