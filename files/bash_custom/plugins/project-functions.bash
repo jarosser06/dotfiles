@@ -53,8 +53,10 @@ function update_github_projects() {
     prj_name=${project##*/}
 
     if [ -d ${PROJECTS_DIR}/${prj_name} ]; then
+      echo
       update_project $prj_name
     else
+      echo
       clone_github_project $project
     fi
   done
