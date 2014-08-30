@@ -5,6 +5,8 @@ export GOPATH=${HOME}/.go
 export CUSTOM_BIN=${HOME}/.bin
 export COOKBOOKS=${HOME}/cookbooks
 export PATH=${HOME}/.bin:/usr/local/go/bin:$PATH
+export PROJECTS_DIR=${HOME}/Projects
+export PROJECTS_LIST=${HOME}/.projects
 
 ## Needed for Rust
 export LD_LIBRARY_PATH=/usr/local/lib
