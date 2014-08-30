@@ -30,7 +30,7 @@ function update_boxer {
   cp dotfiles/bin/* ${HOME}/.bin/
   cp -r dotfiles/vim/* ${HOME}/.vim/
   cp dotfiles/vimrc ${HOME}/.vimrc
-  cp -r dotfiles/chef ${HOME}/.self_chef
+  cp -r dotfiles/chef/* ${HOME}/.self_chef/
   rm -rf dotfiles
   popd &> /dev/null
   echo "Finished updating..."
