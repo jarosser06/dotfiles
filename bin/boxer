@@ -24,7 +24,7 @@ function update_boxer {
   if ! [ -d ${HOME}/.vim/vundle.git ]; then
     git clone https://github.com/gmarik/Vundle.vim.git ${HOME}/.vim/vundle.git
   fi
-  cp dotfiles/files/bash_custom/* ${HOME}/.bash_custom/
+  cp -r dotfiles/files/bash_custom/* ${HOME}/.bash_custom/
   cp dotfiles/files/bashrc ${HOME}/.bashrc
   cp dotfiles/bin/* ${HOME}/.bin/
   cp -r dotfiles/vim/* ${HOME}/.vim/
