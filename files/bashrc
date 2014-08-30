@@ -13,3 +13,8 @@ GIT_PS1_SHOWDIRTYSTATE=true
 
 source ${HOME}/.bash_custom/git-completion.sh
 source ${HOME}/.bash_custom/env_vars
+
+for $plugin in $(ls ${HOME}/.bash_custom/plugins);
+do
+  source ${HOME}/.bash_custom/plugins/${plugin}
+done
