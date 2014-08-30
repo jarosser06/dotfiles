@@ -17,6 +17,7 @@
     "rackspace/gophercloud",
     "marpaia/chef-golang",
     "openstack-dev/devstack",
-    "rust-lang/rust"
+    "rust-lang/rust",
+    "opscode/chef"
   ]
 }
