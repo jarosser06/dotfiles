@@ -38,3 +38,18 @@ function clone_github_project() {
     return 0
   fi
 }
+
+function update_projects() {
+  hosting_site=$1
+
+  if [ -z $hosting_site ]; then
+    echo "You must pass a project domain"
+    return 1
+  fi
+
+  project_list=$(jq ".${hosting_site}[]" ${HOME}/.projects.json)
+  for project in $project_list;
+  do
+    update_project $project
+  done
+}

@@ -23,6 +23,7 @@
   irssi
   erlang
   ghc
+  jq
 ).each do |pkg|
   package pkg do
     action :install
