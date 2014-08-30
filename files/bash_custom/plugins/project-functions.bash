@@ -10,6 +10,7 @@ function update_project() {
 
   if [ -d ${PROJECTS_DIR}/${project_name} ]; then
     pushd ${PROJECTS_DIR}/${project_name} &> /dev/null
+    echo "Updating ${project_name}..."
     git pull
     popd &> /dev/null
     return 0
@@ -33,9 +34,8 @@ function clone_github_project() {
     return 0
   else
     pushd $PROJECTS_DIR &> /dev/null
-    echo $project
-    echo "git clone git@github.com:${project}"
-    #git clone git@github.com:${project}
+    echo "Cloning ${project}..."
+    git clone git@github.com:${project}
     popd &> /dev/null
     return 0
   fi
