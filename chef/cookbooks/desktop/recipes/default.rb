@@ -22,6 +22,7 @@
   docker-io
   irssi
   erlang
+  ghc
 ).each do |pkg|
   package pkg do
     action :install
