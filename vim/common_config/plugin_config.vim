@@ -55,6 +55,7 @@
 
 " Go
   Bundle "https://github.com/fatih/vim-go.git"
+    let g:go_disable_autoinstall = 1
     au BufNewFile,BufRead *.go set filetype=go
 
 " Slim
