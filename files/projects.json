@@ -18,6 +18,9 @@
     "marpaia/chef-golang",
     "openstack-dev/devstack",
     "rust-lang/rust",
+    "influxdb/influxdb",
+    "brendangregg/perf-tools",
+    "grafana/grafana",
     "opscode/chef"
   ]
 }
