@@ -23,6 +23,7 @@
     "grafana/grafana",
     "saltstack/salt",
     "saltstack/libnacl",
+    "lxc/lxc",
     "opscode/chef"
   ]
 }
