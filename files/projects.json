@@ -21,6 +21,8 @@
     "influxdb/influxdb",
     "brendangregg/perf-tools",
     "grafana/grafana",
+    "saltstack/salt",
+    "saltstack/libnacl",
     "opscode/chef"
   ]
 }
