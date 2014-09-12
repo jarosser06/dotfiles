@@ -1,10 +1,11 @@
 #!/bin/bash
 
+export CHEFDK_LOCAL_BIN=${HOME}/.chefdk/gem/ruby/2.1.0/bin
 export EDITOR=vim
 export GOPATH=${HOME}/.go
 export CUSTOM_BIN=${HOME}/.bin
 export COOKBOOKS=${HOME}/cookbooks
-export PATH=${HOME}/.bin:/usr/local/go/bin:$PATH
+export PATH=${HOME}/.bin:${CHEFDK_LOCAL_BIN}:/usr/local/go/bin:$PATH
 export PROJECTS_DIR=${HOME}/Projects
 export PROJECTS_LIST=${HOME}/.projects
 
