@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export CHEFDK_LOCAL_BIN=${HOME}/.chefdk/gem/ruby/2.1.0/bin
 export EDITOR=vim
 export GOPATH=${HOME}/.go
 export CUSTOM_BIN=${HOME}/.bin

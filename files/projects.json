@@ -25,6 +25,7 @@
     "saltstack/libnacl",
     "lxc/lxc",
     "hashicorp/terraform",
-    "opscode/chef"
+    "opscode/chef",
+    "tools/godep"
   ]
 }
