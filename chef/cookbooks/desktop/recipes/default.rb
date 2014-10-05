@@ -8,23 +8,23 @@
 #
 
 %w(
+  bison
+  cmake
+  docker-io
   elixir
+  erlang
+  gcc
+  gcc-c++
   gdb
+  ghc
+  ghc
+  git
+  irssi
+  jq
   libxml2-devel
   libxslt-devel
-  gcc-c++
-  gcc
   make
-  cmake
-  git
   mercurial
-  bison
-  docker-io
-  irssi
-  erlang
-  ghc
-  ghc
-  jq
 ).each do |pkg|
   package pkg do
     action :install
