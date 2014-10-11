@@ -6,6 +6,9 @@ export GOPATH=${HOME}/.go
 export CUSTOM_BIN=${HOME}/.bin
 export COOKBOOKS=${HOME}/cookbooks
 export PATH=${HOME}/.bin:/usr/local/go/bin:$PATH
+if [ -a ${HOME}/.rvm ]; then
+  PATH=$PATH:${HOME}/.rvm/bin
+fi
 export PROJECTS_DIR=${HOME}/Projects
 export PROJECTS_LIST=${HOME}/.projects
 
