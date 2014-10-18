@@ -114,5 +114,8 @@
 " JSON is JS
   au BufNewFile,BufRead *.json set ai filetype=javascript
 
+" Guardfile is Ruby
+  au BufNewFile,BufRead Guardfile set ai filetype=ruby
+
 " different color for each paren pairs
 let vimclojure#ParenRainbow  = 1
