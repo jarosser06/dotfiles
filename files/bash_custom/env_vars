@@ -7,11 +7,7 @@ export CUSTOM_BIN=${HOME}/.bin
 export COOKBOOKS=${HOME}/cookbooks
 export PATH=${HOME}/.bin:/usr/local/go/bin:$PATH
 
-DART_BIN_PATH=/usr/local/dart/bin
-
-if [ -a $DART_BIN_PATH ]; then
-  PATH=$PATH:$DART_BIN_PATH
-fi
+PATH=/usr/local/dart/bin:$PATH
 
 if [ -a ${HOME}/.rvm ]; then
   PATH=$PATH:${HOME}/.rvm/bin
