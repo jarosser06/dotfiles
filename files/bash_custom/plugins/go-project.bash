@@ -18,6 +18,7 @@ function goproject() {
     do
       sed -i s/GOPROJECT/${PROJ_NAME}/g ${temp}
     done
+    git init
 
     echo "Project ${PROJ_NAME} created"
   fi
