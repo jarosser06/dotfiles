@@ -2,12 +2,12 @@
 
 export CHEFDK_LOCAL_BIN=${HOME}/.chefdk/gem/ruby/2.1.0/bin
 export EDITOR=vim
-export GOPATH=${HOME}/.go
+export GOPATH=${HOME}/Go
 export CUSTOM_BIN=${HOME}/.bin
 export COOKBOOKS=${HOME}/cookbooks
-export PATH=${HOME}/.bin:/usr/local/go/bin:$PATH
-
-PATH=/usr/local/dart/bin:$PATH
+export PATH=${HOME}/.bin:/usr/local/go/bin:${GOPATH}/bin:$PATH
+## Adds dart to the path
+export PATH=/usr/local/dart/bin:$PATH
 
 if [ -a ${HOME}/.rvm ]; then
   PATH=$PATH:${HOME}/.rvm/bin
@@ -21,3 +21,14 @@ export LD_LIBRARY_PATH=/usr/local/lib
 ## Used for git completion
 PS1='[\u@\h] \w\[\033[33m\]$(__git_ps1)\[\033[00m\]\$ '
 GIT_PS1_SHOWDIRTYSTATE=true
+
+if [ -f /usr/bin/virtualenvwrapper.sh ];
+then
+  source /usr/bin/virtualenvwrapper.sh
+else
+  echo "Didn't find virtualenvwrapper.sh"
+fi
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PIP_VIRTUALENV_BASE=$WORKON_HOME
+export PIP_RESPECT_VIRTUALENV=true

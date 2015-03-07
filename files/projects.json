@@ -12,6 +12,7 @@
     "GoogleCloudPlatform/kubernetes",
     "jarosser06/omnios-golang",
     "jarosser06/omnios-packer",
+    "jarosser06/gistcat",
     "hashicorp/consul",
     "opscode/bento",
     "rackspace/gophercloud",
