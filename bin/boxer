@@ -5,8 +5,8 @@
 # This populates all of my custom dotfiles, installs a bunch of software
 # etc ...
 
-GO_VERSION=1.4
-PACKER_VERSION=0.7.5
+DOTFILES=${HOME}/.dotfiles
+DOT_DIRECTORIES=".vim .bin .bash_custom"
 
 function boxer_help {
   echo -e "\nboxer helps me keep track of my dotfiles, applications, etc"
@@ -16,85 +16,66 @@ function boxer_help {
   echo "  reconfigure - kicks off the chef run"
 }
 
-function update_boxer {
-  echo "Cloning git repo..."
-  pushd /tmp &> /dev/null
-  git clone git@github.com:jarosser06/dotfiles.git
+function update_dotfiles {
+  pushd $DOTFILES &> /dev/null
+  git pull
+  popd &> /dev/null
+}
 
+function create_dirs {
+  DOT_DIRECTORIES=$DOT_DIRECTORIES:$(find ${DOTFILES}/files/* -type d)
+  for dot_dir in $DOT_DIRECTORIES
+  do
+    if ! [ -d ${HOME}/${dot_dir} ]; then
+      echo "${dot_dir} not found ... creating"
+      mkdir -p ${HOME}/${dot_dir}
+    fi
+  done
+}
+
+function link_bin {
+  pushd ${DOTFILES}/bin &> /dev/null
+  for f in $(find . -not -type d)
+  do
+    echo "ln ${f} ${HOME}/${f}"
+    #ln $f ${HOME}/.bin/${f}
+  done
+  popd &> /dev/null
+}
+
+function link_files {
+  pushd ${DOTFILES}/files &> /dev/null
+  dot_files=$(find . -not -type d)
+  for f in $dot_files
+  do
+    echo "ln ${f} ${HOME}/${f}"
+    #ln $f ${HOME}/${f}
+  done
+  popd &> /dev/null
+}
+
+function fetch_vundle {
   if ! [ -d ${HOME}/.vim/vundle.git ]; then
     git clone https://github.com/gmarik/Vundle.vim.git ${HOME}/.vim/vundle.git
   fi
-  cp -r dotfiles/files/bash_custom/* ${HOME}/.bash_custom/
-  cp dotfiles/files/projects.json ${HOME}/.projects.json
-  cp dotfiles/files/bashrc ${HOME}/.bashrc
-  cp dotfiles/bin/* ${HOME}/.bin/
-  cp -r dotfiles/vim/* ${HOME}/.vim/
-  cp dotfiles/vimrc ${HOME}/.vimrc
-  cp -r dotfiles/chef/* ${HOME}/.self_chef/
-  rm -rf dotfiles
+}
+
+function reconfigure {
+  pushd /tmp &> /dev/null
+  echo "cookbook_path \"${HOME}/.self_chef/cookbooks\"" > solo.rb
+  sudo chef-solo -j ${HOME}/.self_chef/dna.json -c ./solo.rb
   popd &> /dev/null
-  echo "Finished updating..."
-}
-
-function install_packer {
-  install_packer=true
-  installed_packer_version=$(packer version | awk '{print $2}')
-
-  if [ -a ${HOME}/.bin/packer ]; then
-    if [ "$installed_packer_version" == "v${PACKER_VERSION}" ]; then
-      install_packer=false
-    else
-      echo "Incorrect Packer version..."
-    fi
-  fi
-
-  if [ $install_packer == true ]; then
-    echo "Installing Packer..."
-    packer_pkg=${PACKER_VERSION}_linux_amd64.zip
-
-    echo $packer_pkg
-    wget https://dl.bintray.com/mitchelh/packer/${packer_pkg} -o /tmp/${packer_pkg}
-    unzip /tmp/${packer_pkg} -d $HOME/.bin
-  fi
-}
-
-function install_go {
-  install_go=true
-  installed_go_version=$(go version | awk '{print $3}')
-
-  if [ -a /usr/local/go ]; then
-    if [ "$installed_go_version" == go${GO_VERSION} ]; then
-      install_go=false
-    else
-      echo "Incorrect Go version..."
-    fi
-  fi
-
-  if [ $install_go == true ]; then
-    echo "Installing Go..."
-    go_pkg=go${GO_VERSION}.linux-amd64.tar.gz
-
-    wget http://golang.org/dl/${go_pkg} -o /tmp/${go_pkg}
-    sudo tar -C /usr/local -xzf /tmp/${go_pkg}
-  fi
 }
 
 case $1 in
-  "install")
-    update_boxer
-    #install_go
-    install_packer
-    ;;
-  "update")
-    update_boxer
-    #install_go
-    install_packer
+  "update"|"install")
+    #update_dotfiles
+    create_dirs
+    link_files
+    fetch_vundle
     ;;
   "reconfigure")
-    pushd /tmp &> /dev/null
-    echo "cookbook_path \"${HOME}/.self_chef/cookbooks\"" > solo.rb
-    sudo chef-solo -j ${HOME}/.self_chef/dna.json -c ./solo.rb
-    popd &> /dev/null
+    reconfigure
     ;;
   *)
     boxer_help

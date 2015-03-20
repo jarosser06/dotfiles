@@ -1,10 +1,14 @@
 #!/bin/bash
 
-DIRS=".bin .bash_custom Go Projects"
+DOTFILES="git@github.com:jarosser06/dotfiles.git"
+
+git clone $DOTFILES ${HOME}/.dotfiles
+
+DIRS="Go Projects"
 
 for dir in $DIRS;
 do
   mkdir -p ${HOME}/${dir}
 done
 
-bin/boxer update
+${HOME}/.dotfiles/bin/boxer update
