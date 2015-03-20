@@ -26,6 +26,7 @@
 " Bundle "https://github.com/wavded/vim-stylus.git"
   Bundle "https://github.com/tpope/vim-abolish.git"
   Bundle "https://github.com/christoomey/vim-tmux-navigator.git"
+  Bundle "https://github.com/bling/vim-airline.git"
 
 " Dash Searching"
   Bundle "https://github.com/rizzatti/funcoo.vim.git"
