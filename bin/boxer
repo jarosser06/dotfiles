@@ -33,9 +33,9 @@ function link_bin {
   for f in $(find . -not -type d)
   do
     file_name=$(echo $f | sed 's|\./||')
-    if ! [ -a ${HOME}/.bin/${file_name} ]; then
+    if ! [ -e ${HOME}/.bin/${file_name} ]; then
       echo "${file_name} not found ... linking"
-      ln -s $file_name ${HOME}/.bin/${file_name}
+      ln -s ${DOTFILES}/files/$file_name ${HOME}/.bin/${file_name}
     fi
   done
   popd &> /dev/null
@@ -46,9 +46,9 @@ function link_files {
   for f in $(find . -not -type d)
   do
     file_name=$(echo $f | sed 's|./||')
-    if ! [ -a ${HOME}/${file_name} ]; then
+    if ! [ -e ${HOME}/${file_name} ]; then
       echo "${file_name} not found ... linking"
-      ln -s $file_name ${HOME}/${file_name}
+      ln -s ${DOTFILES}/files/$file_name ${HOME}/${file_name}
     fi
   done
   popd &> /dev/null
