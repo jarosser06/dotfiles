@@ -3,12 +3,12 @@
 " Last Modified: May, 14 2007 (10:47)
 " Maintainer:    Adam Olsen (arolsen@gmail.com)
 " Copyright:     2007 Adam Olsen
-"                This script is free software; you can redistribute it and/or 
+"                This script is free software; you can redistribute it anor 
 "                modify it under the terms of the GNU General Public License as 
 "                published by the Free Software Foundation; either version 2 of 
 "                the License, or (at your option) any later version. 
 " Description:   Vim colorscheme file.
-" Install:       Put this file in the users colors directory (~/.vim/colors)
+" Install:       Put this file in the users colors directory (.vim/colors)
 "                then load it with :colorscheme synic
 " ------------------------------------------------------------------
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -16,7 +16,7 @@
 ""                        SPECIAL NOTE:
 "" I believe this colorscheme is based off of Hans 
 "" Fugal's colorscheme "desert".  
-"" http://hans.fugal.net/vim/colors/desert.html
+"" http/hans.fugal.net/vim/colors/desert.html
 "" I might be wrong on this... if it looks like it was based off 
 "" of your colorscheme, let me know so I can give you credits.
 ""

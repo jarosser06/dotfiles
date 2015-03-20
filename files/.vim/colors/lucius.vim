@@ -3,7 +3,7 @@
 " Last Modified: Wed Oct 21, 2009  11:39AM
 " Version: 3.1
 "
-" GUI / 256 color terminal
+" GUI 256 color terminal
 "
 " I started out trying to combine my favorite parts of other schemes and ended
 " up with this (oceandeep, moria, peaksea, wombat, zenburn).
@@ -51,7 +51,7 @@ hi String           ctermfg=110                                     cterm=none
 " character constant
 hi Character        guifg=#80c0d9                                   gui=none
 hi Character        ctermfg=110                                     cterm=none
-" numbers decimal/hex
+" numbers decimahex
 hi Number           guifg=#8cd0d3                                   gui=none
 hi Number           ctermfg=116                                     cterm=none
 " true, false
@@ -209,7 +209,7 @@ hi CursorIM         ctermfg=bg              ctermbg=116
 " cursor column
 hi CursorColumn     guifg=NONE              guibg=#202438           gui=none
 hi CursorColumn     ctermfg=NONE            ctermbg=236             cterm=none
-" cursor line/row
+" cursor linrow
 hi CursorLine       gui=NONE                guibg=#202438           gui=none
 hi CursorLine       cterm=NONE              ctermbg=236             cterm=none
 
@@ -243,7 +243,7 @@ hi ModeMsg          ctermfg=117             ctermbg=NONE            cterm=none
 " the '~' and '@' and showbreak, '>' double wide char doesn't fit on line
 hi NonText          guifg=#404040                                   gui=none
 hi NonText          ctermfg=235                                     cterm=none
-" the hit-enter prompt (show more output) and yes/no questions
+" the hit-enter prompt (show more output) and yeno questions
 hi Question         guifg=fg                                        gui=none
 hi Question         ctermfg=fg                                      cterm=none
 " meta and special keys used with map, unprintable characters
@@ -289,7 +289,7 @@ hi FoldColumn       ctermfg=117             ctermbg=238             cterm=none
 
 " Search
 " ------
-" highlight incremental search text; also highlight text replaced with :s///c
+" highlight incremental search text; also highlight text replaced with ://c
 hi IncSearch        guifg=#66ffff                                   gui=reverse
 hi IncSearch        ctermfg=87                                      cterm=reverse
 " hlsearch (last search pattern), also used for quickfix

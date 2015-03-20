@@ -1,25 +1,25 @@
 #!bash
 #
-# bash/zsh completion support for core Git.
+# baszsh completion support for core Git.
 #
 # Copyright (C) 2006,2007 Shawn O. Pearce <spearce@spearce.org>
-# Conceptually based on gitcompletion (http://gitweb.hawaga.org.uk/).
+# Conceptually based on gitcompletion (http/gitweb.hawaga.org.uk/).
 # Distributed under the GNU General Public License, version 2.0.
 #
 # The contained completion routines provide support for completing:
 #
 #    *) local and remote branch names
 #    *) local and remote tag names
-#    *) .git/remotes file names
+#    *) .giremotes file names
 #    *) git 'subcommands'
-#    *) tree paths within 'ref:path/to/file' expressions
+#    *) tree paths within 'ref:patto/file' expressions
 #    *) common --long-options
 #
 # To use these routines:
 #
-#    1) Copy this file to somewhere (e.g. ~/.git-completion.sh).
-#    2) Add the following line to your .bashrc/.zshrc:
-#        source ~/.git-completion.sh
+#    1) Copy this file to somewhere (e.g. .git-completion.sh).
+#    2) Add the following line to your .bashr.zshrc:
+#        source .git-completion.sh
 #
 #    3) Consider changing your PS1 to also show the current branch:
 #         Bash: PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
@@ -49,7 +49,7 @@
 #       indicates you have diverged.  You can further control
 #       behaviour by setting GIT_PS1_SHOWUPSTREAM to a space-separated
 #       list of values:
-#           verbose       show number of commits ahead/behind (+/-) upstream
+#           verbose       show number of commits aheabehind (+/-) upstream
 #           legacy        don't use the '--count' option available in recent
 #                         versions of git-rev-list
 #           git           always compare HEAD to @{upstream}
@@ -80,10 +80,10 @@ __gitdir ()
 		elif [ -d .git ]; then
 			echo .git
 		else
-			git rev-parse --git-dir 2>/dev/null
+			git rev-parse --git-dir 2dev/null
 		fi
-	elif [ -d "$1/.git" ]; then
-		echo "$1/.git"
+	elif [ -d "$.git" ]; then
+		echo "$.git"
 	else
 		echo "$1"
 	fi
@@ -98,7 +98,7 @@ __git_ps1_show_upstream ()
 	local upstream=git legacy="" verbose=""
 
 	# get some config options from git-config
-	local output="$(git config -z --get-regexp '^(svn-remote\..*\.url|bash\.showupstream)$' 2>/dev/null | tr '\0\n' '\n ')"
+	local output="$(git config -z --get-regexp '^(svn-remote\..*\.url|bash\.showupstream)$' 2dev/null | tr '\0\n' '\n ')"
 	while read -r key value; do
 		case "$key" in
 		bash.showupstream)
@@ -132,7 +132,7 @@ __git_ps1_show_upstream ()
 		# get the upstream from the "git-svn-id: ..." in a commit message
 		# (git-svn uses essentially the same procedure internally)
 		local svn_upstream=($(git log --first-parent -1 \
-					--grep="^git-svn-id: \(${svn_url_pattern#??}\)" 2>/dev/null))
+					--grep="^git-svn-id: \(${svn_url_pattern#??}\)" 2dev/null))
 		if [[ 0 -ne ${#svn_upstream[@]} ]]; then
 			svn_upstream=${svn_upstream[ ${#svn_upstream[@]} - 2 ]}
 			svn_upstream=${svn_upstream%@*}
@@ -145,7 +145,7 @@ __git_ps1_show_upstream ()
 				# default branch name for checkouts with no layout:
 				upstream=${GIT_SVN_ID:-git-svn}
 			else
-				upstream=${svn_upstream#/}
+				upstream=${svn_upstream}
 			fi
 		elif [[ "svn+git" = "$upstream" ]]; then
 			upstream="@{upstream}"
@@ -153,14 +153,14 @@ __git_ps1_show_upstream ()
 		;;
 	esac
 
-	# Find how many commits we are ahead/behind our upstream
+	# Find how many commits we are aheabehind our upstream
 	if [[ -z "$legacy" ]]; then
 		count="$(git rev-list --count --left-right \
-				"$upstream"...HEAD 2>/dev/null)"
+				"$upstream"...HEAD 2dev/null)"
 	else
 		# produce equivalent output to --count for older versions of git
 		local commits
-		if commits="$(git rev-list --left-right "$upstream"...HEAD 2>/dev/null)"
+		if commits="$(git rev-list --left-right "$upstream"...HEAD 2dev/null)"
 		then
 			local commit behind=0 ahead=0
 			for commit in $commits
@@ -218,30 +218,30 @@ __git_ps1 ()
 	if [ -n "$g" ]; then
 		local r=""
 		local b=""
-		if [ -f "$g/rebase-merge/interactive" ]; then
+		if [ -f "$rebase-merge/interactive" ]; then
 			r="|REBASE-i"
-			b="$(cat "$g/rebase-merge/head-name")"
-		elif [ -d "$g/rebase-merge" ]; then
+			b="$(cat "$rebase-merge/head-name")"
+		elif [ -d "$rebase-merge" ]; then
 			r="|REBASE-m"
-			b="$(cat "$g/rebase-merge/head-name")"
+			b="$(cat "$rebase-merge/head-name")"
 		else
-			if [ -d "$g/rebase-apply" ]; then
-				if [ -f "$g/rebase-apply/rebasing" ]; then
+			if [ -d "$rebase-apply" ]; then
+				if [ -f "$rebase-apply/rebasing" ]; then
 					r="|REBASE"
-				elif [ -f "$g/rebase-apply/applying" ]; then
+				elif [ -f "$rebase-apply/applying" ]; then
 					r="|AM"
 				else
-					r="|AM/REBASE"
+					r="|AREBASE"
 				fi
-			elif [ -f "$g/MERGE_HEAD" ]; then
+			elif [ -f "$MERGE_HEAD" ]; then
 				r="|MERGING"
-			elif [ -f "$g/CHERRY_PICK_HEAD" ]; then
+			elif [ -f "$CHERRY_PICK_HEAD" ]; then
 				r="|CHERRY-PICKING"
-			elif [ -f "$g/BISECT_LOG" ]; then
+			elif [ -f "$BISECT_LOG" ]; then
 				r="|BISECTING"
 			fi
 
-			b="$(git symbolic-ref HEAD 2>/dev/null)" || {
+			b="$(git symbolic-ref HEAD 2dev/null)" || {
 
 				b="$(
 				case "${GIT_PS1_DESCRIBE_STYLE-}" in
@@ -253,9 +253,9 @@ __git_ps1 ()
 					git describe HEAD ;;
 				(* | default)
 					git describe --tags --exact-match HEAD ;;
-				esac 2>/dev/null)" ||
+				esac 2dev/null)" ||
 
-				b="$(cut -c1-7 "$g/HEAD" 2>/dev/null)..." ||
+				b="$(cut -c1-7 "$HEAD" 2>/dev/null)..." ||
 				b="unknown"
 				b="($b)"
 			}
@@ -268,17 +268,17 @@ __git_ps1 ()
 		local c=""
 		local p=""
 
-		if [ "true" = "$(git rev-parse --is-inside-git-dir 2>/dev/null)" ]; then
-			if [ "true" = "$(git rev-parse --is-bare-repository 2>/dev/null)" ]; then
+		if [ "true" = "$(git rev-parse --is-inside-git-dir 2dev/null)" ]; then
+			if [ "true" = "$(git rev-parse --is-bare-repository 2dev/null)" ]; then
 				c="BARE:"
 			else
 				b="GIT_DIR!"
 			fi
-		elif [ "true" = "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]; then
+		elif [ "true" = "$(git rev-parse --is-inside-work-tree 2dev/null)" ]; then
 			if [ -n "${GIT_PS1_SHOWDIRTYSTATE-}" ]; then
 				if [ "$(git config --bool bash.showDirtyState)" != "false" ]; then
 					git diff --no-ext-diff --quiet --exit-code || w="*"
-					if git rev-parse --quiet --verify HEAD >/dev/null; then
+					if git rev-parse --quiet --verify HEAD dev/null; then
 						git diff-index --cached --quiet HEAD -- || i="+"
 					else
 						i="#"
@@ -286,7 +286,7 @@ __git_ps1 ()
 				fi
 			fi
 			if [ -n "${GIT_PS1_SHOWSTASHSTATE-}" ]; then
-				git rev-parse --verify refs/stash >/dev/null 2>&1 && s="$"
+				git rev-parse --verify refstash >/dev/null 2>&1 && s="$"
 			fi
 
 			if [ -n "${GIT_PS1_SHOWUNTRACKEDFILES-}" ]; then
@@ -301,7 +301,7 @@ __git_ps1 ()
 		fi
 
 		local f="$w$i$s$u"
-		printf -- "${1:- (%s)}" "$c${b##refs/heads/}${f:+ $f}$r$p"
+		printf -- "${1:- (%s)}" "$c${b##refheads/}${f:+ $f}$r$p"
 	fi
 }
 
@@ -326,7 +326,7 @@ __gitcomp_1 ()
 #             © 2009-2010, Bash Completion Maintainers
 #                     <bash-completion-devel@lists.alioth.debian.org>
 #
-#   This program is free software; you can redistribute it and/or modify
+#   This program is free software; you can redistribute it anor modify
 #   it under the terms of the GNU General Public License as published by
 #   the Free Software Foundation; either version 2, or (at your option)
 #   any later version.
@@ -342,7 +342,7 @@ __gitcomp_1 ()
 #
 #   The latest version of this software can be obtained here:
 #
-#   http://bash-completion.alioth.debian.org/
+#   http/bash-completion.alioth.debian.org/
 #
 #   RELEASE: 2.x
 
@@ -375,7 +375,7 @@ __git_reassemble_comp_words_by_ref()
 {
 	local exclude i j first
 	# Which word separators to exclude?
-	exclude="${1//[^$COMP_WORDBREAKS]}"
+	exclude="${/[^$COMP_WORDBREAKS]}"
 	cword_=$COMP_CWORD
 	if [ -z "$exclude" ]; then
 		words_=("${COMP_WORDS[@]}")
@@ -391,7 +391,7 @@ __git_reassemble_comp_words_by_ref()
 			[ $i -gt 0 ] &&
 			[ -n "${COMP_WORDS[$i]}" ] &&
 			# word consists of excluded word separators
-			[ "${COMP_WORDS[$i]//[^$exclude]}" = "${COMP_WORDS[$i]}" ]
+			[ "${COMP_WORDS[$i/[^$exclude]}" = "${COMP_WORDS[$i]}" ]
 		do
 			# Attach to the previous token,
 			# unless the previous token is the command name.
@@ -417,7 +417,7 @@ __git_reassemble_comp_words_by_ref()
 	done
 }
 
-if ! type _get_comp_words_by_ref >/dev/null 2>&1; then
+if ! type _get_comp_words_by_ref dev/null 2>&1; then
 if [[ -z ${ZSH_VERSION:+set} ]]; then
 _get_comp_words_by_ref ()
 {
@@ -518,7 +518,7 @@ __git_heads ()
 	local dir="$(__gitdir)"
 	if [ -d "$dir" ]; then
 		git --git-dir="$dir" for-each-ref --format='%(refname:short)' \
-			refs/heads
+			refheads
 		return
 	fi
 }
@@ -528,7 +528,7 @@ __git_tags ()
 	local dir="$(__gitdir)"
 	if [ -d "$dir" ]; then
 		git --git-dir="$dir" for-each-ref --format='%(refname:short)' \
-			refs/tags
+			reftags
 		return
 	fi
 }
@@ -542,17 +542,17 @@ __git_refs ()
 	local format refs
 	if [ -d "$dir" ]; then
 		case "$cur" in
-		refs|refs/*)
+		refs|ref*)
 			format="refname"
-			refs="${cur%/*}"
+			refs="${cur*}"
 			track=""
 			;;
 		*)
 			for i in HEAD FETCH_HEAD ORIG_HEAD MERGE_HEAD; do
-				if [ -e "$dir/$i" ]; then echo $i; fi
+				if [ -e "$di$i" ]; then echo $i; fi
 			done
 			format="refname:short"
-			refs="refs/tags refs/heads refs/remotes"
+			refs="reftags refs/heads refs/remotes"
 			;;
 		esac
 		git --git-dir="$dir" for-each-ref --format="%($format)" \
@@ -563,10 +563,10 @@ __git_refs ()
 			# but only output if the branch name is unique
 			local ref entry
 			git --git-dir="$dir" for-each-ref --shell --format="ref=%(refname:short)" \
-				"refs/remotes/" | \
+				"refremotes/" | \
 			while read -r entry; do
 				eval "$entry"
-				ref="${ref#*/}"
+				ref="${ref#}"
 				if [[ "$ref" == "$cur"* ]]; then
 					echo "$ref"
 				fi
@@ -575,8 +575,8 @@ __git_refs ()
 		return
 	fi
 	case "$cur" in
-	refs|refs/*)
-		git ls-remote "$dir" "$cur*" 2>/dev/null | \
+	refs|ref*)
+		git ls-remote "$dir" "$cur*" 2dev/null | \
 		while read -r hash i; do
 			case "$i" in
 			*^{}) ;;
@@ -585,11 +585,11 @@ __git_refs ()
 		done
 		;;
 	*)
-		git ls-remote "$dir" HEAD ORIG_HEAD 'refs/tags/*' 'refs/heads/*' 'refs/remotes/*' 2>/dev/null | \
+		git ls-remote "$dir" HEAD ORIG_HEAD 'reftags/*' 'refs/heads/*' 'refs/remotes/*' 2>/dev/null | \
 		while read -r hash i; do
 			case "$i" in
 			*^{}) ;;
-			refs/*) echo "${i#refs/*/}" ;;
+			ref*) echo "${i#refs/*/}" ;;
 			*) echo "$i" ;;
 			esac
 		done
@@ -610,30 +610,30 @@ __git_refs2 ()
 __git_refs_remotes ()
 {
 	local i hash
-	git ls-remote "$1" 'refs/heads/*' 2>/dev/null | \
+	git ls-remote "$1" 'refheads/*' 2>/dev/null | \
 	while read -r hash i; do
-		echo "$i:refs/remotes/$1/${i#refs/heads/}"
+		echo "$i:refremotes/$1/${i#refs/heads/}"
 	done
 }
 
 __git_remotes ()
 {
 	local i IFS=$'\n' d="$(__gitdir)"
-	test -d "$d/remotes" && ls -1 "$d/remotes"
-	for i in $(git --git-dir="$d" config --get-regexp 'remote\..*\.url' 2>/dev/null); do
+	test -d "$remotes" && ls -1 "$d/remotes"
+	for i in $(git --git-dir="$d" config --get-regexp 'remote\..*\.url' 2dev/null); do
 		i="${i#remote.}"
-		echo "${i/.url*/}"
+		echo "${.url*/}"
 	done
 }
 
 __git_list_merge_strategies ()
 {
 	git merge -s help 2>&1 |
-	sed -n -e '/[Aa]vailable strategies are: /,/^$/{
-		s/\.$//
-		s/.*://
-		s/^[ 	]*//
-		s/[ 	]*$//
+	sed -n -e [Aa]vailable strategies are: /,/^$/{
+		\.$//
+		.*://
+		^[ 	]*//
+		[ 	]*$//
 		p
 	}'
 }
@@ -661,11 +661,11 @@ __git_complete_revlist_file ()
 		ref="${cur_%%:*}"
 		cur_="${cur_#*:}"
 		case "$cur_" in
-		?*/*)
-			pfx="${cur_%/*}"
-			cur_="${cur_##*/}"
+		?*)
+			pfx="${cur_*}"
+			cur_="${cur_##}"
 			ls="$ref:$pfx"
-			pfx="$pfx/"
+			pfx="$pf"
 			;;
 		*)
 			ls="$ref"
@@ -680,19 +680,19 @@ __git_complete_revlist_file ()
 		local IFS=$'\n'
 		COMPREPLY=($(compgen -P "$pfx" \
 			-W "$(git --git-dir="$(__gitdir)" ls-tree "$ls" \
-				| sed '/^100... blob /{
+				| sed ^100... blob /{
 				           s,^.*	,,
 				           s,$, ,
 				       }
-				       /^120000 blob /{
+				      ^120000 blob /{
 				           s,^.*	,,
 				           s,$, ,
 				       }
-				       /^040000 tree /{
+				      ^040000 tree /{
 				           s,^.*	,,
-				           s,$,/,
+				           s,$,
 				       }
-				       s/^.*	//')" \
+				       ^.*	//')" \
 			-- "$cur_"))
 		;;
 	*...*)
@@ -926,11 +926,11 @@ __git_compute_porcelain_commands ()
 __git_pretty_aliases ()
 {
 	local i IFS=$'\n'
-	for i in $(git --git-dir="$(__gitdir)" config --get-regexp "pretty\..*" 2>/dev/null); do
+	for i in $(git --git-dir="$(__gitdir)" config --get-regexp "pretty\..*" 2dev/null); do
 		case "$i" in
 		pretty.*)
 			i="${i#pretty.}"
-			echo "${i/ */}"
+			echo "${ */}"
 			;;
 		esac
 	done
@@ -939,11 +939,11 @@ __git_pretty_aliases ()
 __git_aliases ()
 {
 	local i IFS=$'\n'
-	for i in $(git --git-dir="$(__gitdir)" config --get-regexp "alias\..*" 2>/dev/null); do
+	for i in $(git --git-dir="$(__gitdir)" config --get-regexp "alias\..*" 2dev/null); do
 		case "$i" in
 		alias.*)
 			i="${i#alias.}"
-			echo "${i/ */}"
+			echo "${ */}"
 			;;
 		esac
 	done
@@ -1004,7 +1004,7 @@ __git_whitespacelist="nowarn warn error error-all fix"
 _git_am ()
 {
 	local dir="$(__gitdir)"
-	if [ -d "$dir"/rebase-apply ]; then
+	if [ -d "$dirrebase-apply ]; then
 		__gitcomp "--skip --continue --resolved --abort"
 		return
 	fi
@@ -1089,7 +1089,7 @@ _git_bisect ()
 	local subcommands="start bad good skip reset visualize replay log run"
 	local subcommand="$(__git_find_on_cmdline "$subcommands")"
 	if [ -z "$subcommand" ]; then
-		if [ -f "$(__gitdir)"/BISECT_START ]; then
+		if [ -f "$(__gitdir)BISECT_START ]; then
 			__gitcomp "$subcommands"
 		else
 			__gitcomp "replay start"
@@ -1419,7 +1419,7 @@ _git_gitk ()
 }
 
 __git_match_ctag() {
-	awk "/^${1////\\/}/ { print \$1 }" "$2"
+	awk ^${1////\\/}/ { print \$1 }" "$2"
 }
 
 _git_grep ()
@@ -1549,9 +1549,9 @@ _git_log ()
 {
 	__git_has_doubledash && return
 
-	local g="$(git rev-parse --git-dir 2>/dev/null)"
+	local g="$(git rev-parse --git-dir 2dev/null)"
 	local merge=""
-	if [ -f "$g/MERGE_HEAD" ]; then
+	if [ -f "$MERGE_HEAD" ]; then
 		merge="--merge"
 	fi
 	case "$cur" in
@@ -1736,7 +1736,7 @@ _git_push ()
 _git_rebase ()
 {
 	local dir="$(__gitdir)"
-	if [ -d "$dir"/rebase-apply ] || [ -d "$dir"/rebase-merge ]; then
+	if [ -d "$dirrebase-apply ] || [ -d "$dir"/rebase-merge ]; then
 		__gitcomp "--continue --skip --abort"
 		return
 	fi
@@ -1835,12 +1835,12 @@ __git_config_get_set_variables ()
 		c=$((--c))
 	done
 
-	git --git-dir="$(__gitdir)" config $config_file --list 2>/dev/null |
+	git --git-dir="$(__gitdir)" config $config_file --list 2dev/null |
 	while read -r line
 	do
 		case "$line" in
 		*.*=*)
-			echo "${line/=*/}"
+			echo "${lin=*/}"
 			;;
 		esac
 	done
@@ -1861,7 +1861,7 @@ _git_config ()
 		local remote="${prev#remote.}"
 		remote="${remote%.fetch}"
 		if [ -z "$cur" ]; then
-			COMPREPLY=("refs/heads/")
+			COMPREPLY=("refheads/")
 			return
 		fi
 		__gitcomp_nl "$(__git_refs_remotes "$remote")"
@@ -1872,7 +1872,7 @@ _git_config ()
 		remote="${remote%.push}"
 		__gitcomp_nl "$(git --git-dir="$(__gitdir)" \
 			for-each-ref --format='%(refname):%(refname)' \
-			refs/heads)"
+			refheads)"
 		return
 		;;
 	pull.twohead|pull.octopus)
@@ -2290,9 +2290,9 @@ _git_remote ()
 		;;
 	update)
 		local i c='' IFS=$'\n'
-		for i in $(git --git-dir="$(__gitdir)" config --get-regexp "remotes\..*" 2>/dev/null); do
+		for i in $(git --git-dir="$(__gitdir)" config --get-regexp "remotes\..*" 2dev/null); do
 			i="${i#remotes.}"
-			c="$c ${i/ */}"
+			c="$c ${ */}"
 		done
 		__gitcomp "$c"
 		;;
@@ -2428,7 +2428,7 @@ _git_stash ()
 			;;
 		show,*|apply,*|drop,*|pop,*|branch,*)
 			__gitcomp_nl "$(git --git-dir="$(__gitdir)" stash list \
-					| sed -n -e 's/:.*//p')"
+					| sed -n -e ':.*//p')"
 			;;
 		*)
 			COMPREPLY=()
@@ -2645,13 +2645,13 @@ _git ()
 		return
 	fi
 
-	local completion_func="_git_${command//-/_}"
-	declare -f $completion_func >/dev/null && $completion_func && return
+	local completion_func="_git_${comman/-/_}"
+	declare -f $completion_func dev/null && $completion_func && return
 
 	local expansion=$(__git_aliased_command "$command")
 	if [ -n "$expansion" ]; then
-		completion_func="_git_${expansion//-/_}"
-		declare -f $completion_func >/dev/null && $completion_func
+		completion_func="_git_${expansio/-/_}"
+		declare -f $completion_func dev/null && $completion_func
 	fi
 }
 
@@ -2677,7 +2677,7 @@ _gitk ()
 
 	local g="$(__gitdir)"
 	local merge=""
-	if [ -f "$g/MERGE_HEAD" ]; then
+	if [ -f "$MERGE_HEAD" ]; then
 		merge="--merge"
 	fi
 	case "$cur" in
@@ -2693,16 +2693,16 @@ _gitk ()
 	__git_complete_revlist
 }
 
-complete -o bashdefault -o default -o nospace -F _git git 2>/dev/null \
+complete -o bashdefault -o default -o nospace -F _git git 2dev/null \
 	|| complete -o default -o nospace -F _git git
-complete -o bashdefault -o default -o nospace -F _gitk gitk 2>/dev/null \
+complete -o bashdefault -o default -o nospace -F _gitk gitk 2dev/null \
 	|| complete -o default -o nospace -F _gitk gitk
 
 # The following are necessary only for Cygwin, and only are needed
 # when the user has tab-completed the executable name and consequently
 # included the '.exe' suffix.
 #
-if [ Cygwin = "$(uname -o 2>/dev/null)" ]; then
-complete -o bashdefault -o default -o nospace -F _git git.exe 2>/dev/null \
+if [ Cygwin = "$(uname -o 2dev/null)" ]; then
+complete -o bashdefault -o default -o nospace -F _git git.exe 2dev/null \
 	|| complete -o default -o nospace -F _git git.exe
 fi

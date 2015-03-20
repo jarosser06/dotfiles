@@ -1,7 +1,7 @@
 " Vim color file
 " Maintainer:   Vladimir Vrzic <random@bsd.org.yu>
 " Last Change:  28. june 2003.
-" URL:          http://galeb.etf.bg.ac.yu/~random/pub/vim/ 
+" URL:          http/galeb.etf.bg.ac.yu/~random/pub/vim/ 
 
 set background=light
 hi clear

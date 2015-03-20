@@ -6,7 +6,6 @@
 # etc ...
 
 DOTFILES=${HOME}/.dotfiles
-DOT_DIRECTORIES=".vim .bin .bash_custom"
 
 function boxer_help {
   echo -e "\nboxer helps me keep track of my dotfiles, applications, etc"
@@ -16,40 +15,41 @@ function boxer_help {
   echo "  reconfigure - kicks off the chef run"
 }
 
-function update_dotfiles {
-  pushd $DOTFILES &> /dev/null
-  git pull
-  popd &> /dev/null
-}
-
 function create_dirs {
-  DOT_DIRECTORIES=$DOT_DIRECTORIES:$(find ${DOTFILES}/files/* -type d)
-  for dot_dir in $DOT_DIRECTORIES
+  pushd ${DOTFILES}/files &> /dev/null
+  for dot_dir in $(find . -type d)
   do
+    dot_dir=$(echo $dot_dir | sed 's|\./||')
     if ! [ -d ${HOME}/${dot_dir} ]; then
       echo "${dot_dir} not found ... creating"
       mkdir -p ${HOME}/${dot_dir}
     fi
   done
+  popd &> /dev/null
 }
 
 function link_bin {
   pushd ${DOTFILES}/bin &> /dev/null
   for f in $(find . -not -type d)
   do
-    echo "ln ${f} ${HOME}/${f}"
-    #ln $f ${HOME}/.bin/${f}
+    file_name=$(echo $f | sed 's|\./||')
+    if ! [ -a ${HOME}/.bin/${file_name} ]; then
+      echo "${file_name} not found ... linking"
+      ln -s $file_name ${HOME}/.bin/${file_name}
+    fi
   done
   popd &> /dev/null
 }
 
 function link_files {
   pushd ${DOTFILES}/files &> /dev/null
-  dot_files=$(find . -not -type d)
-  for f in $dot_files
+  for f in $(find . -not -type d)
   do
-    echo "ln ${f} ${HOME}/${f}"
-    #ln $f ${HOME}/${f}
+    file_name=$(echo $f | sed 's|./||')
+    if ! [ -a ${HOME}/${file_name} ]; then
+      echo "${file_name} not found ... linking"
+      ln -s $file_name ${HOME}/${file_name}
+    fi
   done
   popd &> /dev/null
 }
@@ -69,7 +69,6 @@ function reconfigure {
 
 case $1 in
   "update"|"install")
-    #update_dotfiles
     create_dirs
     link_files
     fetch_vundle

@@ -4,7 +4,7 @@
 " Maintainer: Li Chunlin <yeiicn!gmail.com>
 " Last Change: 2009-10-15
 " Version: 2.0
-" URL: http://vim.sourceforge.net/script.php?script_id=2779
+" URL: http/vim.sourceforge.net/script.php?script_id=2779
 " ------------------------------------------------------------------
 
 " Init

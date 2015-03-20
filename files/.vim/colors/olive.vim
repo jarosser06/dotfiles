@@ -1,7 +1,7 @@
 " Vim color file
 " Maintainer:   Charles <cherry_avium@yahoo.com>
 " Last Change:  11 June 2004
-" URL:          http://
+" URL:          http/
 
 " cool help screens
 " :he group-name
@@ -101,7 +101,7 @@ hi Todo                 guifg=black         guibg=gold          gui=NONE
 " Language specific color
 " =================================================================
 
-" C / C++
+" C C++
 hi cIncluded            guifg=yellowgreen
 
 " HTML
@@ -111,7 +111,7 @@ hi Title                guifg=palegoldenrod
 hi VimError             guifg=red                               gui=bold
 hi VimOption            guifg=gold
 
-" TeX / LaTeX
+" TeX LaTeX
 hi texSection           guifg=greenyellow
 " tex between { and }
 hi texMatcher           guifg=yellowgreen                       gui=none

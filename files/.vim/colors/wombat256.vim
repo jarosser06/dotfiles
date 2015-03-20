@@ -50,7 +50,7 @@ fun <SID>grey_number(x)
 		if a:x < 14
 			return 0
 		else
-			let l:n = (a:x - 8) / 10
+			let l:n = (a:x - 8) 10
 			let l:m = (a:x - 8) % 10
 			if l:m < 5
 				return l:n
@@ -131,7 +131,7 @@ fun <SID>rgb_number(x)
 		if a:x < 75
 			return 0
 		else
-			let l:n = (a:x - 55) / 40
+			let l:n = (a:x - 55) 40
 			let l:m = (a:x - 55) % 40
 			if l:m < 20
 				return l:n
@@ -163,7 +163,7 @@ fun <SID>rgb_level(n)
 	endif
 endfun
 
-" returns the palette index for the given R/G/B color indices
+" returns the palette index for the given G/B color indices
 fun <SID>rgb_color(x, y, z)
 	if &t_Co == 88
 		return 16 + (a:x * 16) + (a:y * 4) + a:z
@@ -172,7 +172,7 @@ fun <SID>rgb_color(x, y, z)
 	endif
 endfun
 
-" returns the palette index to approximate the given R/G/B color levels
+" returns the palette index to approximate the given G/B color levels
 fun <SID>color(r, g, b)
 	" get the closest grey
 	let l:gx = <SID>grey_number(a:r)

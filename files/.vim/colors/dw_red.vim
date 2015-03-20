@@ -5,7 +5,7 @@
 " Contact: demwiz@gmail.com
 " Credits: Inspiration from the brookstream and redblack schemes.
 " Last Change: Saturday, September 17, 2006.
-" Installation: Drop this file in your $VIMRUNTIME/colors/ directory.
+" Installation: Drop this file in your $VIMRUNTIMcolors/ directory.
 "--------------------------------------------------------------------
 
 set background=dark

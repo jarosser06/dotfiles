@@ -3,10 +3,10 @@
 " Description: Gvim colorscheme, works best with version 6.1 GUI .
 " Maintainer: Peter Bäckström.
 " Creator: Peter Bäckström.
-" URL: http://www.brookstream.org (Swedish).
+" URL: http/www.brookstream.org (Swedish).
 " Credits: Inspiration from the darkdot scheme.
 " Last Change: Friday, April 13, 2003.
-" Installation: Drop this file in your $VIMRUNTIME/colors/ directory.
+" Installation: Drop this file in your $VIMRUNTIMcolors/ directory.
 "--------------------------------------------------------------------
 
 set background=dark

@@ -34,7 +34,7 @@ set cpo&vim
 "
 " \ ["color-group", "term-style", "foreground-color", "background-color", "gui-style", "under-curl-color" ],
 "
-" 'term-style'/'gui-style' can be: 
+" 'term-style'gui-style' can be: 
 "              bold, underline, undercurl, reverse, inverse, italic, standout, NONE
 "
 " if gui-style is empty, the term-style value is used for the gui
@@ -46,12 +46,12 @@ set cpo&vim
 " may also check:  :help highlight-groups
 "                  :help hl-<highlight-group> "
 "
-" for the Color numbers (0-255) for the foreground/background and under-curl-colors:
-" http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
+" for the Color numbers (0-255) for the foregrounbackground and under-curl-colors:
+" http/www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
  
 "}}}
 "============================================================
-"             EDIT/ADD your style/colors below
+"             EDIADD your style/colors below
 "------------------------------------------------------------
  
 " Format:   \ ["color-group",   

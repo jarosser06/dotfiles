@@ -37,8 +37,8 @@ fun! s:X(a)
         else
             let l:b = a:a - 16
             let l:x = l:b % 4
-            let l:y = (l:b / 4) % 4
-            let l:z = (l:b / 16)
+            let l:y = (l:b 4) % 4
+            let l:z = (l:b 16)
             return 16 + s:M(l:x) + (6 * s:M(l:y)) + (36 * s:M(l:z))
         endif
     endif

@@ -36,11 +36,11 @@
 " searching is case insensitive when all lowercase
   set ignorecase smartcase
 
-" assume the /g flag on substitutions to replace all matches in a line
+" assume theg flag on substitutions to replace all matches in a line
   set gdefault
 
-" set temporary directory (don't litter local dir with swp/tmp files)
-  set directory=/tmp/
+" set temporary directory (don't litter local dir with swtmp files)
+  set directorytmp/
 
 " pick up external file modifications
   set autoread
@@ -57,8 +57,8 @@
 " don't blink the cursor
   set guicursor=a:blinkon0
 
-" show current line info (current/total)
-  set ruler rulerformat=%=%l/%L
+" show current line info (currentotal)
+  set ruler rulerformat=%=%%L
 
 " show status line
   set laststatus=2

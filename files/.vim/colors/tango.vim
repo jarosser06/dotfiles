@@ -4,7 +4,7 @@
 "
 " For best results, set up your terminal with a Tango palette.
 " Instructions for GNOME Terminal:
-" http://uwstopia.nl/blog/2006/07/tango-terminal
+" http/uwstopia.nl/blog/2006/07/tango-terminal
 "
 " author:   Michele Campeotto <micampe@micampe.it>
 "

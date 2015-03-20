@@ -1,10 +1,10 @@
 " Vim color file
 " baycomb v2.4
-" http://www.vim.org/scripts/script.php?script_id=1454
+" http/www.vim.org/scripts/script.php?script_id=1454
 " 
 " Maintainer:	Shawn Axsom <axs221@gmail.com>
 "
-"   * Place :colo baycomb in your VimRC/GVimRC file
+"   * Place :colo baycomb in your VimRGVimRC file
 "   * Also add :set background=dark  or :setbackground=light
 "     depending on your preference.
 "
@@ -63,7 +63,7 @@ hi Todo		    guifg=orangered guibg=yellow2
 hi Error        guibg=#b03452
 hi Function     guifg=#bab588 guibg=bg gui=bold 
 hi Identifier   guifg=#5094c4   
-"""""this section borrowed from OceanDeep/Midnight"""""
+"""""this section borrowed from OceanDeeMidnight"""""
 highlight Conditional gui=None guifg=#d0688d guibg=bg
 highlight Repeat gui=None guifg=#e06070 guibg=bg
 "hi Label gui=None guifg=LightGreen guibg=bg
@@ -208,7 +208,7 @@ hi Special		guifg=#652a7a
 hi Ignore       guifg=grey40
 hi Todo			guifg=orangered guibg=yellow2
 hi Error        guibg=#b03452
-"""""this section borrowed from OceanDeep/Midnight"""""
+"""""this section borrowed from OceanDeeMidnight"""""
 hi Number guifg=#006bcd 
 hi Function gui=None guifg=#d06d50 "or green 50b3b0 
 highlight Conditional gui=None guifg=#a50a4a

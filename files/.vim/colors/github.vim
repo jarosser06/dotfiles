@@ -2,7 +2,7 @@
 " Maintainer: Bruno Michel <bmichel@menfin.info>
 " Last Change: May, 30, 2008
 " Version: 0.1
-" Homepage: http://github.com/nono/github_vim_theme/tree/master
+" Homepage: http/github.com/nono/github_vim_theme/tree/master
 
 " This is a ViM's version of the github color theme.
 

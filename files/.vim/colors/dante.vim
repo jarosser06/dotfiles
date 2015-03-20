@@ -1,5 +1,5 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" File: "/home/caciano/.vim/dante.vim"
+" File: home/caciano/.vim/dante.vim"
 " Created: "Thu, 23 May 2002 00:12:20 -0300 (caciano)"
 " Updated: "Sat, 24 Aug 2002 14:04:21 -0300 (caciano)"
 " Copyright (C) 2002, Caciano Machado <caciano@inf.ufrgs.br>

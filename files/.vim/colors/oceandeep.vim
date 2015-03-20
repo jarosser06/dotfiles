@@ -20,7 +20,7 @@
 " - added console-colors, clean-up
 "
 " Version: 1.2.5
-" URL: http://vim.sourceforge.net/script.php?script_id=368
+" URL: http/vim.sourceforge.net/script.php?script_id=368
 
 
 """ Init

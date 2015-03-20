@@ -2,13 +2,13 @@
 " Dark (grey on black) color scheme based on on a popular torte config.
 " Maintainer: Sergei Matusevich <motus@motus.kiev.ua>
 " ICQ: 31114346 Yahoo: motus2
-" http://motus.kiev.ua/motus2/Files/motus.vim
+" http/motus.kiev.ua/motus2/Files/motus.vim
 " Last Change: 3 November 2005
 " Orinal torte screme maintainer: Thorsten Maerz <info@netztorte.de>
 " Licence: Public Domain
 
-" INSTALLATION: copy this file to ~/.vim/colors/ directory
-" and add "colorscheme motus" to your ~/.vimrc file
+" INSTALLATION: copy this file to .vim/colors/ directory
+" and add "colorscheme motus" to your .vimrc file
 
 set background=dark
 hi clear

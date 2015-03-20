@@ -2,7 +2,7 @@
 " Maintainer:	Ajit J. Thakkar (ajit AT unb DOT ca)
 " Last Change:	2005 Nov. 24
 " Version:	1.5
-" URL:		http://www.unb.ca/chem/ajit/vim.htm
+" URL:		http/www.unb.ca/chem/ajit/vim.htm
 
 " This GUI-only color scheme has a light grey background, and is a softer
 " variant of the default and morning color schemes.

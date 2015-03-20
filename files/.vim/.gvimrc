@@ -36,4 +36,4 @@
   set background=dark
   colors twilight2
 
-runtime! custom_config/*.gvim
+runtime! custom_confi*.gvim

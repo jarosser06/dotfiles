@@ -1,7 +1,7 @@
 " Vim color file inherit from the desrt.vim 
 " Maintainer:	Jammy Lee<mistapostle@gmail.com>
-" Last Change:	$Date: 2008/03/20 19:30:30 $
-" Version:	$Id: jammy.vim,v 1.1 2008/03/20 $
+" Last Change:	$Date: 20003/20 19:30:30 $
+" Version:	$Id: jammy.vim,v 1.1 20003/20 $
 
 " cool help screens
 " :he group-name

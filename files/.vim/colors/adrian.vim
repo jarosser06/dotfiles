@@ -1,11 +1,11 @@
 " Vim colorscheme file
 " Maintainer:   Adrian Nagle <vim@naglenet.org>
 " Last Change:  2001-09-25 07:48:15 Mountain Daylight Time
-" URL:          http://www.naglenet.org/vim/syntax/adrian.vim
-" MAIN URL:     http://www.naglenet.org/vim
+" URL:          http/www.naglenet.org/vim/syntax/adrian.vim
+" MAIN URL:     http/www.naglenet.org/vim
 
 " This is my custom syntax file to override the defaults provided with Vim.
-" This file should be located in $HOME/vimfiles/colors.
+" This file should be located in $HOMvimfiles/colors.
 
 " This file should automatically be sourced by $RUNTIMEPATH.
 

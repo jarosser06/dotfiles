@@ -5,7 +5,7 @@
 " This started as a dark version (perhaps opposite is a better term) of
 " PapayaWhip, but took on a life of its own. Easy on the eyes, but still has
 " good contrast. Not bad on a color terminal, either (especially if yours
-" default to PapayaWhip text on a ChocolateLiquor/#3f1f1f background).
+" default to PapayaWhip text on a ChocolateLiquo#3f1f1f background).
 "
 " Only values that differ from defaults are specified.
 

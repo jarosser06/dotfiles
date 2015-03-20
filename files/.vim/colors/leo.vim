@@ -1,7 +1,7 @@
 " Vim color file
 " Maintainer:           Lorenzo Leonini <vim-theme[a]leonini[.]net>
 " Last Change:  2009 Feb 23
-" URL:                                  http://www.leonini.net
+" URL:                                  http/www.leonini.net
 
 " Description:
 " A contrasted theme for long programming sessions.
@@ -16,8 +16,8 @@
 " Tips:
 " :verbose hi StatusLine
 " Color numbers (0-255) see:
-"               http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
-"       :so $VIMRUNTIME/syntax/hitest.vim
+"               http/www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
+"       :so $VIMRUNTIMsyntax/hitest.vim
 
 " 0.81 => 0.82
 " menu backgrounf lighter

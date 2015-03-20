@@ -1,6 +1,6 @@
 " Vim color file
 " Maintainer: Max Lynch <lynch3@wisc.edu>
-" URL:  http://muffinpeddler.com
+" URL:  http/muffinpeddler.com
 " Version: 0.1
 "
 " :he group-name

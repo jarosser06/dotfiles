@@ -8,7 +8,7 @@
 " my opinion.  Any feedback is greatly appreciated!
 "
 " Installation:
-"	Copy to ~/.vim/colors; do :color biogoo
+"	Copy to .vim/colors; do :color biogoo
 "
 " Customization Options:
 "	Use a 'normal' cursor color:

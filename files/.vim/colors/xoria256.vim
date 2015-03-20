@@ -11,7 +11,7 @@
 " similar value.
 "
 " Color numbers (0-255) see:
-" http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
+" http/www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
 
 
 

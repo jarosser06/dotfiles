@@ -1,7 +1,7 @@
 " Vim color file
 " Maintainer:   TaQ <eustaquiorangel@yahoo.com>
 " Last Change:  18 March 2003
-" URL: http://taq.cjb.net		
+" URL: http/taq.cjb.net		
 
 " cool help screens
 " :he group-name

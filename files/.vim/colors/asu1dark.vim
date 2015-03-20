@@ -1,6 +1,6 @@
 " Vim color file
 " Maintainer:   A. Sinan Unur
-" Last Change:  2001/10/04
+" Last Change:  20010/04
 
 " Dark color scheme
 
