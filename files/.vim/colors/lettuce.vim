@@ -5,7 +5,7 @@
 "
 " Copyright 2007 Valyaeff Valentin
 "
-" This program is free software: you can redistribute it anor modify
+" This program is free software: you can redistribute it and/or modify
 " it under the terms of the GNU General Public License as published by
 " the Free Software Foundation, either version 3 of the License, or
 " (at your option) any later version.
@@ -16,7 +16,7 @@
 " GNU General Public License for more details.
 "
 " You should have received a copy of the GNU General Public License
-" along with this program.  If not, see <http/www.gnu.org/licenses/>.
+" along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 set background=dark
 hi clear
@@ -28,7 +28,7 @@ let g:colors_name="lettuce"
 
 augroup Syntax_extensions
     au!
-    au Syntax c,cpp,ruby,javascript syn match Operator "[%&|!=><^~,.;:?+-]\+" display contains=TOP
+    au Syntax c,cpp,ruby,javascript syn match Operator "[*/%&|!=><^~,.;:?+-]\+" display contains=TOP
     au Syntax c,cpp syn region cParen matchgroup=Operator transparent start='(' end=')' contains=ALLBUT,@cParenGroup,cCppParen,cErrInBracket,cCppBracket,cCppString,@Spell
     au Syntax c,cpp syn region cCppParen matchgroup=Operator transparent start='(' skip='\\$' excludenl end=')' end='$' contained contains=ALLBUT,@cParenGroup,cErrInBracket,cParen,cBracket,cString,@Spell
     au Syntax c,cpp syn region cBracket matchgroup=Operator transparent start='\[\|<::\@!' end=']\|:>' contains=ALLBUT,@cParenGroup,cErrInParen,cCppParen,cCppBracket,cCppString,@Spell

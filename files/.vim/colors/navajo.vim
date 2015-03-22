@@ -1,7 +1,7 @@
 " Vim color file
 " Maintainer: R. Edward Ralston <eralston@techsan.org>
 " Last Change: 2002-01-24 09:56:48
-" URI: http/eralston.tripod.com/navajo.png
+" URI: http://eralston.tripod.com/navajo.png
 "
 " This color scheme uses a "navajo-white" background
 "

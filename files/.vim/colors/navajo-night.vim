@@ -1,11 +1,11 @@
 " Vim colour file
 " Maintainer: Matthew Hawkins <matt@mh.dropbear.id.au>
 " Last Change:	Mon, 22 Apr 2002 15:28:04 +1000
-" URI: http/mh.dropbear.id.au/vim/navajo-night.png
+" URI: http://mh.dropbear.id.au/vim/navajo-night.png
 "
 " This colour scheme uses a "navajo-black" background
 " I have added colours for the statusbar and for spell checking 
-" as taken from Cream (http/cream.sf.net/) 
+" as taken from Cream (http://cream.sf.net/) 
 
 
 set background=dark

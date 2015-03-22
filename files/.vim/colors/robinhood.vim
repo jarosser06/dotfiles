@@ -48,7 +48,7 @@ hi WarningMsg           guifg=White guibg=Tomato
 
 hi User2                guifg=yellowgreen guibg=#091900 gui=bold
 
-" If using MotiAthena
+" If using Motif/Athena
 hi Menu                 guibg=#304020 guifg=wheat
 hi Scrollbar            guibg=bg
 

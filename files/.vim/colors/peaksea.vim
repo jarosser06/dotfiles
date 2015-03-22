@@ -1,6 +1,6 @@
 " Vim color file --- psc (peak sea color) "Lite version"
 " Maintainer:	Pan, Shi Zhu <Go to the following URL for my email>
-" URL:		http/vim.sourceforge.net/scripts/script.php?script_id=760
+" URL:		http://vim.sourceforge.net/scripts/script.php?script_id=760
 " Last Change:	31 Oct 2008
 " Version:	3.3
 "
@@ -13,7 +13,7 @@
 "	The full version of ps_color.vim will be maintained until Vim 8.
 "	By then there will be only the lite version: peaksea.vim
 "
-" Note: Please set the background option in your .vimrc anor .gvimrc
+" Note: Please set the background option in your .vimrc and/or .gvimrc
 "
 "	It is much better *not* to set 'background' option inside
 "	a colorscheme file.  because ":set background" inside a colorscheme
@@ -21,7 +21,7 @@
 "	infinite loop.
 "
 " Color Scheme Overview: 
-"	:ru syntahitest.vim
+"	:ru syntax/hitest.vim
 "
 " Relevant Help: 
 "	:h highlight-groups
@@ -153,7 +153,7 @@ if &background=='light'
     " 256color light terminal support here
 
     hi Normal		ctermfg=16	ctermbg=254	cterm=NONE
-    " CommenUncomment the following line to disable/enable transparency
+    " Comment/Uncomment the following line to disable/enable transparency
     "hi Normal		ctermfg=16	ctermbg=NONE	cterm=NONE
     hi Search		ctermfg=NONE	ctermbg=231	cterm=NONE
     hi Visual		ctermfg=NONE	ctermbg=153	cterm=NONE
@@ -177,7 +177,7 @@ if &background=='light'
     hi VisualNOS	ctermfg=fg	ctermbg=146	cterm=NONE
     hi SpecialKey	ctermfg=25	ctermbg=NONE	cterm=NONE
     hi NonText		ctermfg=18	ctermbg=252	cterm=NONE
-    " CommenUncomment the following line to disable/enable transparency
+    " Comment/Uncomment the following line to disable/enable transparency
     "hi NonText		ctermfg=18	ctermbg=NONE	cterm=NONE
     hi Directory	ctermfg=133	ctermbg=NONE	cterm=NONE
     hi ErrorMsg		ctermfg=fg	ctermbg=216	cterm=NONE
@@ -488,7 +488,7 @@ elseif &background=='dark'
   elseif &t_Co==256
     " 256color dark terminal support here
     hi Normal		ctermfg=252	ctermbg=234	cterm=NONE
-    " CommenUncomment the following line to disable/enable transparency
+    " Comment/Uncomment the following line to disable/enable transparency
     "hi Normal		ctermfg=252	ctermbg=NONE	cterm=NONE
     hi Comment		ctermfg=186	ctermbg=NONE	cterm=NONE
     hi Constant		ctermfg=110	ctermbg=NONE	cterm=NONE
@@ -512,7 +512,7 @@ elseif &background=='dark'
     hi VisualNOS	ctermfg=fg	ctermbg=18	cterm=NONE
     hi SpecialKey	ctermfg=153	ctermbg=NONE	cterm=NONE
     hi NonText		ctermfg=69	ctermbg=233	cterm=NONE
-    " CommenUncomment the following line to disable/enable transparency
+    " Comment/Uncomment the following line to disable/enable transparency
     "hi NonText		ctermfg=69	ctermbg=NONE	cterm=NONE
     hi Directory	ctermfg=110	ctermbg=NONE	cterm=NONE
     hi ErrorMsg		ctermfg=186	ctermbg=88	cterm=NONE

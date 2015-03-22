@@ -1,8 +1,8 @@
 "---------------------------------------------------------------------
-" $Id: soso.vim,v 1.3 20010/31 06:24:34 soso Exp $
+" $Id: soso.vim,v 1.3 2007/10/31 06:24:34 soso Exp $
 "
 " Maintainer:  Soeren Sonntag <soeren DOT sonntag AT web DOT de>
-" Last Change: $Date: 20010/31 06:24:34 $
+" Last Change: $Date: 2007/10/31 06:24:34 $
 "
 " Description: Vim color file
 "---------------------------------------------------------------------

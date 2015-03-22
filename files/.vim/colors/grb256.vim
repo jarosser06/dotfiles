@@ -1,5 +1,5 @@
 " Based on
-runtime colorir_black.vim
+runtime colors/ir_black.vim
 
 let g:colors_name = "grb256"
 

@@ -3,7 +3,7 @@
 " Maintainer:  Yeii
 " Last Change: 2009-08-12
 " Version:     1.2.1
-" URL:         http/www.vim.org/scripts/script.php?script_id=2088
+" URL:         http://www.vim.org/scripts/script.php?script_id=2088
 
 " Init
 highlight clear

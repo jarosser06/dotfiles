@@ -46,7 +46,7 @@ highlight ShellTextExpectationDivider ctermbg=darkgrey ctermfg=white
 
 highlight ShellTextSpecFileInfo ctermfg=white ctermbg=red
 
-" make the active status line colours alternate between two settings to give a visual notice of the CursorHolCursorHoldI events 
+" make the active status line colours alternate between two settings to give a visual notice of the CursorHold/CursorHoldI events 
 if ! exists("s:statuslineflag") 
   let s:statuslineflag = 0 
 endif 

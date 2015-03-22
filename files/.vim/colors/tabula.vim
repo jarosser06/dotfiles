@@ -4,14 +4,14 @@
 " Version:       1.3.2
 " Maintainer:    Bernd Pol (bernd.pol AT online DOT de)
 " Copyright:     2006 Bernd Pol
-"                This script is free software; you can redistribute it anor 
+"                This script is free software; you can redistribute it and/or 
 "                modify it under the terms of the GNU General Public License as 
 "                published by the Free Software Foundation; either version 2 of 
 "                the License, or (at your option) any later version. 
 " Description:   Vim colorscheme based on marklar.vim by SM Smithfield,
 "                slightly modified for harmonic, yet easily distinguishable
 "                display on GUI and a 256 color xterm as well.
-" Install:       Put this file in the users colors directory (.vim/colors)
+" Install:       Put this file in the users colors directory (~/.vim/colors)
 "                then load it with :colorscheme tabula
 " =============================================================================
 " Latest Changes:
@@ -19,7 +19,7 @@
 " TODO
 " - automize options setting
 " - keep options in some setup file, e.g.:
-"   tabula.rc, sub e.g. "<OPTIONS> ... OPTIONS>" marks
+"   tabula.rc, sub e.g. "<OPTIONS> ... </OPTIONS>" marks
 " - options set up per directory (autoload option)
 "   such that text files be displayed other than e.g. c sources
 " =============================================================================
@@ -375,7 +375,7 @@ hi htmlUnderlineItalic  guifg=#87D7D7                   gui=underline   ctermfg=
 
 "------------------------------------------------------------------------------
 " VimOutliner Groups:
-" (see http/www.vimoutliner.org)
+" (see http://www.vimoutliner.org)
 " Note: Make sure to add "colorscheme tabula" to the .vimoutlinerrc file.
 "------------------------------------------------------------------------------
 "

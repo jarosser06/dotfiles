@@ -47,7 +47,7 @@ hi MoreMsg      guifg=#44cc44 guibg=#000000
 hi NonText      guifg=#44cc44 guibg=#113311
 " normal text
 hi Normal       guifg=#44cc44 guibg=#000000
-" |hit-enter| prompt and yeno questions
+" |hit-enter| prompt and yes/no questions
 hi Question     guifg=#44cc44 guibg=#000000
 " Last search pattern highlighting (see 'hlsearch').
 hi Search       guifg=#113311 guibg=#44cc44 gui=none

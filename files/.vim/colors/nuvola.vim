@@ -2,9 +2,9 @@
 " vim: tw=0 ts=4 sw=4
 " Vim color file
 " Maintainer:	Dr. J. Pfefferl <johann.pfefferl@agfa.com>
-" Source:	$Source:MISC/projects/cvsroot/user/pfefferl/vim/colors/nuvola.vim,v $
-" Id:	$Id: nuvola.vim,v 1.14 20008/11 14:03:28 pfefferl Exp $
-" Last Change:	$Date: 20008/11 14:03:28 $
+" Source:	$Source: /MISC/projects/cvsroot/user/pfefferl/vim/colors/nuvola.vim,v $
+" Id:	$Id: nuvola.vim,v 1.14 2003/08/11 14:03:28 pfefferl Exp $
+" Last Change:	$Date: 2003/08/11 14:03:28 $
 
 " Intro {{{1
 set background=light

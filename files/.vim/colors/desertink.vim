@@ -3,19 +3,19 @@
 " Name:   desertink.vim
 " Author: Markus Koller <markus-koller@gmx.ch>
 "
-" Note:   Only works in GUI and 8256 color terminals
+" Note:   Only works in GUI and 88/256 color terminals
 "
 " This is a version of the default desert colorscheme with a
 " darker background and more colorful foreground colors.
 "
 " It also adds highlighting for folds, diffs, line numbers,
-" signcolumn, completion menus, and cursor lincolumn.
+" signcolumn, completion menus, and cursor line/column.
 
-" The colors are automatically converted for 8256 color terminals,
-" adapted from http/www.vim.org/scripts/script.php?script_id=1243
+" The colors are automatically converted for 88/256 color terminals,
+" adapted from http://www.vim.org/scripts/script.php?script_id=1243
 "
-" You can find the latest version at https/github.com/toupeira/desertink.vim
-" and see a screenshot at http/i.imgur.com/DZ35F.png
+" You can find the latest version at https://github.com/toupeira/desertink.vim
+" and see a screenshot at http://i.imgur.com/DZ35F.png
 "
 
 set background=dark
@@ -59,7 +59,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
       if a:x < 14
         return 0
       else
-        let l:n = (a:x - 8) 10
+        let l:n = (a:x - 8) / 10
         let l:m = (a:x - 8) % 10
         if l:m < 5
           return l:n
@@ -140,7 +140,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
       if a:x < 75
         return 0
       else
-        let l:n = (a:x - 55) 40
+        let l:n = (a:x - 55) / 40
         let l:m = (a:x - 55) % 40
         if l:m < 20
           return l:n
@@ -172,7 +172,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     endif
   endfun
 
-  " returns the palette index for the given G/B color indices
+  " returns the palette index for the given R/G/B color indices
   fun! <SID>rgb_color(x, y, z)
     if &t_Co == 88
       return 16 + (a:x * 16) + (a:y * 4) + a:z
@@ -181,7 +181,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     endif
   endfun
 
-  " returns the palette index to approximate the given G/B color levels
+  " returns the palette index to approximate the given R/G/B color levels
   fun! <SID>color(r, g, b)
     " get the closest grey
     let l:gx = <SID>grey_number(a:r)

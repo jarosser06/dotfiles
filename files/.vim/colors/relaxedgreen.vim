@@ -3,13 +3,13 @@
 " Last Modified: 13 Feb 2007 09:57:24 PM by Dave V
 " Maintainer:    Dave Vehrs (dvehrs at gmail.com)
 " Copyright:     2002,2003,2004,2005,2006,2007 Dave Vehrs
-"                This script is free software; you can redistribute it anor 
+"                This script is free software; you can redistribute it and/or 
 "                modify it under the terms of the GNU General Public License as 
 "                published by the Free Software Foundation; either version 2 of 
 "                the License, or (at your option) any later version. 
 " Description:   Vim colorscheme file.
-" Install:       Place this file in the users colors directory (.vim/colors) or 
-"                in the shared colors directory usr/shared/vim/vim<version>/colors/),
+" Install:       Place this file in the users colors directory (~/.vim/colors) or 
+"                in the shared colors directory (/usr/shared/vim/vim<version>/colors/),
 "                then load it with :colorscheme relaxedgreen
 " ----------------------------------------------------------------------------------------------------------------------------------
 set background=dark

@@ -5,16 +5,16 @@
 " Last Change:  05 Oct 2006
 "
 " This scheme should work in the GUI and in xterm's 256 color mode. It won't
-" work in 16 color terminals.
+" work in 8/16 color terminals.
 "
 " I based it on John Lam's initial VibrantInk port to Vim [1]. Thanks to a
 " great tutorial [2], I was able to convert it to xterm 256 color mode. And
 " of course, credits go to Justin Palmer for creating the original VibrantInk
 " TextMate color scheme [3].
 "
-" [1] http/www.iunknown.com/articles/2006/09/04/vim-can-save-your-hands-too
-" [2] http/frexx.de/xterm-256-notes/
-" [3] http/encytemedia.com/blog/articles/2006/01/03/textmate-vibrant-ink-theme-and-prototype-bundle
+" [1] http://www.iunknown.com/articles/2006/09/04/vim-can-save-your-hands-too
+" [2] http://frexx.de/xterm-256-notes/
+" [3] http://encytemedia.com/blog/articles/2006/01/03/textmate-vibrant-ink-theme-and-prototype-bundle
 
 set background=dark
 hi clear

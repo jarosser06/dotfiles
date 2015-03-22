@@ -2,7 +2,7 @@
 " Maintainer:   Gerald S. Williams
 " Last Change:  2007 Jun 13
 
-" This is a dark versioopposite of "seashell". The cterm version of this is
+" This is a dark version/opposite of "seashell". The cterm version of this is
 " very similar to "evening".
 "
 " Only values that differ from defaults are specified.

@@ -1,5 +1,5 @@
 " tir_black color scheme
-" Based on ir_black from: http/blog.infinitered.com/entries/show/8
+" Based on ir_black from: http://blog.infinitered.com/entries/show/8
 " adds 256 color console support
 " changed WildMenu color to be the same as PMenuSel
 

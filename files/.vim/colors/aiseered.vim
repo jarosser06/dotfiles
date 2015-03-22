@@ -1,10 +1,10 @@
-" gVim color file for working with files in GDVCG format.
+" gVim color file for working with files in GDL/VCG format.
 " Works nice in conjunction with gdl.vim
 " (see www.vim.org or www.aisee.com)
-" Works fine for C++, too.
+" Works fine for C/C++, too.
 
 " Author : Alexander A. Evstyugov-Babaev <alex@absint.com>
-" Version: 0.2 for gViLinux,
+" Version: 0.2 for gVim/Linux,
 "          tested with gVim 6.3.25 under Ubuntu Linux (Warty)
 "          by Jo Vermeulen <jo@lumumba.luc.ac.be>
 " Date   : January 25th 2005

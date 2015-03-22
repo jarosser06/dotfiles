@@ -1,7 +1,7 @@
 " Vim color file
 " Maintainer:	Thomas Schmall www.oxpal.com
 " Last Change:	Nov 2 2009 
-" URL: http/www.vim.org/scripts/script.php?script_id=792
+" URL: http://www.vim.org/scripts/script.php?script_id=792
 " Version: 1.4
 
 " This color scheme uses a light grey background.

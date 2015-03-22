@@ -1,6 +1,6 @@
 " Vim color file
 "  Maintainer: Tiza
-" Last Change: 20008/28 Wed 00:28.
+" Last Change: 2002/08/28 Wed 00:28.
 "     version: 1.3
 " This color scheme uses a light background.
 

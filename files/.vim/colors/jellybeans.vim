@@ -2,18 +2,18 @@
 "
 "  "    __       _ _       _                             "
 "  "    \ \  ___| | |_   _| |__   ___  __ _ _ __  ___    "
-"  "     \  _ \ | | | | |  _ \ / _ \/ _  |  _ \/ __|   "
-"  " \_/ /  __/ | | |_| | |_| |  __/ |_| | | | \__ \   "
-"  "  \__ \___|_|_|\__  |____/ \___|\____|_| |_|___/   "
-"  "                 \__                               "
+"  "     \ \/ _ \ | | | | |  _ \ / _ \/ _  |  _ \/ __|   "
+"  "  /\_/ /  __/ | | |_| | |_| |  __/ |_| | | | \__ \   "
+"  "  \___/ \___|_|_|\__  |____/ \___|\____|_| |_|___/   "
+"  "                 \___/                               "
 "
 "         "A colorful, dark color scheme for Vim."
 "
 " File:         jellybeans.vim
-" Maintainer:   NanoTech <http/nanotech.nanotechcorp.net/>
+" Maintainer:   NanoTech <http://nanotech.nanotechcorp.net/>
 " Version:      1.4
 " Last Change:  April 11th, 2011
-" Contributors: Daniel Herbert <http/pocket-ninja.com>,
+" Contributors: Daniel Herbert <http://pocket-ninja.com>,
 "               Henry So, Jr. <henryso@panix.com>,
 "               David Liang <bmdavll at gmail dot com>
 "
@@ -22,7 +22,7 @@
 " Permission is hereby granted, free of charge, to any person obtaining a copy
 " of this software and associated documentation files (the "Software"), to deal
 " in the Software without restriction, including without limitation the rights
-" to use, copy, modify, merge, publish, distribute, sublicense, anor sell
+" to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 " copies of the Software, and to permit persons to whom the Software is
 " furnished to do so, subject to the following conditions:
 "
@@ -84,7 +84,7 @@ fun! s:grey_number(x)
     if a:x < 14
       return 0
     else
-      let l:n = (a:x - 8) 10
+      let l:n = (a:x - 8) / 10
       let l:m = (a:x - 8) % 10
       if l:m < 5
         return l:n
@@ -165,7 +165,7 @@ fun! s:rgb_number(x)
     if a:x < 75
       return 0
     else
-      let l:n = (a:x - 55) 40
+      let l:n = (a:x - 55) / 40
       let l:m = (a:x - 55) % 40
       if l:m < 20
         return l:n
@@ -197,7 +197,7 @@ fun! s:rgb_level(n)
   endif
 endfun
 
-" returns the palette index for the given G/B color indices
+" returns the palette index for the given R/G/B color indices
 fun! s:rgb_color(x, y, z)
   if &t_Co == 88
     return 16 + (a:x * 16) + (a:y * 4) + a:z
@@ -206,7 +206,7 @@ fun! s:rgb_color(x, y, z)
   endif
 endfun
 
-" returns the palette index to approximate the given G/B color levels
+" returns the palette index to approximate the given R/G/B color levels
 fun! s:color(r, g, b)
   " get the closest grey
   let l:gx = s:grey_number(a:r)
@@ -417,7 +417,7 @@ hi! link coffeeRegExp javaScriptRegexpString
 
 hi! link cOperator Constant
 
-" Objective-Cocoa
+" Objective-C/Cocoa
 hi! link objcClass Type
 hi! link cocoaClass objcClass
 hi! link objcSubclass objcClass

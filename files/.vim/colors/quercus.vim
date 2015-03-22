@@ -1,5 +1,5 @@
 " Based on
-runtime colorsorcerer.vim
+runtime colors/sorcerer.vim
 
 let g:colors_name = "quercus"
 
@@ -13,7 +13,7 @@ hi Normal  guibg=#000000 ctermbg=16
 hi LineNr  guibg=#000000 guifg=#3d3d3d ctermbg=16
 hi NonText guibg=#000000 guifg=#000000 ctermbg=16 ctermfg=0
 hi CursorLine ctermbg=234 ctermfg=NONE guibg=#121212 guifg=NONE
-"bernhardt
+" /bernhardt
 
 hi ModeMsg guibg=#afafaf ctermbg=145
 hi Visual guibg=#afafaf guifg=#121212 ctermbg=145 ctermfg=233
@@ -22,7 +22,7 @@ hi Visual guibg=#afafaf guifg=#121212 ctermbg=145 ctermfg=233
 hi VertSplit guibg=#1c1c1c guifg=#000000 ctermbg=234 ctermfg=0
 hi StatusLine guibg=#1c1c1c guifg=#8a8a8a ctermbg=234 ctermfg=245
 hi StatusLineNC guibg=#1c1c1c guifg=#000000 ctermbg=234 ctermfg=0
-"bernhardt
+" /bernhardt
 
 " had all ctermbg set to bg, couldn't figure out how to modify bg var
 " ctermfg added when trying to get closer to bernhardt's vim

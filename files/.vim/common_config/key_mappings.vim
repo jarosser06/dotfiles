@@ -15,8 +15,8 @@
   nmap g 
 
 " shortcuts for frequenly used files
-  nmap gs :e dschema.rb<cr>
-  nmap gr :e confiroutes.rb<cr>
+  nmap gs :e db/schema.rb<cr>
+  nmap gr :e config/routes.rb<cr>
   nmap gm :e Gemfile<cr>
 
 " insert blank lines without going into insert mode
@@ -47,7 +47,7 @@
   map <Leader>c :StripTrailingWhitespaces<cr>
 
 " compress excess whitespace on current line
-  map <Leader>e :\v(\S+)\s+/\1 /<cr>:nohl<cr>
+  map <Leader>e :s/\v(\S+)\s+/\1 /<cr>:nohl<cr>
 
 " delete all buffers
   map <Leader>d :bufdo bd<cr>
@@ -66,7 +66,7 @@
 
 " insert the path of currently edited file into a command
 " Command mode: Ctrl-P
-  cmap <C-S-P> <C-R>=expand("%:p:h") . " <cr>
+  cmap <C-S-P> <C-R>=expand("%:p:h") . "/" <cr>
 
 " jump to far right or left of line
   map L $

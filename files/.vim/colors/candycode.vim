@@ -48,7 +48,7 @@ hi DiffText     guifg=#ffffff       guibg=#976398       gui=bold
             \   ctermfg=white       ctermbg=green       cterm=bold
 
 " }}}
-" borders separators / menus {{{
+" borders / separators / menus {{{
 
 hi FoldColumn   guifg=#c8bcb9       guibg=#786d65       gui=bold            
             \   ctermfg=lightgray   ctermbg=darkgray    cterm=NONE
@@ -85,7 +85,7 @@ hi TabLineSel   guifg=#ffffff       guibg=#133293       gui=NONE
 "hi Tooltip
 
 " }}}
-" cursor dynamic / other {{{
+" cursor / dynamic / other {{{
 
 hi Cursor       guifg=#000000       guibg=#ffff99       gui=NONE
             \   ctermfg=black       ctermbg=white       cterm=NONE
@@ -110,7 +110,7 @@ hi MatchParen   guifg=NONE          guibg=#3377aa       gui=NONE
 "hi VisualNOS
 
 " }}}
-" listings messages {{{
+" listings / messages {{{
 
 hi ModeMsg      guifg=#eecc18       guibg=NONE          gui=NONE
             \   ctermfg=yellow      ctermbg=NONE        cterm=NONE

@@ -2,7 +2,7 @@
 " Author:      Yann GOLANSKI
 " Version:     1.2
 " Last Change: 13 Jan 2010
-" url http/web.njit.edu/~kevin/rgb.txt.html
+" url http://web.njit.edu/~kevin/rgb.txt.html
 
 set background=dark
 hi clear

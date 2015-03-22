@@ -2,7 +2,7 @@
 " Maintainer: Niklas Lindström <nlm@valtech.se>
 " Last Change: 2002-03-22
 " Version: 0.3
-" URI: http/localhost/
+" URI: http://localhost/
 
 
 """ Init

@@ -20,7 +20,7 @@ endif
 let g:colors_name="two2tango"
 
 "Tango palette
-"http/tango.freedesktop.org/Tango_Icon_Theme_Guidelines
+"http://tango.freedesktop.org/Tango_Icon_Theme_Guidelines
 " {{{
 let s:Butter		= ['#fce94f', '#edd400', '#c4a000']
 let s:Chameleon		= ['#8ae234', '#73d216', '#4e9a06']

@@ -1,10 +1,10 @@
 " Vim color file
 " Name:       inkpot.vim
 " Maintainer: Ciaran McCreesh <ciaran.mccreesh@googlemail.com>
-" Homepage:   http/github.com/ciaranm/inkpot/
+" Homepage:   http://github.com/ciaranm/inkpot/
 "
 " This should work in the GUI, rxvt-unicode (88 colour mode) and xterm (256
-" colour mode). It won't work in 16 colour terminals.
+" colour mode). It won't work in 8/16 colour terminals.
 "
 " To use a black background, :let g:inkpot_black_background = 1
 
@@ -35,8 +35,8 @@ fun! <SID>X(a)
         else
             let l:b = a:a - 16
             let l:x = l:b % 4
-            let l:y = (l:b 4) % 4
-            let l:z = (l:b 16)
+            let l:y = (l:b / 4) % 4
+            let l:z = (l:b / 16)
             return 16 + <SID>M(l:x) + (6 * <SID>M(l:y)) + (36 * <SID>M(l:z))
         endif
     endif

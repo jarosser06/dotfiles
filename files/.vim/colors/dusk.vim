@@ -2,7 +2,7 @@
 " Maintainer:	Ajit J. Thakkar (ajit AT unb DOT ca)
 " Last Change:	2005 Nov. 21
 " Version:	1.1
-" URL:		http/www.unb.ca/chem/ajit/vim.htm
+" URL:		http://www.unb.ca/chem/ajit/vim.htm
 
 " This GUI-only color scheme has a blue-black background
 

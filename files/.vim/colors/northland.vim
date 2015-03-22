@@ -1,6 +1,6 @@
 " Vim color file - northland
 " Maintainer:   Luka Djigas <ldigas@gmail.com>
-" URL:          http/www.vim.org/scripts/script.php?script_id=2200
+" URL:          http://www.vim.org/scripts/script.php?script_id=2200
 
 " Version:      0.2
 " Last Change:  24.11.2008. 19:13
@@ -136,8 +136,8 @@ hi fortranUnitHeader gui=bold guifg=Purple
 hi fortranType gui=none guifg=#0F8200
 hi! link fortranTypeR fortranType
 hi! link fortranStructure fortranType
-hi! link fortranOperator Normal         //
-hi! link fortranNumber Normal           //
+hi! link fortranOperator Normal         "///
+hi! link fortranNumber Normal           "///
 
 
 

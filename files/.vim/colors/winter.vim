@@ -13,7 +13,7 @@
 " Preprocess {{{
 
 if !has("gui_running")
-    runtime! colordefault.vim
+    runtime! colors/default.vim
     finish
 endif
 

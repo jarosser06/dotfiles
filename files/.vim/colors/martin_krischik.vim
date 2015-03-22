@@ -7,7 +7,7 @@
 "        $Date: 2006-11-18 10:42:10 +0100 (Sa, 18 Nov 2006) $
 "      Version: 3.2
 "    $Revision: 458 $
-"     $HeadURL: https/svn.sourceforge.net/svnroot/gnuada/trunk/tools/vim/colors/martin_krischik.vim $
+"     $HeadURL: https://svn.sourceforge.net/svnroot/gnuada/trunk/tools/vim/colors/martin_krischik.vim $
 "	  Note:	Tried and Tested for 'builtin_gui', 'xterm' (KDE Konsole)
 "		'vt320'" (OpenVMS) and 'linux' (Linux Console).
 "      History: 16.05.2006 MK Check that all vim 7.0 colors are set

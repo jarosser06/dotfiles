@@ -1,5 +1,5 @@
 " ir_black color scheme
-" More at: http/blog.infinitered.com/entries/show/8
+" More at: http://blog.infinitered.com/entries/show/8
 
 
 " ********************************************************************************

@@ -50,7 +50,7 @@ hi WarningMsg           guifg=White guibg=Tomato
 
 hi User2				guifg=lightskyblue guibg=#021a39 gui=bold
 
-" If using MotiAthena
+" If using Motif/Athena
 hi Menu                 guibg=#233b5a guifg=#fff8dc
 hi Scrollbar            guibg=bg
 

@@ -1,7 +1,7 @@
 " Vim color file
 " Maintainer:   Jani Nurminen <slinky@iki.fi>
-" Last Change:  $Id: zenburn.vim,v 2.13 20010/24 10:16:01 slinky Exp $
-" URL:      	http/slinky.imukuppi.org/zenburnpage/
+" Last Change:  $Id: zenburn.vim,v 2.13 2009/10/24 10:16:01 slinky Exp $
+" URL:      	http://slinky.imukuppi.org/zenburnpage/
 " License:      GPL
 "
 " Nothing too fancy, just some alien fruit salad to keep you in the zone.
@@ -12,7 +12,7 @@
 " Owes heavily to other Vim color files! With special mentions
 " to "BlackDust", "Camo" and "Desert".
 "
-" To install, copy to .vim/colors directory.
+" To install, copy to ~/.vim/colors directory.
 "
 " Alternatively, you can use Vimball installation:
 "     vim zenburn.vba
