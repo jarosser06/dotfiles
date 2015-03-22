@@ -14,6 +14,7 @@ GIT_PS1_SHOWDIRTYSTATE=true
 alias projupdate=update_github_projects
 source ${HOME}/.bash_custom/git-completion.sh
 source ${HOME}/.bash_custom/env_vars
+source ${HOME}/.bash_custom/aliases
 
 for plugin in $(ls ${HOME}/.bash_custom/plugins);
 do
