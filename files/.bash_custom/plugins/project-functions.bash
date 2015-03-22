@@ -1,4 +1,4 @@
-#bin/bash
+#!/bin/bash
 
 function update_project() {
   project_name=$1
@@ -8,11 +8,11 @@ function update_project() {
     return 1
   fi
 
-  if [ -d ${PROJECTS_DIR${project_name} ]; then
-    pushd ${PROJECTS_DIR${project_name} &> /dev/null
+  if [ -d ${PROJECTS_DIR}/${project_name} ]; then
+    pushd ${PROJECTS_DIR}/${project_name} &> /dev/null
     echo "Updating ${project_name}..."
     git pull
-    popd &>dev/null
+    popd &> /dev/null
     return 0
   else
     echo "Project ${project_name} does not exist"
@@ -28,21 +28,21 @@ function clone_github_project() {
     return 1
   fi
 
-  prj_name=${project##}
-  if [ -d ${PROJECTS_DIR${prj_name} ]; then
+  prj_name=${project##*/}
+  if [ -d ${PROJECTS_DIR}/${prj_name} ]; then
     echo "Project ${project} already exists!!"
     return 0
   else
-    pushd $PROJECTS_DIR &>dev/null
+    pushd $PROJECTS_DIR &> /dev/null
     echo "Cloning ${project}..."
     git clone git@github.com:${project}
-    popd &>dev/null
+    popd &> /dev/null
     return 0
   fi
 }
 
 function update_github_projects() {
-  project_list=$(jq ".github[]" ${HOME.projects.json)
+  project_list=$(jq ".github[]" ${HOME}/.projects.json)
   for project in $project_list;
   do
     ## Strip the first and last quote
@@ -50,9 +50,9 @@ function update_github_projects() {
     project="${project#\"}"
 
     ## Strip the org name
-    prj_name=${project##}
+    prj_name=${project##*/}
 
-    if [ -d ${PROJECTS_DIR${prj_name} ]; then
+    if [ -d ${PROJECTS_DIR}/${prj_name} ]; then
       update_project $prj_name
       echo
     else
