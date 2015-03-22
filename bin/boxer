@@ -35,7 +35,7 @@ function link_bin {
     file_name=$(echo $f | sed 's|\./||')
     if ! [ -e ${HOME}/.bin/${file_name} ]; then
       echo "${file_name} not found ... linking"
-      ln -s ${DOTFILES}/files/$file_name ${HOME}/.bin/${file_name}
+      ln -s ${DOTFILES}/bin/$file_name ${HOME}/.bin/${file_name}
     fi
   done
   popd &> /dev/null
@@ -70,6 +70,7 @@ function reconfigure {
 case $1 in
   "update"|"install")
     create_dirs
+    link_bin
     link_files
     fetch_vundle
     ;;
