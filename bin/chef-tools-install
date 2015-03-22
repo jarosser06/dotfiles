@@ -1,13 +1,13 @@
 #!/bin/bash
 
-VIRTUALBOX_FULL_VER="4.3.14-95030"
-VIRTUALBOX_BASE_URL="http://download.virtualbox.org/virtualbox/4.3.14"
+VIRTUALBOX_FULL_VER="4.3.20-96996"
+VIRTUALBOX_BASE_URL="http://download.virtualbox.org/virtualbox/4.3.20"
 
 VAGRANT_BASE_URL="https://dl.bintray.com/mitchellh/vagrant"
-VAGRANT_VER="1.6.3"
+VAGRANT_VER="1.7.2"
 
 CHEFDK_BASE_URL="https://opscode-omnibus-packages.s3.amazonaws.com"
-CHEFDK_VER="0.2.0"
+CHEFDK_VER="0.4.0"
 
 platform='unkown'
 unamestr=`uname`
@@ -129,7 +129,7 @@ if [[ "$unamestr" == "Linux" ]]; then
     if [ "$install_chefdk" == true ]; then
       if [ "$chef_dk_avail" == true ]; then
         echo "Installing ChefDK..."
-        chefdk_pkg="chefdk_${CHEFDK_VER}-2_amd64.deb"
+        chefdk_pkg="chefdk_${CHEFDK_VER}-1_amd64.deb"
         curl -L ${CHEFDK_BASE_URL}/ubuntu/${version}/x86_64/${chefdk_pkg} > /tmp/${chefdk_pkg}
         sudo dpkg -i /tmp/${chefdk_pkg}
       else
@@ -159,7 +159,7 @@ if [[ "$unamestr" == "Linux" ]]; then
 
     if [ "$install_chefdk" == true ]; then
       echo "Installing ChefDK..."
-      chefdk_pkg="chefdk-${CHEFDK_VER}-2.el6.x86_64.rpm"
+      chefdk_pkg="chefdk-${CHEFDK_VER}-1.x86_64.rpm"
       curl -L ${CHEFDK_BASE_URL}/el/6/x86_64/${chefdk_pkg} > /tmp/${chefdk_pkg}
       sudo yum install /tmp/${chefdk_pkg} -y
     fi
@@ -188,7 +188,7 @@ elif [[ "$unamestr" == "Darwin" ]]; then
 
   if [ "$install_chefdk" == true ]; then
     echo "Installing ChefDK..."
-    chefdk_pkg="chefdk-${CHEFDK_VER}-2.dmg"
+    chefdk_pkg="chefdk-${CHEFDK_VER}-1.dmg"
     curl -L ${CHEFDK_BASE_URL}/mac_os_x/10.9/x86_64/${chefdk_pkg} > /tmp/${chefdk_pkg}
     hdiutil attach /tmp/${chefdk_pkg}
     sudo installer -pkg /Volumes/chefdk/chefdk.pkg -target /
@@ -202,7 +202,7 @@ if [ "$install_vagrant" == true ]; then
     vagrant plugin install vagrant-omnibus
   fi
   if [ -z $(vagrant plugin list | grep vagrant-berkshelf) ]; then
-    vagrant plugin install vagrant-berkshelf --plugin-version 2.0.1
+    vagrant plugin install vagrant-berkshelf
   fi
 fi
 
