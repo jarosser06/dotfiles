@@ -23,3 +23,17 @@ function goproject() {
     echo "Project ${PROJ_NAME} created"
   fi
 }
+
+function gotoproject() {
+  if [ -z $1 ]; then
+    echo "Must pass a project"
+  else
+    PROJ=${HOME}/Go/src/github.com/${1}
+
+    if [ -d $PROJ ]; then
+      cd $PROJ
+    else
+      echo "Project ${1} doesn't exist"
+    fi
+  fi
+}
