@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ $1 == 'upload' ]; then
+  guard_result=$(chef-org-guard check)
+  if [ $guard_result -eq 0 ]; then
+    berks $@
+  fi
+else
+  berks $@
+fi

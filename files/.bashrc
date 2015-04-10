@@ -12,6 +12,7 @@ PS1='[\u@\h] \w\[\033[33m\]$(__git_ps1)\[\033[00m\]\$ '
 GIT_PS1_SHOWDIRTYSTATE=true
 
 alias projupdate=update_github_projects
+alias berks=guard-berks
 source ${HOME}/.bash_custom/git-completion.sh
 source ${HOME}/.bash_custom/env_vars
 source ${HOME}/.bash_custom/aliases

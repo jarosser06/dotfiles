@@ -8,13 +8,13 @@ function check_chef_guard() {
   if [ -a $ORG_GUARD ]; then
     allowed_org=$(cat ${ORG_GUARD})
     if [ $allowed_org == $CURR_ORG ]; then
-      exit 0
+      return 0
     else
       echo "Organization ${CURR_ORG} does not match ${allowed_org}"
-      exit 1
+      return 1
     fi
   else
-    exit 0
+    return 0
   fi
 }
 
