@@ -5,6 +5,5 @@ ssl_file=$1
 if [ -z ssl_file ]; then
   echo "You must pass a file to format"
 else
-  res=$(cat $ssl_file | tr "\n" "_" | sed -e 's/_/\\n/g')
-  echo $res
+  echo $(cat $ssl_file | tr "\r" "_" | tr "\n" "_" | sed -e 's/_\+/\\n/g')
 fi
