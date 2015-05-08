@@ -11,8 +11,10 @@ export PATH=/usr/local/dart/bin:$PATH
 ## Adds android studio to path
 export PATH=${HOME}/.android-studio/bin:$PATH
 
+## Only do RVM stuff if it exists
 if [ -a ${HOME}/.rvm ]; then
   PATH=$PATH:${HOME}/.rvm/bin
+  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 fi
 export PROJECTS_DIR=${HOME}/Projects
 export PROJECTS_LIST=${HOME}/.projects
