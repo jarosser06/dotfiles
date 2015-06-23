@@ -11,6 +11,11 @@ export PATH=/usr/local/dart/bin:$PATH
 ## Adds android studio to path
 export PATH=${HOME}/.android-studio/bin:$PATH
 
+if [ -a ${HOME}/.pythonz ]; then
+  PATH=$PATH:${HOME}/.pythonz/bin
+  [[ -s $HOME/.pythonz/etc/bashrc ]] && source $HOME/.pythonz/etc/bashrc
+fi
+
 ## Only do RVM stuff if it exists
 if [ -a ${HOME}/.rvm ]; then
   PATH=$PATH:${HOME}/.rvm/bin
