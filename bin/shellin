@@ -20,5 +20,5 @@ if [ -z "$ip" ]; then
   echo "Unable to find usable IP"
   exit 1
 else
-  ssh $ip
+  ssh -A $ip
 fi
