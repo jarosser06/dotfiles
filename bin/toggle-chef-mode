@@ -1,0 +1,9 @@
+#!/bin/bash
+
+current_mode=$(cat ~/.chef_mode)
+
+if [ $current_mode == 0 ]; then
+  echo 1 > ~/.chef_mode
+else
+  echo 0 > ~/.chef_mode
+fi

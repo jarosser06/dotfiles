@@ -17,6 +17,21 @@ function purge_cookbooks() {
   done
 }
 
+function chef_mode() {
+  if [ -f ${HOME}/.chef_mode ]; then
+    cat ${HOME}/.chef_mode
+  else
+    echo false
+  fi
+}
+
 function chef_endpoint() {
   cat $(readlink ~/.chef/knife.rb) | grep chef_server_url | awk '{ print $2 }' | basename $(cut -d ':' -f2) | tr -d '"'
+}
+
+function _ps_chef_org() {
+  if [ $(chef_mode) == 1 ]; then
+    org=$(chef_endpoint)
+    echo "[${org}]"
+  fi
 }
