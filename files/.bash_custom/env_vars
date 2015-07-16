@@ -28,7 +28,7 @@ export PROJECTS_LIST=${HOME}/.projects
 export LD_LIBRARY_PATH=/usr/local/lib
 
 ## Used for git completion
-PS1='[\u@\h] \w\[\033[33m\]$(__git_ps1) \[\033[00m\]\[\033[36m\][$(chef_endpoint)]\[\033[00m\]\$ '
+PS1='[\u@\h] \[\033[00m\]\w \[\033[36m\][$(chef_endpoint)]\[\033[33m\]$(__git_ps1)\[\033[00m\]\$ '
 GIT_PS1_SHOWDIRTYSTATE=true
 
 if [ -f /usr/bin/virtualenvwrapper.sh ];
