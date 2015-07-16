@@ -16,3 +16,7 @@ function purge_cookbooks() {
     knife cookbook delete $cookbook -a -y
   done
 }
+
+function chef_endpoint() {
+  cat $(readlink ~/.chef/knife.rb) | grep chef_server_url | awk '{ print $2 }' | basename $(cut -d ':' -f2) | tr -d '"'
+}
