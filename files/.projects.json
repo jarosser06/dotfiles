@@ -23,7 +23,6 @@
     "grafana/grafana",
     "saltstack/salt",
     "saltstack/libnacl",
-    "rackerlabs/fastfood",
     "lxc/lxc",
     "hashicorp/terraform",
     "opscode/chef",
