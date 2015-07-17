@@ -26,12 +26,21 @@ function chef_mode() {
 }
 
 function chef_endpoint() {
-  cat $(readlink ~/.chef/knife.rb) | grep chef_server_url | awk '{ print $2 }' | basename $(cut -d ':' -f2) | tr -d '"'
+
+  if [ -f ${HOME}/.chef/knife.rb ]; then
+    if [ -h ${HOME}/.chef/knife.rb ]; then
+      cat $(readlink ${HOME}/.chef/knife.rb) | grep chef_server_url | awk '{ print $2 }' | basename $(cut -d ':' -f2) | tr -d '"'
+    else
+      cat ${HOME}/.chef/knife.rb | grep chef_server_url | awk '{ print $2 }' | basename $(cut -d ':' -f2) | tr -d '"'
+    fi
+  fi
 }
 
 function _ps_chef_org() {
   if [ $(chef_mode) == 1 ]; then
     org=$(chef_endpoint)
-    echo "[${org}]"
+    if ! [ "$org" == "" ]; then
+      echo "[${org}]"
+    fi
   fi
 }
