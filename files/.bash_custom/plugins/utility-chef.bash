@@ -40,7 +40,7 @@ function _ps_chef_org() {
   if [ $(chef_mode) == 1 ]; then
     org=$(chef_endpoint)
     if ! [ "$org" == "" ]; then
-      echo "[${org}]"
+      echo " [${org}]"
     fi
   fi
 }
