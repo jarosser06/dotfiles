@@ -54,6 +54,56 @@ function link_files {
   popd &> /dev/null
 }
 
+function update_plugins {
+  pushd ${DOTFILES}/plugins &> /dev/null
+  plugin_dirs=$(find . -type d)
+  for plugin_dir in plugin_dirs
+  do
+    echo "Found plugin dir ${plugin_dir}"
+    if [ -d ${plugin_dir}/files ]; then
+      echo "Found files dir in ${plugin_dir}"
+      pushd files &> /dev/null
+
+      ## Create plugin dirs
+      for dot_dir in $(find . -type d)
+      do
+        dot_dir=$(echo $dot_dir | sed 's|\./||')
+        if ! [ -d ${HOME}/${dot_dir} ]; then
+          echo "${dot_dir} not found ... creating"
+          mkdir -p ${HOME}/${dot_dir}
+        fi
+      done
+
+      ## Link plugin files
+      for f in $(find . -not -type dev)
+      do
+        file_name=$(echo $f | sed 's|./||')
+        if ! [ -e ${HOME}/${file_name} ]; then
+          echo "${file_name} not found ... linking"
+          ln -s ${plugin_dir}/files/$file_name ${HOME}/${file_name}
+        fi
+      done
+      popd &> /dev/null
+    fi
+
+    ## Link bin
+    if [ -d ${plugin_dir}/bin ]; then
+      echo "Found bin dir in ${plugin_dir}"
+      pushd bin &> /dev/null
+      for f in $(find . -not -type d)
+      do
+        file_name=$(echo $f | sed 's|\./||')
+        if ! [ -e ${HOME}/.bin/${file_name} ]; then
+          echo "${file_name} not found ... linking"
+          ln -s ${plugin_dir}/bin/$file_name ${HOME}/.bin/${file_name}
+        fi
+      done
+      popd &> /dev/null
+    fi
+  done
+  popd &> /dev/null
+}
+
 function fetch_vundle {
   if ! [ -d ${HOME}/.vim/vundle.git ]; then
     git clone https://github.com/gmarik/Vundle.vim.git ${HOME}/.vim/vundle.git
@@ -73,6 +123,7 @@ case $1 in
     link_bin
     link_files
     fetch_vundle
+    update_plugins
     ;;
   "reconfigure")
     reconfigure
