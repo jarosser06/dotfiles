@@ -56,11 +56,12 @@ function link_files {
 
 function update_plugins {
   pushd ${DOTFILES}/plugins &> /dev/null
-  plugin_dirs=$(find . -type d)
-  for plugin_dir in plugin_dirs
+  plugin_dirs=$(find . -mindepth 1 -maxdepth 1 -type d)
+  for plugin_dir in $plugin_dirs
   do
     echo "Found plugin dir ${plugin_dir}"
-    if [ -d ${plugin_dir}/files ]; then
+    pushd $plugin_dir &> /dev/null
+    if [ -d ./files ]; then
       echo "Found files dir in ${plugin_dir}"
       pushd files &> /dev/null
 
@@ -75,19 +76,19 @@ function update_plugins {
       done
 
       ## Link plugin files
-      for f in $(find . -not -type dev)
+      for f in $(find . -not -type d)
       do
         file_name=$(echo $f | sed 's|./||')
         if ! [ -e ${HOME}/${file_name} ]; then
           echo "${file_name} not found ... linking"
-          ln -s ${plugin_dir}/files/$file_name ${HOME}/${file_name}
+          ln -s ${DOTFILES}/plugins/$(echo $plugin_dir | sed 's|\./||')/files/$file_name ${HOME}/${file_name}
         fi
       done
       popd &> /dev/null
     fi
 
     ## Link bin
-    if [ -d ${plugin_dir}/bin ]; then
+    if [ -d ./bin ]; then
       echo "Found bin dir in ${plugin_dir}"
       pushd bin &> /dev/null
       for f in $(find . -not -type d)
@@ -95,11 +96,12 @@ function update_plugins {
         file_name=$(echo $f | sed 's|\./||')
         if ! [ -e ${HOME}/.bin/${file_name} ]; then
           echo "${file_name} not found ... linking"
-          ln -s ${plugin_dir}/bin/$file_name ${HOME}/.bin/${file_name}
+          ln -s ${DOTFILES}/plugins/$(echo $plugin_dir | sed 's|\./||')/bin/$file_name ${HOME}/.bin/${file_name}
         fi
       done
       popd &> /dev/null
     fi
+    popd
   done
   popd &> /dev/null
 }
