@@ -101,7 +101,7 @@ function update_plugins {
       done
       popd &> /dev/null
     fi
-    popd
+    popd &> /dev/null
   done
   popd &> /dev/null
 }
