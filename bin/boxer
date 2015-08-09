@@ -20,7 +20,7 @@ function create_dirs {
   for dot_dir in $(find . -type d)
   do
     dot_dir=$(echo $dot_dir | sed 's|\./||')
-    if ! [ -d ${HOME}/${dot_dir} ]; then
+    if ! [[ -d ${HOME}/${dot_dir} ]]; then
       echo "${dot_dir} not found ... creating"
       mkdir -p ${HOME}/${dot_dir}
     fi
@@ -33,7 +33,7 @@ function link_bin {
   for f in $(find . -not -type d)
   do
     file_name=$(echo $f | sed 's|\./||')
-    if ! [ -e ${HOME}/.bin/${file_name} ]; then
+    if ! [[ -e ${HOME}/.bin/${file_name} ]]; then
       echo "${file_name} not found ... linking"
       ln -s ${DOTFILES}/bin/$file_name ${HOME}/.bin/${file_name}
     fi
@@ -46,7 +46,7 @@ function link_files {
   for f in $(find . -not -type d)
   do
     file_name=$(echo $f | sed 's|./||')
-    if ! [ -e ${HOME}/${file_name} ]; then
+    if ! [[ -e ${HOME}/${file_name} ]]; then
       echo "${file_name} not found ... linking"
       ln -s ${DOTFILES}/files/$file_name ${HOME}/${file_name}
     fi
@@ -61,7 +61,7 @@ function update_plugins {
   do
     echo "Found plugin dir ${plugin_dir}"
     pushd $plugin_dir &> /dev/null
-    if [ -d ./files ]; then
+    if [[ -d ./files ]]; then
       echo "Found files dir in ${plugin_dir}"
       pushd files &> /dev/null
 
@@ -69,7 +69,7 @@ function update_plugins {
       for dot_dir in $(find . -type d)
       do
         dot_dir=$(echo $dot_dir | sed 's|\./||')
-        if ! [ -d ${HOME}/${dot_dir} ]; then
+        if ! [[ -d ${HOME}/${dot_dir} ]]; then
           echo "${dot_dir} not found ... creating"
           mkdir -p ${HOME}/${dot_dir}
         fi
@@ -79,7 +79,7 @@ function update_plugins {
       for f in $(find . -not -type d)
       do
         file_name=$(echo $f | sed 's|./||')
-        if ! [ -e ${HOME}/${file_name} ]; then
+        if ! [[ -e ${HOME}/${file_name} ]]; then
           echo "${file_name} not found ... linking"
           ln -s ${DOTFILES}/plugins/$(echo $plugin_dir | sed 's|\./||')/files/$file_name ${HOME}/${file_name}
         fi
@@ -88,13 +88,13 @@ function update_plugins {
     fi
 
     ## Link bin
-    if [ -d ./bin ]; then
+    if [[ -d ./bin ]]; then
       echo "Found bin dir in ${plugin_dir}"
       pushd bin &> /dev/null
       for f in $(find . -not -type d)
       do
         file_name=$(echo $f | sed 's|\./||')
-        if ! [ -e ${HOME}/.bin/${file_name} ]; then
+        if ! [[ -e ${HOME}/.bin/${file_name} ]]; then
           echo "${file_name} not found ... linking"
           ln -s ${DOTFILES}/plugins/$(echo $plugin_dir | sed 's|\./||')/bin/$file_name ${HOME}/.bin/${file_name}
         fi
@@ -107,7 +107,7 @@ function update_plugins {
 }
 
 function fetch_vundle {
-  if ! [ -d ${HOME}/.vim/vundle.git ]; then
+  if ! [[ -d ${HOME}/.vim/vundle.git ]]; then
     git clone https://github.com/gmarik/Vundle.vim.git ${HOME}/.vim/vundle.git
   fi
 }
