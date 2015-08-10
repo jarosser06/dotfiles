@@ -69,3 +69,8 @@ if [[ -f ${CUSTOM_FILES}/secrets ]];
 then
   source ${CUSTOM_FILES}/secrets
 fi
+
+for plugin in $(ls $MY_CUSTOM_PLUGINS);
+do
+  source ${MY_CUSTOM_PLUGINS}/${plugin}
+done

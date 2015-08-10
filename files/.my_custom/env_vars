@@ -23,7 +23,7 @@ if [[ -a ${HOME}/.rvm ]]; then
 fi
 export PROJECTS_DIR=${HOME}/Projects
 export PROJECTS_LIST=${HOME}/.projects
-export BASH_CUSTOM_PLUGINS=${HOME}/.bash_custom/plugins
+export MY_CUSTOM_PLUGINS=${HOME}/.my_custom/plugins
 
 ## Needed for Rust
 export LD_LIBRARY_PATH=/usr/local/lib

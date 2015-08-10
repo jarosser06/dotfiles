@@ -26,12 +26,13 @@ function chef_mode() {
 }
 
 function chef_endpoint() {
-
   if [[ -f ${HOME}/.chef/knife.rb ]]; then
     if [[ -h ${HOME}/.chef/knife.rb ]]; then
-      cat $(readlink ${HOME}/.chef/knife.rb) | grep chef_server_url | awk '{ print $2 }' | basename $(cut -d ':' -f2) | tr -d '"'
+      uri=$(cat $(readlink ${HOME}/.chef/knife.rb) | grep chef_server_url | awk '{ print $2 }' | cut -d ':' -f2)
+      basename $uri | tr -d '"'
     else
-      cat ${HOME}/.chef/knife.rb | grep chef_server_url | awk '{ print $2 }' | basename $(cut -d ':' -f2) | tr -d '"'
+      uri=$(cat ${HOME}/.chef/knife.rb | grep chef_server_url | awk '{ print $2 }' | cut -d ':' -f2)
+      basename $uri | tr -d '"'
     fi
   fi
 }
