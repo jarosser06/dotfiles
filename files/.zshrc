@@ -46,7 +46,7 @@ ZSH_CUSTOM=${HOME}/.my_custom/zsh_custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git chef docker go jarosser06_projects)
+plugins=(git chef docker go vagrant)
 
 source $ZSH/oh-my-zsh.sh
 
