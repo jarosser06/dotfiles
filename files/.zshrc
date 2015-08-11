@@ -62,8 +62,8 @@ export LANG=en_US.UTF-8
 # export ARCHFLAGS="-arch x86_64"
 
 export CUSTOM_FILES=${HOME}/.my_custom
-source ${CUSTOM_FILES}/aliases
 source ${CUSTOM_FILES}/env_vars
+source ${CUSTOM_FILES}/aliases
 
 if [[ -f ${CUSTOM_FILES}/secrets ]];
 then
