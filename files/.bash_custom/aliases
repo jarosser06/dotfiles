@@ -2,6 +2,7 @@
 
 if [ -a ${GOPATH}/bin/hub ]; then
   alias git=hub
+  alias gpr="git pull-request"
 fi
 
 alias projupdate=update_github_projects
