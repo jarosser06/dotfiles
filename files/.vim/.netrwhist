@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/home/jim/cookbooks/chef-app_deploy/test/cookbooks/app_deploy-test'
-let g:netrw_dirhist_2='/home/jim/cookbooks/chef-app_deploy/test/cookbooks/app_deploy-test/recipes'
-let g:netrw_dirhist_3='/home/jim/.irssi'
-let g:netrw_dirhist_4='/home/jim/Projects/dotfiles/vim/common_config'
-let g:netrw_dirhist_5='/home/jim/.dotfiles/files/.bash_custom/plugins'
