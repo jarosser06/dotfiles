@@ -33,6 +33,8 @@ function chef_endpoint() {
     else
       cat ${HOME}/.chef/knife.rb | grep chef_server_url | awk '{ print $2 }' | basename $(cut -d ':' -f2) | tr -d '"'
     fi
+  else
+    echo "none"
   fi
 }
 
