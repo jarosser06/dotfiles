@@ -3,6 +3,10 @@
 if [ -a ${GOPATH}/bin/hub ]; then
   alias git=hub
   alias gpr="git pull-request"
+  hub_completion=${GOPATH}/src/github.com/github/hub/etc/hub.bash_completion.sh
+  if [ -a $hub_completion ]; then
+    source $hub_completion
+  fi
 fi
 
 alias projupdate=update_github_projects
