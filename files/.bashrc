@@ -20,3 +20,9 @@ done
 if [ -a ${HOME}/.bash_custom/secrets ]; then
   source ${HOME}/.bash_custom/secrets
 fi
+
+## Share history
+export HISTCONTROL=ignoredups:erasedups
+shopt -s histappend
+
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
