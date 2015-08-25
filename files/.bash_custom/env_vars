@@ -11,6 +11,9 @@ export PATH=/usr/local/dart/bin:$PATH
 ## Adds android studio to path
 export PATH=${HOME}/.android-studio/bin:$PATH
 
+## Add Bazel to the path
+export PATH=${HOME}/bazel/output:$PATH
+
 if [ -a ${HOME}/.pythonz ]; then
   PATH=$PATH:${HOME}/.pythonz/bin
   [[ -s $HOME/.pythonz/etc/bashrc ]] && source $HOME/.pythonz/etc/bashrc

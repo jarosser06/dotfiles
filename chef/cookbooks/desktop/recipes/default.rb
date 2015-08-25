@@ -25,6 +25,7 @@
   libxslt-devel
   make
   mercurial
+  fluid-soundfont-gm
 ).each do |pkg|
   package pkg do
     action :install
