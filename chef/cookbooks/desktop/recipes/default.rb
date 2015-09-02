@@ -10,7 +10,6 @@
 %w(
   bison
   cmake
-  docker-io
   elixir
   erlang
   gcc
@@ -26,6 +25,9 @@
   make
   mercurial
   fluid-soundfont-gm
+  java-1.8.0-openjdk
+  java-1.8.0-openjdk-src
+  java-1.8.0-openjdk-devel
 ).each do |pkg|
   package pkg do
     action :install
