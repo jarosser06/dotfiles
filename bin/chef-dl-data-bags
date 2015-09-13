@@ -24,7 +24,8 @@ Usage:
   ${COMMAND_NAME} [opts] [optional data bag name]
 Options:
   -h - show this usage
-  -f - overwrite data bags
+  -f - overwrite existing data bag items
+  -d - optional directory to download to
 EOF
 }
 
