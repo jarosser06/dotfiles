@@ -19,3 +19,12 @@ function source_if_exists {
 function trim_branches {
   git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d
 }
+
+function rm_by_inode {
+  inode=$1
+  if [ -z $inode ]; then
+    echo "must provide inode"
+  fi
+
+  find . -inum $inode -exec rm -i {} \;
+}
