@@ -29,6 +29,7 @@ pkgs = %w(
   java-1.8.0-openjdk-src
   java-1.8.0-openjdk-devel
   ctags
+  kernel-devel
 )
 
 package 'req_packages' do
