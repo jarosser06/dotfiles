@@ -5,3 +5,5 @@
 	default = matching
 [init]
 	templatedir = ~/.git_template
+[url "https://"]
+  insteadOf = git://
