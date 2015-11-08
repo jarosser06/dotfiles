@@ -42,6 +42,9 @@ else
   echo "Didn't find virtualenvwrapper.sh"
 fi
 
+# Defaults to libvirt on Fedora otherwise
+export VAGRANT_DEFAULT_PROVIDER=virtualbox
+
 export WORKON_HOME=$HOME/.virtualenvs
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 export PIP_RESPECT_VIRTUALENV=true
