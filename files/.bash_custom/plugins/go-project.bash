@@ -13,7 +13,7 @@ function goproject() {
     cd $PROJ_DIR
     rm -rf .git &> /dev/null
 
-    PROJ_TEMPLATES="README.md scripts/make.sh"
+    PROJ_TEMPLATES="README.md Makefile"
     for temp in $PROJ_TEMPLATES
     do
       sed -i s/GOPROJECT/${PROJ_NAME}/g ${temp}
