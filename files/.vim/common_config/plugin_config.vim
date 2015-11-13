@@ -1,6 +1,12 @@
 " Plugins are managed by Vundle. Once VIM is open run :BundleInstall to
 " install plugins.
 
+" AWS
+  Bundle "https://github.com/m-kat/aws-vim"
+
+" JSON
+  Bundle "https://github.com/elzr/vim-json"
+
 " Plugins requiring no additional configuration or keymaps
   Bundle "https://github.com/oscarh/vimerl.git"
   Bundle "https://github.com/tpope/vim-git.git"

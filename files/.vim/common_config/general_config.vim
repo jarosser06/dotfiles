@@ -111,8 +111,10 @@
 " hbs is handlebars
   au BufNewFile,BufRead *.hbs set ai filetype=handlebars
 
-" JSON is JS
-  au BufNewFile,BufRead *.json set ai filetype=javascript
+" JSON is JSON
+  let g:vim_json_syntax_conceal = 0
+  au BufNewFile,BufRead *.template set ai filetype=json
+  au BufNewFile,BufRead *.json set ai filetype=json
 
 " Guardfile is Ruby
   au BufNewFile,BufRead Guardfile set ai filetype=ruby
