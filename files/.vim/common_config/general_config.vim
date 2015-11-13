@@ -113,8 +113,11 @@
 
 " JSON is JSON
   let g:vim_json_syntax_conceal = 0
-  au BufNewFile,BufRead *.template set ai filetype=json
   au BufNewFile,BufRead *.json set ai filetype=json
+  au BufNewFile,BufRead *.template set ai filetype=json
+
+" Validate AWS Templates
+  let g:AWSVimValidate = 1
 
 " Guardfile is Ruby
   au BufNewFile,BufRead Guardfile set ai filetype=ruby
