@@ -11,3 +11,5 @@ fi
 
 alias projupdate=update_github_projects
 alias berks=guard-berks
+
+alias pfiles="lsof -a -p"
