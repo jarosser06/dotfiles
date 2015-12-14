@@ -11,6 +11,10 @@ export PATH=/usr/local/dart/bin:$PATH
 ## Adds android studio to path
 export PATH=${HOME}/.android-studio/bin:$PATH
 
+if [ -d /usr/local/node ]; then
+  export PATH=/usr/local/node/bin:$PATH
+fi
+
 ## Add Bazel to the path
 export PATH=${HOME}/bazel/output:$PATH
 
