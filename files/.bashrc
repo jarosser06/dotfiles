@@ -21,6 +21,9 @@ if [ -a ${HOME}/.bash_custom/secrets ]; then
   source ${HOME}/.bash_custom/secrets
 fi
 
+## Set longer history
+export HISTSIZE=20000
+
 ## Share history
 export HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
