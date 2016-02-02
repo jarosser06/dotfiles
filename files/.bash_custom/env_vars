@@ -36,7 +36,7 @@ export BASH_CUSTOM_PLUGINS=${HOME}/.bash_custom/plugins
 export LD_LIBRARY_PATH=/usr/local/lib
 
 ## Used for git completion
-PS1='[\u@\h] \[\033[00m\]\w\[\033[36m\]$(_ps_chef_org)\[\033[33m\]$(__git_ps1)\[\033[00m\]\$ '
+PS1='[\u@\h] \[\033[00m\]\w\[\033[36m\]$(_ps_chef_org)\[\033[33m\]$(__git_ps1)\[\033[00m\]λ '
 GIT_PS1_SHOWDIRTYSTATE=true
 
 if [ -f /usr/bin/virtualenvwrapper.sh ];
