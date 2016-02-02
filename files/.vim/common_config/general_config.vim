@@ -5,8 +5,7 @@
   syntax on
 
 " default color scheme
-  set background=dark
-  color twilight2
+  colorscheme termschool
 
 " don't wrap long lines
   set nowrap
@@ -124,3 +123,6 @@
 
 " different color for each paren pairs
 let vimclojure#ParenRainbow  = 1
+
+" Set 4 spaces for Python
+au Filetype python setl et ts=4 sw=4
