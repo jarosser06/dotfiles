@@ -1,0 +1,13 @@
+directory: ~/Music
+library: ~/.beets/musiclibrary.blb
+plugins: fetchart play chroma
+
+ui:
+  color: yes
+
+fetchart:
+  auto: yes
+
+import:
+  log: ~/.config/beets/import.log
+  languages: ['en']
