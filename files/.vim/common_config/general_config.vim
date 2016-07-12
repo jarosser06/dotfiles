@@ -126,3 +126,5 @@ let vimclojure#ParenRainbow  = 1
 
 " Set 4 spaces for Python
 au Filetype python setl et ts=4 sw=4
+
+let g:syntastic_go_checkers = "gofmt"
