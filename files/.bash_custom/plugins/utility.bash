@@ -28,3 +28,12 @@ function rm_by_inode {
 
   find . -inum $inode -exec rm -i {} \;
 }
+
+function kill_all_containers {
+  for container in $(docker ps | awk '{ print $1 }'); do
+    if [[ $container == 'CONTAINER' ]]; then
+      continue
+    fi
+    docker kill $container
+  done
+}
