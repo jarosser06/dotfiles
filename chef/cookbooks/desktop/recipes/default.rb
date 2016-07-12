@@ -30,6 +30,7 @@ pkgs = %w(
   java-1.8.0-openjdk-devel
   ctags
   kernel-devel
+  nodejs
 )
 
 package 'req_packages' do
