@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# List Urls to every file in a bucket
+command_name=$0
+
+function print_usage() {
+  echo "$command_name <bucket-name>"
+}
+
+bucket=$1
+
+if [[ -z $bucket ]]; then
+  echo "Must pass bucket name"
+  print_usage
+  exit 1
+fi
+
+base_url=https://s3.amazonaws.com/${bucket}
+items=$(aws s3 ls --recursive ${bucket} | awk '{print $4}')
+
+for item in $items
+do
+  echo ${base_url}/${item}
+done
+
