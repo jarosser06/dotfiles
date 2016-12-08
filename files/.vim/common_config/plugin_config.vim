@@ -64,6 +64,8 @@
   Bundle "https://github.com/fatih/vim-go.git"
     au BufNewFile,BufRead *.go set filetype=go
 
+    let g:go_list_type = "quickfix"
+
 " Slim
   Bundle "https://github.com/slim-template/vim-slim.git"
     au BufNewFile,BufRead *.slim set filetype=slim
@@ -178,6 +180,7 @@
     let g:syntastic_mode_map = { 'mode': 'active',
                                \ 'active_filetypes': [],
                                \ 'passive_filetypes': ['haml','scss','sass'] }
+    let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 
 
 " gist-vim for quickly creating gists
