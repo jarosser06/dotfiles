@@ -3,6 +3,8 @@ set rtp+=~/vimfiles/vundle.git/
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
+set t_ut=
+
 runtime! common_config/*.vim
 runtime! custom_config/*.vim
 
