@@ -2,6 +2,10 @@
 
 ssl_file=$1
 
+if [[ $UNAME == "Darwin" ]]; then
+  export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:$PATH
+fi
+
 if [ -z ssl_file ]; then
   echo "You must pass a file to format"
 else
