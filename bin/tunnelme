@@ -1,0 +1,89 @@
+#!/bin/bash
+# Example runs ssh -fN -L 8080:foo.com:8080 bastion
+
+COMMAND_NAME=tunnelme
+
+function fail() {
+  message=$1
+  echo "Error: ${message}"
+  exit 1
+}
+
+function fail_with_usage() {
+  message=$1
+  echo -e "\nError: ${message}\n"
+  usage
+  exit 1
+}
+
+function usage() {
+  cat <<EOF
+Command to tunnel through a bastion.
+Usage:
+  ${COMMAND_NAME} [opts] command [command args]
+Options:
+  -h - show this usage
+  -b - bastion to tunnel through (ENV: TUNNELME_BASTION)
+Commands:
+  create - Create tunnel
+  kill - Kill all currently running tunnels
+EOF
+}
+
+function tunnel() {
+  ssh -fN -L 8080:${1}:${2} $TUNNELME_BASTION
+}
+
+function kill_tunnels() {
+  tunnels=$(ps aux | grep "ssh -fN" | grep -v grep | awk '{print $2}')
+
+  for tunnel in $tunnels
+  do
+    kill $tunnel
+  done
+}
+
+while getopts ":b:h" flag
+do
+  case $flag in
+    h)
+      usage
+      exit 0
+      ;;
+    b)
+      TUNNELME_BASTION=$OPTARG
+      ;;
+  esac
+done
+
+if [[ -z $1 ]]; then
+  fail_with_usage "must provide command"
+fi
+
+
+case $1 in
+  create)
+    dest=$2
+    port=$3
+
+    create_help="${COMMAND_NAME} create <destination> <port>"
+
+    if [[ "$2" == "-h" ]]; then
+      echo $create_help
+      exit 0
+    fi
+
+    if [[ -z $dest ]] || [[ -z $port ]]; then
+      echo $create_help
+      fail "must pass destination and port arguments"
+    fi
+
+    tunnel $dest $port
+    ;;
+  kill)
+    kill_tunnels
+    ;;
+  *)
+    fail_with_usage "command ${1} not a valid command"
+    ;;
+esac
