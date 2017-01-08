@@ -1,0 +1,98 @@
+#!/bin/bash
+# s3-edit s3://mybucket/file.txt
+COMMAND_NAME=s3-edit
+BACKUP_FILE=false
+
+function usage() {
+  cat <<EOF
+Command to edit files in S3 easily.
+Usage:
+  ${COMMAND_NAME} [opts] <S3 Bucket> <File>
+Options:
+  NOT IMPLEMENTED
+  -b - create backup copy before editing
+  -h - show this usage
+EOF
+}
+
+function fail() {
+  message=$1
+  echo "Error: ${message}"
+  exit 1
+}
+
+function fail_with_usage() {
+  message=$1
+  echo -e "\nError: ${message}\n"
+  usage
+  exit 1
+}
+
+function create_file_if_not_exists() {
+  bucket=$1
+  file=$2
+  aws s3api head-object --bucket $bucket --key $file &> /dev/null
+  if [[ $? -eq 0 ]]; then
+    # If the file exists and Backup is set back up the file
+    # TODO: Implement BACKUP
+    #if [[ $BACKUP_FILE ]]; then
+    #  aws s3 cp s3://${bucket}/${file} s3://${bucket}/${file}.bak
+    #fi
+    return
+  fi
+
+  echo "File ${file} does not exist in bucket ${bucket} ... creating"
+  temp_file=/tmp/s3_edit_$(basename $file)_$TIMESTAMP
+  touch $temp_file
+  aws s3 cp $temp_file s3://${bucket}/${file}
+  rm $temp_file
+}
+
+function bucket_exists() {
+  bucket_name=$1
+
+  aws s3api head-bucket --bucket $bucket_name &> /dev/null
+  if [[ $? -ne 0 ]]; then
+    echo false
+  fi
+
+  echo true
+}
+
+if [[ -z $EDITOR ]]; then
+  echo "Error: must have EDITOR environment variable set"
+fi
+
+TIMESTAMP=$(date +%s)
+bucket=$1
+file=$2
+
+echo $@
+
+if [[ -z $bucket ]] || [[ -z $file ]]; then
+  usage
+  exit 1
+fi
+
+temp_file=/tmp/s3_edit_$(basename $file)_$TIMESTAMP
+
+if [[ "$(bucket_exists $bucket)" == "false" ]]; then
+  fail "bucket ${bucket} does not exist"
+fi
+
+if [[ "${file}" =~ ^/ ]]; then
+  prefix="//"
+  file=${file#/}
+fi
+
+# Create a new file if one does not exist
+create_file_if_not_exists $bucket $file
+
+aws s3 cp s3://${bucket}/${file} $temp_file
+if [[ $? -ne 0 ]]; then
+  exit 1
+fi
+
+$EDITOR $temp_file
+aws s3 cp $temp_file s3://${bucket}/${file}
+rm $temp_file
