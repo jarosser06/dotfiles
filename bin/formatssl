@@ -2,7 +2,8 @@
 
 ssl_file=$1
 
-if [[ $UNAME == "Darwin" ]]; then
+# If OS X use gnu sed installed with homebrew
+if [[ $(uname) == "Darwin" ]]; then
   export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:$PATH
 fi
 
