@@ -29,36 +29,9 @@
   Bundle "https://github.com/tpope/vim-repeat.git"
   Bundle "https://github.com/vim-scripts/ruby-matchit.git"
   Bundle "https://github.com/wgibbs/vim-irblack.git"
-" Bundle "https://github.com/wavded/vim-stylus.git"
   Bundle "https://github.com/tpope/vim-abolish.git"
   Bundle "https://github.com/christoomey/vim-tmux-navigator.git"
   Bundle "https://github.com/bling/vim-airline.git"
-
-" Dash Searching"
-  Bundle "https://github.com/rizzatti/funcoo.vim.git"
-  Bundle "https://github.com/rizzatti/dash.vim.git"
-    nmap <Leader>qs <Plug>DashSearch
-    nmap <Leader>qa <Plug>DashGlobalSearch
-
-
-" CtrlP - with FuzzyFinder compatible keymaps
-  Bundle "https://github.com/kien/ctrlp.vim.git"
-    nnoremap <Leader>b :<C-U>CtrlPBuffer<CR>
-    nnoremap <Leader>t :<C-U>CtrlP<CR>
-    nnoremap <Leader>T :<C-U>CtrlPTag<CR>
-    let g:ctrlp_prompt_mappings = {
-        \ 'PrtSelectMove("j")':   ['<down>'],
-        \ 'PrtSelectMove("k")':   ['<up>'],
-        \ 'AcceptSelection("h")': ['<c-j>'],
-        \ 'AcceptSelection("v")': ['<c-k>', '<RightMouse>'],
-        \ }
-    " respect the .gitignore
-    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
-
-" Compile and deploy Arduino (*.pde) sketches directly from Vim
-  Bundle "https://github.com/smerrill/vim-arduino.git"
-    au BufNewFile,BufRead *.pde set filetype=arduino
-    au BufNewFile,BufRead *.ino set filetype=arduino
 
 " Go
   Bundle "https://github.com/fatih/vim-go.git"
@@ -78,34 +51,9 @@
   Bundle "https://github.com/mustache/vim-mustache-handlebars.git"
   au  BufNewFile,BufRead *.mustache,*.handlebars,*.hbs,*.hogan,*.hulk,*.hjs set filetype=html syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
 
-" Stylus
-  Bundle "https://github.com/wavded/vim-stylus.git"
-    au BufNewFile,BufRead *.styl set filetype=stylus
-
 " Coffee script
   Bundle "https://github.com/kchmck/vim-coffee-script.git"
     au BufNewFile,BufRead *.coffee set filetype=coffee
-
-
-" ACK
-" Bundle "https://github.com/mileszs/ack.vim.git"
-"   nmap g/ :Ack!<space>
-"   nmap g* :Ack! -w <C-R><C-W><space>
-"   nmap ga :AckAdd!<space>
-"   nmap gn :cnext<CR>
-"   nmap gp :cprev<CR>
-"   nmap gq :ccl<CR>
-"   nmap gl :cwindow<CR>
-
-" AG aka The Silver Searcher
-  Bundle 'https://github.com/rking/ag.vim.git'
-    nmap g/ :Ag!<space>
-    nmap g* :Ag! -w <C-R><C-W><space>
-    nmap ga :AgAdd!<space>
-    nmap gn :cnext<CR>
-    nmap gp :cprev<CR>
-    nmap gq :ccl<CR>
-    nmap gl :cwindow<CR>
 
 
 " Tagbar for navigation by tags using CTags
@@ -113,20 +61,6 @@
     let g:tagbar_autofocus = 1
     map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
     map <Leader>. :TagbarToggle<CR>
-
-
-" Markdown syntax highlighting
-  Bundle "https://github.com/tpope/vim-markdown.git"
-    augroup mkd
-      autocmd BufNewFile,BufRead *.mkd      set ai formatoptions=tcroqn2 comments=n:> filetype=markdown
-      autocmd BufNewFile,BufRead *.md       set ai formatoptions=tcroqn2 comments=n:> filetype=markdown
-      autocmd BufNewFile,BufRead *.markdown set ai formatoptions=tcroqn2 comments=n:> filetype=markdown
-    augroup END
-
-
-" Markdown preview to quickly preview markdown files
-  Bundle "https://github.com/JamshedVesuna/vim-markdown-preview.git"
-  map <buffer> <Leader>mp :Mm<CR>
 
 
 " NERDTree for project drawer
@@ -156,11 +90,6 @@
     " shortcut to align text with Tabular
     map <Leader>a :Tabularize<space>
 
-" ZoomWin to fullscreen a particular buffer without losing others
-  Bundle "https://github.com/vim-scripts/ZoomWin.git"
-    map <Leader>z :ZoomWin<CR>
-
-
 " Unimpaired for keymaps for quicky manipulating lines and files
   Bundle "https://github.com/tpope/vim-unimpaired.git"
     " Bubble single lines
@@ -181,24 +110,6 @@
                                \ 'active_filetypes': [],
                                \ 'passive_filetypes': ['haml','scss','sass'] }
     let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-
-
-" gist-vim for quickly creating gists
-  Bundle "https://github.com/mattn/webapi-vim.git"
-  Bundle "https://github.com/mattn/gist-vim.git"
-    if has("mac")
-      let g:gist_clip_command = 'pbcopy'
-    elseif has("unix")
-      let g:gist_clip_command = 'xclip -selection clipboard'
-    endif
-
-    let g:gist_detect_filetype = 1
-    let g:gist_open_browser_after_post = 1
-
-
-" gundo for awesome undo tree visualization
-  Bundle "https://github.com/sjl/gundo.vim.git"
-    map <Leader>h :GundoToggle<CR>
 
 
 " rails.vim, nuff' said
@@ -231,11 +142,6 @@
   autocmd BufNewFile,BufRead *.edn set filetype=clojure
 
   let g:paredit_leader= '\'
-
-
-" Jade Highlighting"
-  Bundle "https://github.com/digitaltoad/vim-jade.git"
-  autocmd BufNewFile,BufRead *.jade set filetype=jade
 
 " Scala Highlighting"
   Bundle "https://github.com/derekwyatt/vim-scala.git"
