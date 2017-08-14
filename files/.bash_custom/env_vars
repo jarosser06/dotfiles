@@ -32,16 +32,29 @@ export PROJECTS_DIR=${HOME}/Projects
 export PROJECTS_LIST=${HOME}/.projects
 export BASH_CUSTOM_PLUGINS=${HOME}/.bash_custom/plugins
 
-## Needed for Rust
-export LD_LIBRARY_PATH=/usr/local/lib
+## Rust LANG
+if [[ "$(uname)" == "Darwin" ]]; then
+  export LD_LIBRARY_PATH=/usr/local/lib
+fi
+RUST_BIN_PATH=$HOME/.cargo/bin
+if [[ -d $RUST_BIN_PATH ]]; then
+  export PATH="$HOME/.cargo/bin:$PATH"
+fi
 
 ## Used for git completion
 PS1='[\u@\h] \[\033[00m\]\w\[\033[36m\]$(_ps_chef_org)\[\033[33m\]$(__git_ps1)\[\033[00m\]λ '
 GIT_PS1_SHOWDIRTYSTATE=true
 
-if [ -f /usr/bin/virtualenvwrapper.sh ];
+## Virtualenv Wrapper Setup, Mac uses diff path
+BASH_CUSTOM_VIRT_ENV_WRAPPER_PATH=/usr/bin/virtualenvwrapper.sh
+if [[ "$(uname)" == "Darwin" ]]; then
+  BASH_CUSTOM_VIRT_ENV_WRAPPER_PATH=/usr/local/bin/virtualenvwrapper.sh
+  export VIRTUALENVWRAPPER_PYTHON=/Library/Frameworks/Python.framework/Versions/2.7/bin/python
+fi
+
+if [ -f $BASH_CUSTOM_VIRT_ENV_WRAPPER_PATH ];
 then
-  source /usr/bin/virtualenvwrapper.sh
+  source $BASH_CUSTOM_VIRT_ENV_WRAPPER_PATH
 else
   echo "Didn't find virtualenvwrapper.sh"
 fi
