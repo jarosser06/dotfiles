@@ -10,3 +10,4 @@ if [ -a ${GOPATH}/bin/hub ]; then
 fi
 
 alias pfiles="lsof -a -p"
+alias ll="ls -lh"
