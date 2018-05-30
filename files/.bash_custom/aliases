@@ -11,3 +11,4 @@ fi
 
 alias pfiles="lsof -a -p"
 alias ll="ls -lh"
+alias maestro_linux_instances="maestro list instances -F PlatformTypes=Linux -l"
