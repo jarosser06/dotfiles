@@ -9,7 +9,7 @@ function list_configs {
   for config in $configs
   do
     short_name=$(echo $config | awk '{{split($1, a, "-")}{print " ", a[1]}}')
-    if [ $current_link == $config ]; then
+    if [[ $current_link == $config ]]; then
       echo "  *${short_name}"
     else
       echo "   ${short_name}"

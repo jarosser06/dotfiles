@@ -1,0 +1,33 @@
+#!/bin/bash
+
+MINIKUBE_DOWNLOAD_URL="https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64"
+BASE_PATH=/usr/local/bin
+UPDATE_MINIKUBE=0
+
+# Determine if minikube is installed
+which minikube &> /dev/null
+if [[ $? -ne 0 ]]; then
+  echo "Minikube not found ... installing"
+  UPDATE_MINIKUBE=1
+fi
+
+# Check for actual minikube update if minikube is already installed
+if [[ $UPDATE_MINIKUBE -ne 1 ]]; then
+  MINIKUBE_VERSION_CHECK=$(minikube update-check)
+  CURRENT_VERSION=$(echo $MINIKUBE_VERSION_CHECK | grep Current | cut -d ' ' -f2)
+  LATEST_VERSION=$(echo $MINIKUBE_VERSION_CHECK | grep Latest | cut -d ' ' -f2)
+
+
+  if [[ $CURRENT_VERSION != $LATEST_VERSION ]]; then
+    echo "Current version is older than latest...updating"
+    UPDATE_MINIKUBE=1
+  fi
+fi
+
+if [[ $UPDATE_MINIKUBE -eq 1 ]]; then
+  echo "Downloading latest minikube"
+  cd $BASE_PATH
+  curl -Lo minikube ${MINIKUBE_DOWNLOAD_URL} && chmod +x minikube
+else
+  echo "Minikube up to date"
+fi
