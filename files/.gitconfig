@@ -7,3 +7,6 @@
 	templatedir = ~/.git_template
 [url "https://"]
   insteadOf = git://
+[credential]
+	helper = !aws codecommit credential-helper $@
+	UseHttpPath = true
