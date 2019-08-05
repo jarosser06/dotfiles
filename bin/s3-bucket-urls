@@ -15,7 +15,13 @@ if [[ -z $bucket ]]; then
   exit 1
 fi
 
+bucket_location=$(aws s3api get-bucket-location --bucket ${bucket} --query 'LocationConstraint' | sed 's/"//g')
 base_url=https://s3.amazonaws.com/${bucket}
+
+if [[ $bucket_location != 'us-east-1' ]]; then
+  base_url=https://s3.${bucket_location}.amazonaws.com/${bucket}
+fi
+
 items=$(aws s3 ls --recursive ${bucket} | awk '{print $4}')
 
 for item in $items
