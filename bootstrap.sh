@@ -13,8 +13,4 @@ do
   mkdir -p ${HOME}/${dir}
 done
 
-if ! [[ -d ${HOME}/.self_chef ]]; then
-  ln -s ${HOME}/.dotfiles/chef ${HOME}/.self_chef
-fi
-
 ${HOME}/.dotfiles/bin/boxer update
