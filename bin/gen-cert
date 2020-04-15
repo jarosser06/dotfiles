@@ -1,0 +1,38 @@
+#!/bin/bash
+# Generate Certification
+# Quick command to generate my letsencrypt certificates with Certbot,
+# currently a manual process b/c Porkbun lacks an API....
+
+COMMAND_NAME=$0
+DEFAULT_LETSENCRYPT_DIR=/etc/letsencrypt
+
+which certbot $> /dev/null
+if [[ $? -ne 0 ]]; then
+  echo "Certbot must be installed to run this."
+  exit 1
+fi
+
+function usage() {
+  cat <<EOF
+Quick alias command to generate letsencrypt certificates.
+Usage:
+  ${COMMAND_NAME} <domain>
+Options:
+  -h - show this usage
+EOF
+}
+
+domain=$1
+if [[ -z $domain ]]; then
+  usage
+  exit 1
+fi
+
+# TODO: Check if certificate already exists
+ls $DEFAULT_LETSENCRYPT_DIR/live | grep $domain &> /dev/null
+if [[ $? -eq 0 ]]; then
+  echo "Domain ${domain} appears to be installed .. try running certbot renew instead."
+  exit 0
+fi
+
+certbot -d ${domain} --manual --preferred-challenges dns certonly
