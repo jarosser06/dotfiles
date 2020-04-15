@@ -12,7 +12,6 @@ function boxer_help {
   echo "boxer [command]"
   echo "  update - update workstation"
   echo "  install - same as update"
-  echo "  reconfigure - kicks off the chef run"
 }
 
 function create_dirs {
@@ -112,13 +111,6 @@ function fetch_vundle {
   fi
 }
 
-function reconfigure {
-  pushd /tmp &> /dev/null
-  echo "cookbook_path \"${HOME}/.self_chef/cookbooks\"" > solo.rb
-  sudo chef-solo -j ${HOME}/.self_chef/dna.json -c ./solo.rb
-  popd &> /dev/null
-}
-
 case $1 in
   "update"|"install")
     create_dirs
@@ -126,9 +118,6 @@ case $1 in
     link_files
     fetch_vundle
     update_plugins
-    ;;
-  "reconfigure")
-    reconfigure
     ;;
   *)
     boxer_help

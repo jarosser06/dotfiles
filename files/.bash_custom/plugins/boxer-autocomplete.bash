@@ -1,6 +1,6 @@
 _boxer()
 {
-  _script_commands="update install reconfigure"
+  _script_commands="update install"
 
   local cur prev
   COMPREPLY=()

@@ -6,6 +6,7 @@ if ! [[ -d ${HOME}/.dotfiles ]]; then
   git clone $DOTFILES_REPO ${HOME}/.dotfiles
 fi
 
+# Add extra directories
 DIRS="Go Projects .bin"
 
 for dir in $DIRS;
