@@ -1,6 +1,7 @@
 #!/bin/bash
 
-if [ -a ${GOPATH}/bin/hub ]; then
+which hub &> /dev/null
+if [[ $? -eq 0 ]]; then
   alias git=hub
   alias gpr="git pull-request"
   hub_completion=${GOPATH}/src/github.com/github/hub/etc/hub.bash_completion.sh
@@ -12,3 +13,4 @@ fi
 alias pfiles="lsof -a -p"
 alias ll="ls -lh"
 alias maestro_linux_instances="maestro list instances -F PlatformTypes=Linux -l"
+alias azd="az devops"
