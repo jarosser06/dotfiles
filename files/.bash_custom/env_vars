@@ -34,7 +34,7 @@ if [[ -d $RUST_BIN_PATH ]]; then
 fi
 
 ## Used for git completion
-PS1='$(color $BLUE)[\u@\h] $(color $YELLOW)\w \[\033[00m\]\[\033[36m\]$(tok_active_env)$(color $VIOLET)$(__git_ps1)$(color $MAGENTA)λ \[\033[00m\] '
+PS1='$(color $CYAN)[\u@\h] \[\033[00m\]\w\[\033[36m\]$(tok_active_env)\[\033[33m\]$(__git_ps1)\[\033[00m\]λ '
 GIT_PS1_SHOWDIRTYSTATE=true
 
 ## Virtualenv Wrapper Setup, Mac uses diff path
