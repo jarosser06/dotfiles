@@ -6,6 +6,10 @@ if ! [[ -d ${HOME}/.dotfiles ]]; then
   git clone $DOTFILES_REPO ${HOME}/.dotfiles
 fi
 
+if ! [[ -d ${HOME}/.tmux/plugins/tpm ]]; then
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+
 # Add extra directories
 DIRS="Go Projects .bin"
 
