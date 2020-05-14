@@ -40,6 +40,6 @@ shopt -s histappend
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 # Source Local Post File
-if [ -a $BASH_CUSTOM_POST_CONFIG ]; then
+if [ -f $BASH_CUSTOM_POST_CONFIG ]; then
   source $BASH_CUSTOM_POST_CONFIG
 fi

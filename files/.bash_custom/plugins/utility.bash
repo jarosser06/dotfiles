@@ -21,7 +21,12 @@ function trim_branches {
     echo "Current branch is not master ... not trimming"
     return 1
   fi
-  git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d
+  merged_branches=$(git branch --merged master | grep -v master)
+  if [[ -z $merged_branches ]]; then
+    echo "All clean!"
+  else
+    git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d
+  fi
 }
 
 function rm_by_inode {

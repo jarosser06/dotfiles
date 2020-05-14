@@ -53,8 +53,6 @@ fi
 if [ -f $BASH_CUSTOM_VIRT_ENV_WRAPPER_PATH ];
 then
   source $BASH_CUSTOM_VIRT_ENV_WRAPPER_PATH
-else
-  echo "Didn't find virtualenvwrapper.sh"
 fi
 
 # Defaults to libvirt on Fedora otherwise
