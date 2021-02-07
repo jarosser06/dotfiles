@@ -1,3 +1,6 @@
+let g:solarized_termcolors=256
+set term=xterm-256color
+
 " required for several plugins
   set nocompatible
 

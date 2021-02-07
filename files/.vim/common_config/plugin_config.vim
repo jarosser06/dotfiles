@@ -7,6 +7,13 @@
 " JSON
   Bundle "https://github.com/elzr/vim-json"
 
+" Linting
+  Plugin 'dense-analysis/ale'
+  let g:ale_linters = {'python': ['flake8', 'pylint']}
+  let g:ale_lint_on_text_changed = 'never'
+  let g:ale_lint_on_insert_leave = 0
+  let g:ale_lint_on_enter = 0
+
 " Plugins requiring no additional configuration or keymaps
   Bundle "https://github.com/oscarh/vimerl.git"
   Bundle "https://github.com/tpope/vim-git.git"
@@ -69,6 +76,12 @@
 
     nmap gt :NERDTreeToggle<CR>
     nmap g :NERDTree \| NERDTreeToggle \| NERDTreeFind<CR>
+    " Start Nerdtree automatically
+    autocmd VimEnter * NERDTree | wincmd p
+
+    " Close Nerdtree when last window
+    autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+      \ quit | endif
 
 
 " Tabular for aligning text
