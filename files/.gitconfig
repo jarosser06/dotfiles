@@ -5,6 +5,7 @@
 	default = matching
 [init]
 	templatedir = ~/.git_template
+	defaultBranch = main
 [url "https://"]
   insteadOf = git://
 [credential]

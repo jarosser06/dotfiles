@@ -17,15 +17,15 @@ function source_if_exists {
 }
 
 function trim_branches {
-  if ! [[ "$(git branch | grep \* | grep -v master)" == "" ]]; then
+  if ! [[ "$(git branch | grep \* | grep -v master | grep -v main)" == "" ]]; then
     echo "Current branch is not master ... not trimming"
     return 1
   fi
-  merged_branches=$(git branch --merged master | grep -v master)
+  merged_branches=$(git branch --merged main | grep -v main)
   if [[ -z $merged_branches ]]; then
     echo "All clean!"
   else
-    git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d
+    git branch --merged main | grep -v "\* main" | xargs -n 1 git branch -d
   fi
 }
 

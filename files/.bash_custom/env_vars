@@ -56,7 +56,7 @@ then
 fi
 
 # Defaults to libvirt on Fedora otherwise
-export VAGRANT_DEFAULT_PROVIDER=virtualbox
+export VAGRANT_DEFAULT_PROVIDER=parallels
 
 export WORKON_HOME=$HOME/.virtualenvs
 export PIP_VIRTUALENV_BASE=$WORKON_HOME

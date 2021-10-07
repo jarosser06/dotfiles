@@ -21,7 +21,6 @@
   Bundle "https://github.com/altercation/vim-colors-solarized.git"
   Bundle "https://github.com/tpope/vim-cucumber.git"
   Bundle "https://github.com/tpope/vim-endwise.git"
-  Bundle "https://github.com/tpope/vim-fugitive.git"
   Bundle "https://github.com/tpope/vim-haml.git"
   Bundle "https://github.com/pangloss/vim-javascript.git"
   Bundle "https://github.com/vim-scripts/L9.git"
@@ -76,8 +75,6 @@
 
     nmap gt :NERDTreeToggle<CR>
     nmap g :NERDTree \| NERDTreeToggle \| NERDTreeFind<CR>
-    " Start Nerdtree automatically
-    autocmd VimEnter * NERDTree | wincmd p
 
     " Close Nerdtree when last window
     autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
