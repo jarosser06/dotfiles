@@ -15,11 +15,6 @@ if [ -a ${HOME}/.pythonz ]; then
   [[ -s $HOME/.pythonz/etc/bashrc ]] && source $HOME/.pythonz/etc/bashrc
 fi
 
-## Only do RVM stuff if it exists
-if [ -a ${HOME}/.rvm ]; then
-  PATH=$PATH:${HOME}/.rvm/bin
-  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-fi
 export PROJECTS_DIR=${HOME}/Projects
 export PROJECTS_LIST=${HOME}/.projects
 export BASH_CUSTOM_PLUGINS=${HOME}/.bash_custom/plugins
@@ -34,7 +29,7 @@ if [[ -d $RUST_BIN_PATH ]]; then
 fi
 
 ## Used for git completion
-PS1='$(color $CYAN)[\u@\h] \[\033[00m\]\w\[\033[36m\]$(faws_active_env)\[\033[33m\]$(__git_ps1)\[\033[00m\]λ '
+PS1='$(color $CYAN)[\u@\h] \e[0m\w$(color $WHITE)$(__git_ps1)\e[0mλ '
 GIT_PS1_SHOWDIRTYSTATE=true
 
 ## Virtualenv Wrapper Setup, Mac uses diff path
