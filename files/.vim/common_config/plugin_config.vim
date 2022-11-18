@@ -1,9 +1,6 @@
 " Plugins are managed by Vundle. Once VIM is open run :BundleInstall to
 " install plugins.
 
-" AWS
-  Bundle "https://github.com/m-kat/aws-vim"
-
 " JSON
   Bundle "https://github.com/elzr/vim-json"
 
@@ -19,7 +16,6 @@
   Bundle "https://github.com/tpope/vim-git.git"
   Bundle "https://github.com/harleypig/vcscommand.vim.git"
   Bundle "https://github.com/altercation/vim-colors-solarized.git"
-  Bundle "https://github.com/tpope/vim-cucumber.git"
   Bundle "https://github.com/tpope/vim-endwise.git"
   Bundle "https://github.com/tpope/vim-haml.git"
   Bundle "https://github.com/pangloss/vim-javascript.git"
@@ -39,28 +35,14 @@
   Bundle "https://github.com/christoomey/vim-tmux-navigator.git"
   Bundle "https://github.com/bling/vim-airline.git"
 
+" Typescript
+  Bundle "https://github.com/leafgarland/typescript-vim.git"
+
 " Go
   Bundle "https://github.com/fatih/vim-go.git"
     au BufNewFile,BufRead *.go set filetype=go
 
     let g:go_list_type = "quickfix"
-
-" Slim
-  Bundle "https://github.com/slim-template/vim-slim.git"
-    au BufNewFile,BufRead *.slim set filetype=slim
-
-" Less
-  Bundle "https://github.com/groenewege/vim-less.git"
-    au BufNewFile,BufRead *.less set filetype=less
-
-" Handlebars, Mustache, and Friends
-  Bundle "https://github.com/mustache/vim-mustache-handlebars.git"
-  au  BufNewFile,BufRead *.mustache,*.handlebars,*.hbs,*.hogan,*.hulk,*.hjs set filetype=html syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
-
-" Coffee script
-  Bundle "https://github.com/kchmck/vim-coffee-script.git"
-    au BufNewFile,BufRead *.coffee set filetype=coffee
-
 
 " Tagbar for navigation by tags using CTags
   Bundle "https://github.com/majutsushi/tagbar.git"
@@ -156,8 +138,3 @@
 " Scala Highlighting"
   Bundle "https://github.com/derekwyatt/vim-scala.git"
   autocmd BufNewFile,BufRead *.scala set filetype=scala
-
-" Elixir plugin
-  Bundle "https://github.com/elixir-lang/vim-elixir.git"
-    au BufNewFile,BufRead *.ex set filetype=elixir
-    au BufNewFile,BufRead *.exs set filetype=elixir

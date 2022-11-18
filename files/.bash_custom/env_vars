@@ -33,17 +33,7 @@ PS1='$(color $CYAN)[\u@\h] \e[0m\w$(color $WHITE)$(__git_ps1)\e[0mλ '
 GIT_PS1_SHOWDIRTYSTATE=true
 
 ## Virtualenv Wrapper Setup, Mac uses diff path
-BASH_CUSTOM_VIRT_ENV_WRAPPER_PATH=/usr/bin/virtualenvwrapper.sh
-if [[ "$(uname)" == "Darwin" ]]; then
-  BASH_CUSTOM_VIRT_ENV_WRAPPER_PATH=/usr/local/bin/virtualenvwrapper.sh
-  export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-elif [[ "$(uname)" == "Linux" ]]; then
-  source /etc/os-release
-
-  if [[ "${NAME}" == "Ubuntu" ]]; then
-    BASH_CUSTOM_VIRT_ENV_WRAPPER_PATH=/usr/share/virtualenvwrapper/virtualenvwrapper.sh
-  fi
-fi
+BASH_CUSTOM_VIRT_ENV_WRAPPER_PATH=/opt/homebrew/bin/virtualenvwrapper.sh
 
 if [ -f $BASH_CUSTOM_VIRT_ENV_WRAPPER_PATH ];
 then

@@ -43,3 +43,8 @@ export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; histor
 if [ -f $BASH_CUSTOM_POST_CONFIG ]; then
   source $BASH_CUSTOM_POST_CONFIG
 fi
+. "$HOME/.cargo/env"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/jim/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
