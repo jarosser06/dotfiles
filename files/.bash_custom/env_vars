@@ -29,7 +29,7 @@ if [[ -d $RUST_BIN_PATH ]]; then
 fi
 
 ## Used for git completion
-PS1='$(color $CYAN)[\u@\h] \e[0m\w$(color $WHITE)$(__git_ps1)\e[0mλ '
+PS1='$(color $CYAN)[\u@\h] \e[0m\w$(color $RED)$(__aws_active_acct_ps)$(color $WHITE)$(__git_ps1)\e[0mλ '
 GIT_PS1_SHOWDIRTYSTATE=true
 
 ## Virtualenv Wrapper Setup, Mac uses diff path
@@ -46,3 +46,7 @@ export VAGRANT_DEFAULT_PROVIDER=parallels
 export WORKON_HOME=$HOME/.virtualenvs
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 export PIP_RESPECT_VIRTUALENV=true
+
+# Workaround b/c CDK is getting fucked up due to buildkit
+export DOCKER_BUILDKIT=0
+export COMPOSE_DOCKER_CLI_BUILD=0
