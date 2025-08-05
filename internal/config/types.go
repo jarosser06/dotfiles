@@ -62,9 +62,10 @@ type HookConfig struct {
 
 // GlobalSettings represents global framework settings
 type GlobalSettings struct {
-	BackupExisting      bool `yaml:"backup_existing"`
-	CreateDirectories   bool `yaml:"create_directories"`
-	Verbose             bool `yaml:"verbose"`
-	BackupRetentionDays int  `yaml:"backup_retention_days"`
-	MaxBackupCount      int  `yaml:"max_backup_count"`
+	BackupExisting      bool   `yaml:"backup_existing"`
+	CreateDirectories   bool   `yaml:"create_directories"`
+	Verbose             bool   `yaml:"verbose"`
+	BackupRetentionDays int    `yaml:"backup_retention_days"`
+	MaxBackupCount      int    `yaml:"max_backup_count"`
+	DotfilesRepoPath    string `yaml:"dotfiles_repo_path"`
 }

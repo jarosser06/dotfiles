@@ -21,16 +21,10 @@ config: []
   # - source: nvim
   #   dest: ~/.config/nvim
 
-# Scripts for PATH
+# Scripts for PATH (only scripts used by custom installations)
 bin:
   - source: ai_productivity.sh
     dest: ~/.local/bin/ai_productivity.sh
-    executable: true
-  - source: claude_code.sh
-    dest: ~/.local/bin/claude_code.sh
-    executable: true
-  - source: colima_setup.sh
-    dest: ~/.local/bin/colima_setup.sh
     executable: true
 
 # Custom installation scripts (run in order)
@@ -49,14 +43,21 @@ scripts:
 
   - name: "colima-setup" 
     description: "Configure and start Colima container runtime"
-    command: "~/.local/bin/colima_setup.sh"
+    command: "bash ${DOTFILES_REPO}/bin/colima_setup.sh"
     check_cmd: "colima status default"
     working_dir: "~"
     run_once: false  # Allow reconfiguration
 
+  - name: "rust"
+    description: "Install Rust programming language via rustup"
+    command: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
+    check_cmd: "command -v rustc && command -v cargo"
+    working_dir: "~"
+    run_once: true
+
   - name: "mcp-servers"
     description: "Install MCP servers and AI tools (Ollama, etc.)"
-    command: "~/.local/bin/ai_productivity.sh --skip-api --yes --verbose"
+    command: "bash ${DOTFILES_REPO}/bin/ai_productivity.sh --skip-api --yes --verbose"
     check_cmd: "[ -d ~/Documents/ai-productivity ] && command -v ollama && [ -f ~/.local/bin/setup-api-keys.sh ]"
     working_dir: "~"
     run_once: true
@@ -132,3 +133,4 @@ settings:
   verbose: false
   backup_retention_days: 30  # Keep backups for 30 days
   max_backup_count: 5        # Keep only 5 most recent backups
+  dotfiles_repo_path: "~/.dotfiles"  # Central location of dotfiles repository

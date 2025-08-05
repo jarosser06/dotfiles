@@ -3,7 +3,6 @@
 export EDITOR=vim
 export GOPATH=${HOME}/Go
 export CUSTOM_BIN=${HOME}/.bin
-export COOKBOOKS=${HOME}/cookbooks
 export PATH=${HOME}/.bin:/usr/local/go/bin:${GOPATH}/bin:$HOME/.local/bin:$PATH
 
 if [ -d /usr/local/node ]; then

@@ -155,7 +155,7 @@ func showPackageDiff(cfg *config.Config) (bool, error) {
 }
 
 func showScriptsDiffForDiff(cfg *config.Config) (bool, error) {
-	executor := scripts.NewExecutor(verbose)
+	executor := scripts.NewExecutor(cfg.Settings)
 	
 	scriptDiffs, err := executor.GetScriptDiff(cfg.Scripts)
 	if err != nil {

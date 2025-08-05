@@ -160,7 +160,7 @@ func checkScriptStatus(cfg *config.Config) {
 		return
 	}
 
-	executor := scripts.NewExecutor(cfg.Settings.Verbose)
+	executor := scripts.NewExecutor(cfg.Settings)
 
 	for _, script := range cfg.Scripts {
 		if script.CheckCmd == "" {

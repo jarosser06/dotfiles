@@ -82,16 +82,34 @@ func (m *Mapper) CopyFile(sourcePath, destPath string, mode os.FileMode) error {
 		}
 	}
 
-	// Remove existing destination (backup is handled at higher level now)
-	if _, err := os.Lstat(destPath); err == nil {
-		if err := os.RemoveAll(destPath); err != nil {
-			return fmt.Errorf("failed to remove existing file %s: %w", destPath, err)
-		}
+	// Check if source is a directory
+	srcInfo, err := os.Stat(sourcePath)
+	if err != nil {
+		return fmt.Errorf("failed to stat source %s: %w", sourcePath, err)
 	}
 
-	// Copy file or directory
-	if err := m.copyFileOrDir(sourcePath, destPath); err != nil {
-		return fmt.Errorf("failed to copy %s → %s: %w", sourcePath, destPath, err)
+	if srcInfo.IsDir() {
+		// For directories, merge content instead of replacing
+		if m.config.Settings.Verbose {
+			fmt.Printf("Merging directory: %s → %s\n", sourcePath, destPath)
+		}
+		return m.copyDir(sourcePath, destPath)
+	} else {
+		// For files, remove existing destination (backup is handled at higher level now)
+		if _, err := os.Lstat(destPath); err == nil {
+			if err := os.RemoveAll(destPath); err != nil {
+				return fmt.Errorf("failed to remove existing file %s: %w", destPath, err)
+			}
+		}
+
+		// Copy file
+		if err := m.copyFileContent(sourcePath, destPath); err != nil {
+			return fmt.Errorf("failed to copy %s → %s: %w", sourcePath, destPath, err)
+		}
+
+		if m.config.Settings.Verbose {
+			fmt.Printf("Copied file: %s → %s\n", sourcePath, destPath)
+		}
 	}
 
 	// Set permissions if specified
@@ -99,10 +117,6 @@ func (m *Mapper) CopyFile(sourcePath, destPath string, mode os.FileMode) error {
 		if err := os.Chmod(destPath, mode); err != nil {
 			return fmt.Errorf("failed to set permissions on %s: %w", destPath, err)
 		}
-	}
-
-	if m.config.Settings.Verbose {
-		fmt.Printf("Copied file: %s → %s\n", sourcePath, destPath)
 	}
 
 	return nil
@@ -147,13 +161,14 @@ func (m *Mapper) copyFileContent(src, dst string) error {
 	return os.Chmod(dst, srcInfo.Mode())
 }
 
-// copyDir copies a directory recursively
+// copyDir copies a directory recursively, merging with existing content
 func (m *Mapper) copyDir(src, dst string) error {
 	srcInfo, err := os.Stat(src)
 	if err != nil {
 		return err
 	}
 
+	// Create destination directory if it doesn't exist
 	if err := os.MkdirAll(dst, srcInfo.Mode()); err != nil {
 		return err
 	}
@@ -167,8 +182,28 @@ func (m *Mapper) copyDir(src, dst string) error {
 		srcPath := filepath.Join(src, entry.Name())
 		dstPath := filepath.Join(dst, entry.Name())
 
-		if err := m.copyFileOrDir(srcPath, dstPath); err != nil {
+		srcEntryInfo, err := os.Stat(srcPath)
+		if err != nil {
 			return err
+		}
+
+		if srcEntryInfo.IsDir() {
+			// Recursively merge subdirectories
+			if err := m.copyDir(srcPath, dstPath); err != nil {
+				return err
+			}
+		} else {
+			// For files, only overwrite if the destination doesn't exist or if it's different
+			if _, err := os.Stat(dstPath); err == nil {
+				// File exists - check if we should overwrite
+				if m.config.Settings.Verbose {
+					fmt.Printf("Overwriting existing file: %s\n", dstPath)
+				}
+			}
+			// Copy/overwrite the file
+			if err := m.copyFileContent(srcPath, dstPath); err != nil {
+				return err
+			}
 		}
 	}
 

@@ -12,13 +12,15 @@ import (
 
 // Executor handles running custom installation scripts
 type Executor struct {
-	verbose bool
+	verbose  bool
+	settings config.GlobalSettings
 }
 
 // NewExecutor creates a new script executor
-func NewExecutor(verbose bool) *Executor {
+func NewExecutor(settings config.GlobalSettings) *Executor {
 	return &Executor{
-		verbose: verbose,
+		verbose:  settings.Verbose,
+		settings: settings,
 	}
 }
 
@@ -82,13 +84,16 @@ func (e *Executor) ExecuteScript(script config.ScriptConfig) error {
 		workingDir = filepath.Join(homeDir, workingDir[2:])
 	}
 
+	// Substitute variables in command
+	expandedCommand := e.expandVariables(script.Command)
+
 	// Execute the command
-	cmd := exec.Command("bash", "-c", script.Command)
+	cmd := exec.Command("bash", "-c", expandedCommand)
 	cmd.Dir = workingDir
 	cmd.Env = os.Environ()
 
 	if e.verbose {
-		fmt.Printf("   Running: %s\n", script.Command)
+		fmt.Printf("   Running: %s\n", expandedCommand)
 		fmt.Printf("   Working dir: %s\n", workingDir)
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
@@ -186,4 +191,29 @@ func (sd ScriptDiff) PrintDiff() {
 	if sd.Script.Description != "" {
 		fmt.Printf("     %s\n", sd.Script.Description)
 	}
+}
+
+// expandVariables replaces variables in command strings
+func (e *Executor) expandVariables(command string) string {
+	// Get dotfiles repo path and expand ~
+	dotfilesPath := e.settings.DotfilesRepoPath
+	if dotfilesPath == "" {
+		dotfilesPath = "~/.dotfiles" // Default fallback
+	}
+	
+	if dotfilesPath == "~" {
+		if homeDir, err := os.UserHomeDir(); err == nil {
+			dotfilesPath = homeDir
+		}
+	} else if strings.HasPrefix(dotfilesPath, "~/") {
+		if homeDir, err := os.UserHomeDir(); err == nil {
+			dotfilesPath = filepath.Join(homeDir, dotfilesPath[2:])
+		}
+	}
+	
+	// Replace variables
+	expanded := strings.ReplaceAll(command, "${DOTFILES_REPO}", dotfilesPath)
+	expanded = strings.ReplaceAll(expanded, "$DOTFILES_REPO", dotfilesPath)
+	
+	return expanded
 }

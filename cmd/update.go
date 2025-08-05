@@ -222,7 +222,7 @@ func executeScripts(cfg *config.Config) error {
 		return nil
 	}
 
-	executor := scripts.NewExecutor(cfg.Settings.Verbose)
+	executor := scripts.NewExecutor(cfg.Settings)
 	
 	fmt.Println("🔧 Executing custom scripts...")
 	return executor.ExecuteScripts(cfg.Scripts)
@@ -330,7 +330,7 @@ func getFilesToBackup(mapper *files.Mapper, cfg *config.Config) []string {
 }
 
 func showScriptsDiff(cfg *config.Config) (bool, error) {
-	executor := scripts.NewExecutor(cfg.Settings.Verbose)
+	executor := scripts.NewExecutor(cfg.Settings)
 	
 	scriptDiffs, err := executor.GetScriptDiff(cfg.Scripts)
 	if err != nil {
