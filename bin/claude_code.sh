@@ -76,16 +76,10 @@ install_claude_code() {
     
     # Check if Claude Code is already installed
     if command -v claude &> /dev/null; then
-        log_warning "Claude Code is already installed. Checking version..."
         CLAUDE_VERSION=$(claude --version 2>/dev/null || echo "unknown")
-        log_info "Current Claude Code version: $CLAUDE_VERSION"
-        
-        read -p "Do you want to reinstall/update Claude Code? (y/N): " -n 1 -r
-        echo
-        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-            log_info "Skipping Claude Code installation"
-            return 0
-        fi
+        log_success "Claude Code is already installed: $CLAUDE_VERSION"
+        log_info "Skipping Claude Code installation (already present)"
+        return 0
     fi
     
     # Install using the official installer script (recommended method)

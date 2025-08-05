@@ -99,6 +99,7 @@ packages:
       - colima
       - docker
       - docker-compose
+      - gh
     casks: []
       # - alacritty
       # - docker

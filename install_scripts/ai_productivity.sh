@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# AI Productivity Framework Setup Script
-# Simplified installation for Claude + MCP + Local Models
+# MCP Server Setup Script
+# Installs and configures MCP servers for Claude Desktop
 
 set -euo pipefail
 
@@ -18,7 +18,6 @@ CLAUDE_CONFIG_DIR="$HOME/Library/Application Support/Claude"
 BACKUP_DIR="$HOME/.ai-productivity-backup-$(date +%Y%m%d-%H%M%S)"
 
 # Flags
-SKIP_API_SETUP=false
 VERBOSE=false
 
 # Function to print colored output
@@ -175,27 +174,7 @@ install_mcp_servers() {
     print_status "Installing @modelcontextprotocol/server-filesystem..."
     npm install -g "@modelcontextprotocol/server-filesystem" || print_warning "Failed to install filesystem server"
     
-    print_status "Installing @miottid/todoist-mcp..."
-    # Try Smithery first, fallback to manual installation
-    if npx -y @smithery/cli install @miottid/todoist-mcp --client claude 2>/dev/null; then
-        print_status "Todoist MCP installed via Smithery"
-    else
-        print_warning "Smithery installation failed, installing manually..."
-        TODOIST_MCP_DIR="$INSTALL_DIR/todoist-mcp"
-        if [[ ! -d "$TODOIST_MCP_DIR" ]]; then
-            git clone https://github.com/Doist/todoist-mcp.git "$TODOIST_MCP_DIR"
-            cd "$TODOIST_MCP_DIR"
-            npm install
-            npm run build
-            cd - > /dev/null
-            print_status "Todoist MCP built from source"
-        else
-            print_status "Todoist MCP already exists"
-        fi
-    fi
     
-    print_status "Installing @modelcontextprotocol/server-brave-search..."
-    npm install -g "@modelcontextprotocol/server-brave-search" || print_warning "Failed to install brave-search server"
     
     print_status "Installing @modelcontextprotocol/server-memory..."
     npm install -g "@modelcontextprotocol/server-memory" || print_warning "Failed to install memory server"
@@ -203,17 +182,6 @@ install_mcp_servers() {
     print_status "Installing @executeautomation/playwright-mcp-server..."
     npm install -g "@executeautomation/playwright-mcp-server" || print_warning "Failed to install playwright server"
     
-    # Install doobidoo's memory service using git + uv
-    print_status "Installing doobidoo/mcp-memory-service..."
-    MEMORY_SERVICE_DIR="$INSTALL_DIR/mcp-memory-service"
-    if [[ ! -d "$MEMORY_SERVICE_DIR" ]]; then
-        git clone https://github.com/doobidoo/mcp-memory-service.git "$MEMORY_SERVICE_DIR"
-        cd "$MEMORY_SERVICE_DIR"
-        python install.py --skip-multi-client-prompt --skip-claude-commands-prompt || print_warning "Failed to install doobidoo memory service"
-        cd - > /dev/null
-    else
-        print_status "doobidoo/mcp-memory-service already exists"
-    fi
     
     print_status "MCP servers installation complete"
 }
@@ -251,34 +219,10 @@ setup_claude_mcp_config() {
       "args": ["-y", "@modelcontextprotocol/server-memory"],
       "env": {}
     },
-    "doobidoo-memory": {
-      "command": "uv",
-      "args": ["--directory", "~/Documents/ai-productivity/mcp-memory-service", "run", "memory"],
-      "env": {
-        "MCP_MEMORY_CHROMA_PATH": "~/Documents/ai-productivity/memory/chroma_db",
-        "MCP_MEMORY_BACKUPS_PATH": "~/Documents/ai-productivity/memory/backups",
-        "MCP_MEMORY_STORAGE_BACKEND": "sqlite_vec",
-        "MCP_MEMORY_SQLITE_PATH": "~/Documents/ai-productivity/memory/sqlite_vec.db"
-      }
-    },
     "playwright": {
       "command": "npx",
       "args": ["-y", "@executeautomation/playwright-mcp-server"],
       "env": {}
-    },
-    "todoist": {
-      "command": "node",
-      "args": ["~/Documents/ai-productivity/todoist-mcp/build/index.js"],
-      "env": {
-        "TODOIST_API_KEY": "${TODOIST_API_KEY}"
-      }
-    },
-    "brave-search": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
-      "env": {
-        "BRAVE_API_KEY": "${BRAVE_API_KEY}"
-      }
     }
   }
 }
@@ -310,41 +254,6 @@ setup_ollama_models() {
     print_status "Ollama models setup complete"
 }
 
-# Function to setup API key template
-setup_api_key_template() {
-    if [[ $SKIP_API_SETUP == true ]]; then
-        print_warning "Skipping API setup as requested"
-        return
-    fi
-    
-    print_section "Creating API Key Setup Template"
-    
-    cat > "$HOME/.local/bin/setup-api-keys.sh" << 'EOF'
-#!/bin/bash
-echo "🔐 API Key Setup Guide"
-echo ""
-echo "You'll need to get API keys for the following services:"
-echo ""
-echo "1. Brave Search API"
-echo "   - Visit: https://api.search.brave.com/"
-echo "   - Sign up and get your API key"
-echo "   - Add to your shell config: export BRAVE_API_KEY='your_key_here'"
-echo ""
-echo "2. Todoist API Token"
-echo "   - Visit: https://app.todoist.com/app/settings/integrations/developer"
-echo "   - Copy your API token"
-echo "   - Add to your shell config: export TODOIST_API_KEY='your_token_here'"
-echo ""
-echo "3. Notion Integration"
-echo "   - Visit: https://mcp.notion.com"
-echo "   - Follow the OAuth setup instructions"
-echo ""
-echo "After setting up API keys, restart Claude Desktop for changes to take effect."
-EOF
-
-    chmod +x "$HOME/.local/bin/setup-api-keys.sh"
-    print_status "API key setup guide created"
-}
 
 # Function to verify installation
 verify_installation() {
@@ -370,11 +279,6 @@ verify_installation() {
         ((errors++))
     fi
     
-    # Check scripts
-    if [[ ! -x "$HOME/.local/bin/ai-morning-routine.sh" ]]; then
-        print_error "Morning routine script not executable"
-        ((errors++))
-    fi
     
     if [[ $errors -eq 0 ]]; then
         print_status "✅ Installation verification completed successfully!"
@@ -388,49 +292,41 @@ verify_installation() {
 show_post_install_instructions() {
     print_section "Post-Installation Instructions"
     
-    echo -e "${GREEN}🎉 AI Productivity Framework installation completed!${NC}\n"
+    echo -e "${GREEN}🎉 MCP Server setup completed!${NC}\n"
     
     echo "Next steps:"
     echo "1. Start Ollama: ollama serve"
-    echo "2. Set up API keys: ~/.local/bin/setup-api-keys.sh"
-    echo "3. Configure Notion integration: https://mcp.notion.com"
-    echo "4. Restart Claude Desktop to load MCP servers"
-    echo "5. Test by asking Claude: 'What MCP servers are available?'"
+    echo "2. Restart Claude Desktop to load MCP servers"
+    echo "3. Test by asking Claude: 'What MCP servers are available?'"
     
-    echo -e "\n${BLUE}Available scripts:${NC}"
-    echo "- setup-api-keys.sh: API key setup guide"
     
     echo -e "\n${BLUE}MCP Servers installed:${NC}"
     echo "- filesystem: File system access and management"
     echo "- memory: Basic persistent AI memory storage"
-    echo "- doobidoo-memory: Advanced semantic memory with consolidation"
     echo "- playwright: Browser automation"
-    echo "- todoist: Task management"
-    echo "- brave-search: Web research"
     
     echo -e "\n${YELLOW}Important:${NC}"
     echo "- Backup created at: $BACKUP_DIR"
     echo "- Configuration files in: $CLAUDE_CONFIG_DIR"
-    echo "- AI productivity data in: $INSTALL_DIR"
-    echo "- Run setup-api-keys.sh to configure external services"
+    echo "- MCP server data in: $INSTALL_DIR"
     
     echo -e "\n${GREEN}Happy productivity! 🚀${NC}"
 }
 
 # Function to show usage
 show_usage() {
-    echo "AI Productivity Framework Setup Script"
+    echo "MCP Server Setup Script"
     echo ""
     echo "Usage: $0 [OPTIONS]"
     echo ""
     echo "Options:"
-    echo "  -s, --skip-api          Skip API key setup"
+    echo ""
     echo "  -v, --verbose           Verbose output"
     echo "  -h, --help              Show this help message"
     echo ""
     echo "Examples:"
     echo "  $0                      Basic installation"
-    echo "  $0 --skip-api           Installation without API setup"
+    echo ""
 }
 
 # Main installation function
@@ -438,10 +334,6 @@ main() {
     # Parse command line arguments
     while [[ $# -gt 0 ]]; do
         case $1 in
-            -s|--skip-api)
-                SKIP_API_SETUP=true
-                shift
-                ;;
             -v|--verbose)
                 VERBOSE=true
                 shift
@@ -460,14 +352,13 @@ main() {
     
     echo -e "${BLUE}"
     echo "╔══════════════════════════════════════════════════════════════╗"
-    echo "║              AI Productivity Framework Setup                 ║"
-    echo "║     Claude + MCP + Local Models (Prerequisites: Homebrew,   ║"
-    echo "║              Node.js, Colima/Docker already installed)      ║"
+    echo "║                    MCP Server Setup                         ║"
+    echo "║     Installs MCP servers for Claude Desktop (Prerequisites: ║"
+    echo "║              Node.js, Homebrew already installed)           ║"
     echo "╚══════════════════════════════════════════════════════════════╝"
     echo -e "${NC}"
     
     echo "Configuration:"
-    echo "- Skip API setup: $SKIP_API_SETUP"
     echo "- Verbose: $VERBOSE"
     echo ""
     
@@ -496,7 +387,6 @@ main() {
     create_directory_structure
     setup_claude_mcp_config
     setup_ollama_models
-    setup_api_key_template
     verify_installation
     show_post_install_instructions
 }
