@@ -1,0 +1,5 @@
+#!/bin/bash
+# Example script for dotfiles v2
+
+echo "Hello from dotfiles v2! 🎉"
+echo "This script was installed via the new framework."

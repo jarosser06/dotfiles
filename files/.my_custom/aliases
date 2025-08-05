@@ -1,8 +1,0 @@
-#!/bin/bash
-
-if [[ -a ${GOPATH}/bin/hub ]]; then
-  alias git=hub
-fi
-
-alias projupdate=update_github_projects
-alias berks=guard-berks

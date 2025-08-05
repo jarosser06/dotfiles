@@ -1,0 +1,55 @@
+#!/bin/bash
+
+export EDITOR=vim
+export GOPATH=${HOME}/Go
+export CUSTOM_BIN=${HOME}/.bin
+export COOKBOOKS=${HOME}/cookbooks
+export PATH=${HOME}/.bin:/usr/local/go/bin:${GOPATH}/bin:$HOME/.local/bin:$PATH
+
+if [ -d /usr/local/node ]; then
+  export PATH=/usr/local/node/bin:$PATH
+fi
+
+if [ -a ${HOME}/.pythonz ]; then
+  PATH=$PATH:${HOME}/.pythonz/bin
+  [[ -s $HOME/.pythonz/etc/bashrc ]] && source $HOME/.pythonz/etc/bashrc
+fi
+
+export PROJECTS_DIR=${HOME}/Projects
+export PROJECTS_LIST=${HOME}/.projects
+export BASH_CUSTOM_PLUGINS=${HOME}/.bash_custom/plugins
+
+## Rust LANG
+if [[ "$(uname)" == "Darwin" ]]; then
+  export LD_LIBRARY_PATH=/usr/local/lib
+fi
+RUST_BIN_PATH=$HOME/.cargo/bin
+if [[ -d $RUST_BIN_PATH ]]; then
+  export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+## Used for git completion
+
+# Old with host ... changing to exact host for now.
+#PS1='$(color $CYAN)[\u@\h] \e[0m\w$(color $RED)$(__aws_active_acct_ps)$(color $WHITE)$(__git_ps1)\e[0mλ '
+
+PS1='$(color $CYAN)[\u@night] \e[0m\w$(color $RED)$(__aws_active_acct_ps)$(color $WHITE)$(__git_ps1)\e[0mλ '
+GIT_PS1_SHOWDIRTYSTATE=true
+
+## Virtualenv Wrapper Setup, Mac uses diff path
+BASH_CUSTOM_VIRT_ENV_WRAPPER_PATH=/opt/homebrew/bin/virtualenvwrapper.sh
+
+if [ -f $BASH_CUSTOM_VIRT_ENV_WRAPPER_PATH ];
+then
+  source $BASH_CUSTOM_VIRT_ENV_WRAPPER_PATH
+fi
+
+# Defaults to libvirt on Fedora otherwise
+export VAGRANT_DEFAULT_PROVIDER=parallels
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PIP_VIRTUALENV_BASE=$WORKON_HOME
+export PIP_RESPECT_VIRTUALENV=true
+
+# Workaround b/c CDK is getting fucked up due to buildkit
+export COMPOSE_DOCKER_CLI_BUILD=0

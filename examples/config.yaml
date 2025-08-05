@@ -1,0 +1,92 @@
+# Dotfiles v2 Configuration Example
+# This demonstrates the new flexible configuration format
+
+# Basic file mappings (implicit: filename → ~/.filename)
+files:
+  - source: zshrc
+  - source: gitconfig
+  - source: tmux.conf
+  - source: vimrc
+  
+  # Explicit mappings with custom destinations
+  - source: ssh_config
+    dest: ~/.ssh/config
+    mode: 0600
+  - source: work_gitconfig
+    dest: ~/.gitconfig
+    profile: work
+
+# XDG Config Directory files
+config:
+  - source: nvim
+    dest: ~/.config/nvim
+  - source: alacritty
+    dest: ~/.config/alacritty
+
+# Scripts for PATH
+bin:
+  - source: bin/*
+    dest: ~/.local/bin
+    executable: true
+
+# Package management
+packages:
+  homebrew:
+    taps:
+      - homebrew/cask-fonts
+      - homebrew/cask-versions
+    brews:
+      - git
+      - zsh
+      - tmux
+      - neovim
+      - ripgrep
+      - fd
+      - bat
+      - exa
+    casks:
+      - alacritty
+      - docker
+      - visual-studio-code
+
+# Profile-specific configurations
+profiles:
+  work:
+    files:
+      - source: work/gitconfig
+        dest: ~/.gitconfig
+    packages:
+      homebrew:
+        brews:
+          - awscli
+          - kubectl
+          - terraform
+    hooks:
+      post_install:
+        - "git config --global user.email work@company.com"
+  
+  personal:
+    files:
+      - source: personal/gitconfig
+        dest: ~/.gitconfig
+    hooks:
+      post_install:
+        - "git config --global user.email personal@example.com"
+
+# System hooks
+hooks:
+  pre_install:
+    - "echo 'Starting dotfiles installation...'"
+  
+  post_install:
+    - "echo 'Dotfiles installation complete!'"
+    # macOS specific settings
+    - "defaults write com.apple.dock autohide -bool true"
+    - "defaults write com.apple.dock tilesize -int 48"
+    - "killall Dock"
+
+# Global settings
+settings:
+  backup_existing: true
+  create_directories: true
+  verbose: false

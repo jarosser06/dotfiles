@@ -1,0 +1,134 @@
+# Dotfiles v2 Production Configuration
+# Modern dotfiles management for macOS
+
+# Main dotfiles (implicit mapping: filename → ~/.filename)
+files:
+  - source: zshrc
+  - source: bashrc
+  - source: gitconfig
+  - source: tmux.conf
+  - source: gemrc
+  - source: gdbinit
+  - source: ctags
+
+# Custom shell directories with explicit mapping
+  - source: bash_custom
+    dest: ~/.bash_custom
+
+# XDG Config Directory files
+config: []
+  # Add XDG config files here when needed
+  # - source: nvim
+  #   dest: ~/.config/nvim
+
+# Scripts for PATH
+bin:
+  - source: ai_productivity.sh
+    dest: ~/.local/bin/ai_productivity.sh
+    executable: true
+  - source: claude_code.sh
+    dest: ~/.local/bin/claude_code.sh
+    executable: true
+  - source: colima_setup.sh
+    dest: ~/.local/bin/colima_setup.sh
+    executable: true
+
+# Custom installation scripts (run in order)
+scripts:
+  - name: "claude-code"
+    description: "Install Claude Code CLI tool"
+    command: "curl -fsSL https://claude.ai/install.sh | bash"
+    check_cmd: "command -v claude"
+    run_once: true
+
+  - name: "uv-python"
+    description: "Install uv Python package installer"
+    command: "curl -LsSf https://astral.sh/uv/install.sh | sh && source ~/.cargo/env"
+    check_cmd: "command -v uv"
+    run_once: true
+
+  - name: "colima-setup"
+    description: "Configure and start Colima container runtime"
+    command: "~/.local/bin/colima_setup.sh --cpu 2 --memory 4"
+    check_cmd: "colima status default"
+    working_dir: "~"
+    run_once: false  # Allow reconfiguration
+
+  - name: "ai-productivity-framework"
+    description: "Install AI productivity framework with MCP servers"
+    command: "~/.local/bin/ai_productivity.sh --skip-api"
+    check_cmd: "[ -d ~/Documents/ai-productivity ] && command -v ollama"
+    working_dir: "~"
+    run_once: true
+
+  # Example custom installations:
+  # - name: "rust"
+  #   description: "Install Rust via rustup"
+  #   command: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
+  #   check_cmd: "command -v rustc"
+  #   run_once: true
+  # 
+  # - name: "oh-my-zsh"
+  #   description: "Install Oh My Zsh framework"
+  #   command: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended'
+  #   check_cmd: "[ -d ~/.oh-my-zsh ]"
+  #   run_once: true
+  #
+  # - name: "vim-plug"
+  #   description: "Install vim-plug plugin manager"
+  #   command: "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  #   check_cmd: "[ -f ~/.vim/autoload/plug.vim ]"
+  #   run_once: true
+
+# Package management
+packages:
+  homebrew:
+    taps: []
+      # - homebrew/cask-fonts
+    brews:
+      - go  # Required for building dotfiles manager
+      - vim
+      - bash
+      - jq
+      - helix
+      - awscli
+      - virtualenvwrapper
+      - tmux
+      - node
+      - colima
+      - docker
+      - docker-compose
+    casks: []
+      # - alacritty
+      # - docker
+
+# Profile-specific configurations
+profiles:
+  work:
+    files: []
+      # Add work-specific file overrides here
+    packages:
+      homebrew:
+        brews: []
+          # - awscli
+          # - kubectl
+  
+  personal:
+    files: []
+      # Add personal-specific file overrides here
+
+# System hooks
+hooks:
+  pre_install: []
+    # - "echo 'Starting dotfiles installation...'"
+  
+  post_install: []
+    # - "echo 'Dotfiles installation complete!'"
+
+# Global settings
+settings:
+  backup_existing: true
+  create_directories: true
+  verbose: false
+  backup_retention_days: 30  # Keep backups for 30 days
+  max_backup_count: 5        # Keep only 5 most recent backups
