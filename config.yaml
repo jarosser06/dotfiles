@@ -47,17 +47,17 @@ scripts:
     check_cmd: "command -v uv"
     run_once: true
 
-  - name: "colima-setup"
+  - name: "colima-setup" 
     description: "Configure and start Colima container runtime"
-    command: "~/.local/bin/colima_setup.sh --cpu 2 --memory 4"
+    command: "~/.local/bin/colima_setup.sh"
     check_cmd: "colima status default"
     working_dir: "~"
     run_once: false  # Allow reconfiguration
 
-  - name: "ai-productivity-framework"
-    description: "Install AI productivity framework with MCP servers"
-    command: "~/.local/bin/ai_productivity.sh --skip-api"
-    check_cmd: "[ -d ~/Documents/ai-productivity ] && command -v ollama"
+  - name: "mcp-servers"
+    description: "Install MCP servers and AI tools (Ollama, etc.)"
+    command: "~/.local/bin/ai_productivity.sh --skip-api --yes --verbose"
+    check_cmd: "[ -d ~/Documents/ai-productivity ] && command -v ollama && [ -f ~/.local/bin/setup-api-keys.sh ]"
     working_dir: "~"
     run_once: true
 

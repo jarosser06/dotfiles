@@ -20,6 +20,7 @@ BACKUP_DIR="$HOME/.ai-productivity-backup-$(date +%Y%m%d-%H%M%S)"
 # Flags
 SKIP_API_SETUP=false
 VERBOSE=false
+NON_INTERACTIVE=false
 
 # Function to print colored output
 print_status() {
@@ -426,6 +427,7 @@ show_usage() {
     echo "Options:"
     echo "  -s, --skip-api          Skip API key setup"
     echo "  -v, --verbose           Verbose output"
+    echo "  -y, --yes               Non-interactive mode (auto-confirm)"
     echo "  -h, --help              Show this help message"
     echo ""
     echo "Examples:"
@@ -444,6 +446,10 @@ main() {
                 ;;
             -v|--verbose)
                 VERBOSE=true
+                shift
+                ;;
+            -y|--yes)
+                NON_INTERACTIVE=true
                 shift
                 ;;
             -h|--help)
@@ -469,13 +475,18 @@ main() {
     echo "Configuration:"
     echo "- Skip API setup: $SKIP_API_SETUP"
     echo "- Verbose: $VERBOSE"
+    echo "- Non-interactive: $NON_INTERACTIVE"
     echo ""
     
-    read -p "Continue with installation? (y/N): " -n 1 -r
-    echo
-    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-        echo "Installation cancelled."
-        exit 0
+    if [[ $NON_INTERACTIVE == false ]]; then
+        read -p "Continue with installation? (y/N): " -n 1 -r
+        echo
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            echo "Installation cancelled."
+            exit 0
+        fi
+    else
+        echo "Non-interactive mode: proceeding with installation..."
     fi
     
     # Check prerequisites
