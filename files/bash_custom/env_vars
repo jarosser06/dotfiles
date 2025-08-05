@@ -1,5 +1,8 @@
 #!/bin/bash
 
+source ${HOME}/.bash_custom/aws.bash
+source ${HOME}/.bash_custom/colors.bash
+
 export EDITOR=vim
 export GOPATH=${HOME}/Go
 export CUSTOM_BIN=${HOME}/.bin
