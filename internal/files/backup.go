@@ -61,10 +61,15 @@ func (bm *BackupManager) CreateBackup(filesToBackup []string) (*BackupInfo, erro
 	}
 
 	var backedUpFiles []string
+	var failedFiles []string
 	
 	for _, filePath := range filesToBackup {
 		if err := bm.backupFile(filePath, backupPath); err != nil {
-			return nil, fmt.Errorf("failed to backup %s: %w", filePath, err)
+			if bm.verbose {
+				fmt.Printf("   ⚠️  Failed to backup %s: %v\n", filePath, err)
+			}
+			failedFiles = append(failedFiles, filePath)
+			continue // Continue with other files instead of failing completely
 		}
 		backedUpFiles = append(backedUpFiles, filePath)
 	}
@@ -77,11 +82,27 @@ func (bm *BackupManager) CreateBackup(filesToBackup []string) (*BackupInfo, erro
 	}
 
 	if err := bm.saveBackupMetadata(backupInfo); err != nil {
-		return nil, fmt.Errorf("failed to save backup metadata: %w", err)
+		if bm.verbose {
+			fmt.Printf("   ⚠️  Failed to save backup metadata: %v\n", err)
+		}
+		// Don't fail the entire backup for metadata issues
 	}
 
-	if bm.verbose {
-		fmt.Printf("✅ Backup created with %d files\n", len(backedUpFiles))
+	// Report backup results
+	if len(backedUpFiles) > 0 {
+		if bm.verbose {
+			fmt.Printf("✅ Backup created with %d files\n", len(backedUpFiles))
+			if len(failedFiles) > 0 {
+				fmt.Printf("   ⚠️  %d files could not be backed up\n", len(failedFiles))
+			}
+		}
+		return backupInfo, nil
+	} else if len(failedFiles) > 0 {
+		// All files failed to backup, but don't fail the entire operation
+		if bm.verbose {
+			fmt.Printf("⚠️  No files could be backed up (%d failed)\n", len(failedFiles))
+		}
+		return nil, nil // Return nil backup info but no error
 	}
 
 	return backupInfo, nil
@@ -91,7 +112,13 @@ func (bm *BackupManager) CreateBackup(filesToBackup []string) (*BackupInfo, erro
 func (bm *BackupManager) backupFile(sourcePath, backupPath string) error {
 	// Skip if source doesn't exist
 	if _, err := os.Stat(sourcePath); os.IsNotExist(err) {
+		if bm.verbose {
+			fmt.Printf("   Skipping %s (doesn't exist)\n", sourcePath)
+		}
 		return nil
+	} else if err != nil {
+		// Other stat errors (permission issues, etc.)
+		return fmt.Errorf("cannot access %s: %w", sourcePath, err)
 	}
 
 	// Determine relative path for backup

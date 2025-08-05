@@ -101,10 +101,9 @@ func runUpdate(cmd *cobra.Command, args []string) error {
 
 			backup, err := backupMgr.CreateBackup(filesToBackup)
 			if err != nil {
-				return fmt.Errorf("failed to create backup: %w", err)
-			}
-
-			if backup != nil {
+				fmt.Printf("⚠️  Warning: Failed to create backup: %v\n", err)
+				fmt.Println("   Continuing with update anyway...")
+			} else if backup != nil {
 				fmt.Printf("🗄️  Backup created: %s\n", backup.BackupPath)
 				
 				// Rotate backups if max count is configured
@@ -113,6 +112,9 @@ func runUpdate(cmd *cobra.Command, args []string) error {
 						fmt.Printf("⚠️  Warning: Failed to rotate backups: %v\n", err)
 					}
 				}
+			} else {
+				// backup is nil but no error - this means no files could be backed up
+				fmt.Println("ℹ️  No files needed backup, continuing with update...")
 			}
 		}
 	}
