@@ -14,6 +14,8 @@ files:
 # Custom shell directories with explicit mapping
   - source: bash_custom
     dest: ~/.bash_custom
+  - source: hammerspoon
+    dest: ~/.hammerspoon
 
 # XDG Config Directory files
 config: []
