@@ -28,6 +28,9 @@ bin:
   - source: ai_productivity.sh
     dest: ~/.local/bin/ai_productivity.sh
     executable: true
+  - source: attach_env
+    dest: ~/.bin/attach_env
+    executable: true
 
 # Custom installation scripts (run in order)
 scripts:
