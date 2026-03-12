@@ -19,3 +19,6 @@ done
 
 # Starship prompt
 eval "$(starship init bash)"
+
+# bash-preexec (must be sourced last)
+[ -f "$HOME/.bash_custom/bash-preexec.sh" ] && source "$HOME/.bash_custom/bash-preexec.sh"
