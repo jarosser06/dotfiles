@@ -1,4 +1,3 @@
-
 ##### S3 Shortcuts #####
 alias s3-ls-buckets="aws s3 ls | cut -d ' ' -f3"
 
@@ -27,14 +26,6 @@ function active_aws_account() {
   fi
 
   return 0
-}
-
-PS_ACTIVE_AWS_ENABLED=0
-function __aws_active_acct_ps() {
-  if [[ ${PS_ACTIVE_AWS_ENABLED} -ne 1 ]]; then
-    return 0
-  fi
-  echo " [AWS:$(active_aws_account)]"
 }
 
 ##### CloudFormation Shortcuts #####

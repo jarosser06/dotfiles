@@ -1,0 +1,128 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+MAP_FILE="$DOTFILES_DIR/dotfiles.map"
+
+usage() {
+  echo "Usage: dot <command>"
+  echo ""
+  echo "Commands:"
+  echo "  install    Symlink all dotfiles from dotfiles.map"
+  echo "  add <path> Add a file/dir to the repo and replace with symlink"
+  echo "  list       Print dotfiles.map"
+}
+
+expand_path() {
+  echo "${1/#\~/$HOME}"
+}
+
+cmd_install() {
+  if [[ ! -f "$MAP_FILE" ]]; then
+    echo "Error: $MAP_FILE not found"
+    exit 1
+  fi
+
+  while IFS=: read -r src dest; do
+    [[ -z "$src" || "$src" == \#* ]] && continue
+
+    src_path="$DOTFILES_DIR/$src"
+    dest_path="$(expand_path "$dest")"
+
+    # Create parent directory if needed
+    mkdir -p "$(dirname "$dest_path")"
+
+    # If destination exists
+    if [[ -e "$dest_path" || -L "$dest_path" ]]; then
+      # Already our symlink — skip
+      if [[ -L "$dest_path" && "$(readlink "$dest_path")" == "$src_path" ]]; then
+        echo "ok: $dest_path → $src_path"
+        continue
+      fi
+      echo "skip: $dest_path already exists (not our symlink)"
+      continue
+    fi
+
+    ln -s "$src_path" "$dest_path"
+    echo "link: $dest_path → $src_path"
+  done < "$MAP_FILE"
+
+  # Install Starship if not present
+  if ! command -v starship &>/dev/null; then
+    if command -v brew &>/dev/null; then
+      echo "Installing Starship via Homebrew..."
+      brew install starship
+    else
+      echo "Warning: Starship not found and Homebrew not available. Install manually."
+    fi
+  else
+    echo "ok: starship already installed"
+  fi
+}
+
+cmd_add() {
+  local path="$1"
+
+  if [[ ! -e "$path" ]]; then
+    echo "Error: $path does not exist"
+    exit 1
+  fi
+
+  local abs_path
+  abs_path="$(cd "$(dirname "$path")" && pwd)/$(basename "$path")"
+
+  local name
+  name="$(basename "$abs_path")"
+  # Strip leading dot
+  name="${name#.}"
+
+  if [[ -e "$DOTFILES_DIR/$name" ]]; then
+    echo "Error: $name already exists in dotfiles repo"
+    exit 1
+  fi
+
+  # Copy into repo
+  cp -R "$abs_path" "$DOTFILES_DIR/$name"
+
+  # Replace original with symlink
+  rm -rf "$abs_path"
+  ln -s "$DOTFILES_DIR/$name" "$abs_path"
+
+  # Append to map
+  echo "$name:~/${abs_path#$HOME/}" >> "$MAP_FILE"
+
+  echo "added: $name → $abs_path"
+}
+
+cmd_list() {
+  if [[ ! -f "$MAP_FILE" ]]; then
+    echo "Error: $MAP_FILE not found"
+    exit 1
+  fi
+  cat "$MAP_FILE"
+}
+
+if [[ $# -lt 1 ]]; then
+  usage
+  exit 1
+fi
+
+case "$1" in
+  install)
+    cmd_install
+    ;;
+  add)
+    if [[ $# -lt 2 ]]; then
+      echo "Error: dot add requires a path argument"
+      exit 1
+    fi
+    cmd_add "$2"
+    ;;
+  list)
+    cmd_list
+    ;;
+  *)
+    usage
+    exit 1
+    ;;
+esac

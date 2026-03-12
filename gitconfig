@@ -4,10 +4,6 @@
 [push]
 	default = matching
 [init]
-	templatedir = ~/.git_template
 	defaultBranch = main
 [url "https://"]
   insteadOf = git://
-[credential]
-	helper = !aws codecommit credential-helper $@
-	UseHttpPath = true

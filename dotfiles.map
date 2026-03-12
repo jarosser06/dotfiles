@@ -1,0 +1,10 @@
+bash_profile:~/.bash_profile
+bashrc:~/.bashrc
+gitconfig:~/.gitconfig
+tmux.conf:~/.tmux.conf
+ctags:~/.ctags
+starship.toml:~/.config/starship.toml
+bash_custom:~/.bash_custom
+dot:~/.local/bin/dot
+bin/attach_env:~/.local/bin/attach_env
+bin/docker-cleanup:~/.local/bin/docker-cleanup
