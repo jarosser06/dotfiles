@@ -8,3 +8,4 @@ bash_custom:~/.bash_custom
 dot:~/.local/bin/dot
 bin/attach_env:~/.local/bin/attach_env
 bin/docker-cleanup:~/.local/bin/docker-cleanup
+docker_config.json:~/.docker/config.json

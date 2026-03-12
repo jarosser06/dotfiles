@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Resolve real script location, following symlinks
+_SOURCE="${BASH_SOURCE[0]}"
+while [[ -L "$_SOURCE" ]]; do
+  _DIR="$(cd -P "$(dirname "$_SOURCE")" && pwd)"
+  _SOURCE="$(readlink "$_SOURCE")"
+  [[ "$_SOURCE" != /* ]] && _SOURCE="$_DIR/$_SOURCE"
+done
+DOTFILES_DIR="$(cd -P "$(dirname "$_SOURCE")" && pwd)"
+unset _SOURCE _DIR
 MAP_FILE="$DOTFILES_DIR/dotfiles.map"
 
 usage() {
@@ -61,7 +69,8 @@ cmd_install() {
 }
 
 cmd_add() {
-  local path="$1"
+  local path
+  path="$(expand_path "$1")"
 
   if [[ ! -e "$path" ]]; then
     echo "Error: $path does not exist"
@@ -82,7 +91,7 @@ cmd_add() {
   fi
 
   # Copy into repo
-  cp -R "$abs_path" "$DOTFILES_DIR/$name"
+  cp -RL "$abs_path" "$DOTFILES_DIR/$name"
 
   # Replace original with symlink
   rm -rf "$abs_path"

@@ -1,53 +1,72 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 format = """
-$battery\
+[](color_orange)\
 $hostname\
+[](fg:color_orange bg:color_yellow)\
 $directory\
+[](fg:color_yellow bg:color_aqua)\
 $git_branch\
 $git_status\
-$character\
-"""
+[](fg:color_aqua)\
+$line_break$character"""
+
+palette = 'gruvbox_dark'
+
+[palettes.gruvbox_dark]
+color_fg0 = '#fbf1c7'
+color_bg1 = '#3c3836'
+color_bg3 = '#665c54'
+color_blue = '#458588'
+color_aqua = '#689d6a'
+color_green = '#98971a'
+color_orange = '#d65d0e'
+color_purple = '#b16286'
+color_red = '#cc241d'
+color_yellow = '#d79921'
 
 [battery]
 full_symbol = "•"
 charging_symbol = "⇡"
 discharging_symbol = "⇣"
+format = "[ $symbol]($style)"
 
 [username]
 show_always = true
-style_user = "cyan bold"
+style_user = "bg:color_orange fg:color_fg0"
 format = "[$user]($style)"
 
 [hostname]
 ssh_only = false
-style = "bright-cyan bold"
-format = "[$hostname]($style) "
+style = "bg:color_orange fg:color_fg0"
+format = "[ $hostname ]($style)"
 
 [directory]
-style = "white"
+style = "fg:color_fg0 bg:color_yellow"
+format = "[ $path ]($style)"
 truncate_to_repo = false
 
 [git_branch]
-format = "[$branch]($style)"
-#style = "bright-black"
-style = "#82bfde"
+symbol = ""
+style = "bg:color_aqua"
+format = '[[ $symbol $branch ](fg:color_fg0 bg:color_aqua)]($style)'
 
 [git_status]
-format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](bright-yellow) ($ahead_behind$stashed)]($style)"
-style = "cyan"
-conflicted = "​"
-untracked = "​"
-modified = "​"
-staged = "​"
-renamed = "​"
-deleted = "​"
+style = "bg:color_aqua"
+format = '[[($staged$modified$ahead_behind$stashed )](fg:color_fg0 bg:color_aqua)]($style)'
+staged = "+"
+modified = "*"
+conflicted = ""
+untracked = ""
+renamed = ""
+deleted = ""
 stashed = "≡"
 
-[git_state]
-format = '\([$state( $progress_current/$progress_total)]($style)\) '
-
 [character]
-success_symbol = "[λ](white)"
-error_symbol = "[λ](red)"
+#success_symbol = '[λ](bold fg:color_blue)'
+#error_symbol = '[λ](bold fg:color_red)'
+success_symbol = '[](bold fg:color_blue)'
+error_symbol = '[󰻝](bold fg:color_red)'
 
 [cmd_duration]
 format = "[$duration]($style) "
