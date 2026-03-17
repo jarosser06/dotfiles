@@ -142,3 +142,9 @@ project_serena_folder_location: "$projectDir/.serena"
 # the list of registered project paths (updated automatically).
 projects:
 - /Users/jim/Projects/workbench
+- /private/var/folders/dd/s3cp_kqn72g6kbd_5vwcmzv00000gn/T/pytest-of-jim/pytest-196/test_serena_tool_call_returns_0/repo
+- /private/var/folders/dd/s3cp_kqn72g6kbd_5vwcmzv00000gn/T/pytest-of-jim/pytest-196/test_serena_tool_discovery0/repo
+- /private/var/folders/dd/s3cp_kqn72g6kbd_5vwcmzv00000gn/T/pytest-of-jim/pytest-198/test_serena_tool_call_returns_0/repo
+- /private/var/folders/dd/s3cp_kqn72g6kbd_5vwcmzv00000gn/T/pytest-of-jim/pytest-198/test_serena_tool_discovery0/repo
+- /private/var/folders/dd/s3cp_kqn72g6kbd_5vwcmzv00000gn/T/pytest-of-jim/pytest-199/test_serena_tool_call_returns_0/repo
+- /private/var/folders/dd/s3cp_kqn72g6kbd_5vwcmzv00000gn/T/pytest-of-jim/pytest-199/test_serena_tool_discovery0/repo

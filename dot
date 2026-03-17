@@ -19,6 +19,7 @@ usage() {
   echo "  install    Symlink all dotfiles from dotfiles.map"
   echo "  add <path> Add a file/dir to the repo and replace with symlink"
   echo "  list       Print dotfiles.map"
+  echo "  help [topic] Show manual page (e.g., dot help nvim)"
 }
 
 expand_path() {
@@ -66,6 +67,11 @@ cmd_install() {
   else
     echo "ok: starship already installed"
   fi
+
+  # Build man pages if pandoc is available
+  if command -v pandoc &>/dev/null; then
+    bash "$DOTFILES_DIR/man/build.sh"
+  fi
 }
 
 cmd_add() {
@@ -103,6 +109,14 @@ cmd_add() {
   echo "added: $name → $abs_path"
 }
 
+cmd_help() {
+  local topic="${1:-dotfiles}"
+  man "dot-${topic}" 2>/dev/null || {
+    echo "No man page for dot-${topic}. Available topics:"
+    ls "$DOTFILES_DIR/man/man7/" 2>/dev/null | sed 's/\.7$//' | sed 's/^dot-/  /'
+  }
+}
+
 cmd_list() {
   if [[ ! -f "$MAP_FILE" ]]; then
     echo "Error: $MAP_FILE not found"
@@ -129,6 +143,9 @@ case "$1" in
     ;;
   list)
     cmd_list
+    ;;
+  help)
+    cmd_help "${2:-}"
     ;;
   *)
     usage

@@ -1,2 +1,3 @@
 bash_custom/local.bash
 bash_custom/secrets
+man/man[0-9]*/
