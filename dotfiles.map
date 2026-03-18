@@ -10,5 +10,4 @@ bin/attach_env:~/.local/bin/attach_env
 bin/docker-cleanup:~/.local/bin/docker-cleanup
 docker_config.json:~/.docker/config.json
 claude_settings.json:~/.claude/settings.json
-serena_config.yml:~/.serena/serena_config.yml
 nvim:~/.config/nvim
